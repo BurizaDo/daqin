@@ -1,0 +1,24 @@
+PODS:
+  - AFNetworking (1.3.4)
+  - EGOCache (2.1)
+  - SDWebImage (3.7.1):
+    - SDWebImage/Core
+  - SDWebImage/Core (3.7.1)
+  - SVProgressHUD (1.0)
+  - SVPullToRefresh (0.4.1)
+
+DEPENDENCIES:
+  - AFNetworking (~> 1.3)
+  - EGOCache
+  - SDWebImage
+  - SVProgressHUD
+  - SVPullToRefresh (~> 0.4.1)
+
+SPEC CHECKSUMS:
+  AFNetworking: 80c4e0652b08eb34e25b9c0ff3c82556fe5967b4
+  EGOCache: bf414333c425fe47f5182351d1dd47ebf72d8352
+  SDWebImage: 116e88633b5b416ea0ca4b334a4ac59cf72dd38d
+  SVProgressHUD: 5034c6e22b8c2ca3e09402e48d41ed0340aa1c50
+  SVPullToRefresh: d5161ebc833a38b465364412e5e307ca80bbb190
+
+COCOAPODS: 0.33.1
