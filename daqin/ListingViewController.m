@@ -13,6 +13,7 @@
 #import "RouteCell.h"
 #import "Route.h"
 #import "RouteDetailViewController.h"
+#import "Uploader.h"
 
 @interface ListingViewController ()
 @property (nonatomic, strong) NSArray* routes;
@@ -46,6 +47,11 @@
 {
     [super viewDidLoad];
     [self loadData:NO];
+    [Uploader uploadImage:[UIImage imageNamed:@"first"] onSuccess:^(NSString* success) {
+        success = nil;
+    } onFailure:^(NSString* failure) {
+        failure = nil;
+    }];
 }
 
 - (void)viewDidAppear:(BOOL)animated{

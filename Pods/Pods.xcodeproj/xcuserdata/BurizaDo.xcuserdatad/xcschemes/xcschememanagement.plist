@@ -9,7 +9,17 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>Pods-Base64.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-EGOCache.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Pods-NSData+MD5Digest.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -29,6 +39,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>Pods-WSAssetPickerController.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -37,32 +52,47 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>05055916DCEB445B8FBDDA7C</key>
+		<key>06A4827CB2CB45B785C41500</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>376E83517885480AA79BF092</key>
+		<key>2900DA69DC06451D8F886ACC</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>380CC23FA0E147B8ABB5239D</key>
+		<key>2906A59146114532992EAE4E</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>892948572514440EAF9A2939</key>
+		<key>8B54853CB8824D6281F18ABD</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>992651F2D9A74EBA835BBD24</key>
+		<key>9BEE29DFDC314EF7B079BE12</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>F4501E6F3D1E4621AACAB1EE</key>
+		<key>A175B77905DD4AFE90D27F61</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>A7C12F1F2082464E9C1DA6E6</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>D86B606325AC4FBD9E9F9635</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>E248BBA7867E4B738CC08293</key>
 		<dict>
 			<key>primary</key>
 			<true/>

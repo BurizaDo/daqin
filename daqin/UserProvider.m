@@ -27,6 +27,24 @@
             failureBlock(errMsg);
         }
     }];
+}
+
++ (void)updateUser:(User*)user
+         onSuccess:(void(^)())resultBlock
+         onFailure:(void(^)())failureBlock{
+    NSDictionary* param = @{@"userId":user.userId,
+                            @"name":user.name,
+                            @"age":user.age,
+                            @"signature":user.signature,
+                            @"avatar":user.avatar,
+                            @"images":user.images};
+    [[HttpClient sharedClient] getAPI:@"updateUserProfile" params:param success:^(id obj) {
+        resultBlock();
+    } failure:^(NSString *errMsg) {
+        if(failureBlock){
+            failureBlock(errMsg);
+        }
+    }];
     
 }
 

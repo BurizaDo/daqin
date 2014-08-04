@@ -7,10 +7,15 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "User.h"
 
 @interface UserProvider : NSObject
 + (void)getUsers:(NSString*)userIds
                 onSuccess:(void(^)(NSArray *areas))resultBlock
                 onFailure:(void(^)(NSString* error))failureBlock;
+
++ (void)updateUser:(User*)user
+         onSuccess:(void(^)())resultBlock
+         onFailure:(void(^)())failureBlock;
 
 @end

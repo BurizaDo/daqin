@@ -33,11 +33,12 @@
     UINavigationController* postNC = [[UINavigationController alloc] initWithRootViewController:postVC];
     postNC.tabBarItem = [[UITabBarItem alloc]initWithTitle:@"发布" image:[UIImage imageNamed:@"first"] tag:0];
 
-    ProfileViewController* myVC = [[ProfileViewController alloc] init];
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    UIViewController *myVC = (UIViewController *) [storyboard instantiateViewControllerWithIdentifier:@"ProfileVC"];
     UINavigationController* myNC = [[UINavigationController alloc] initWithRootViewController:myVC];
-    myNC.tabBarItem = [[UITabBarItem alloc]initWithTitle:@"我的" image:[UIImage imageNamed:@"first"] tag:0];
+    myNC.tabBarItem = [[UITabBarItem alloc]initWithTitle:@"个人中心" image:[UIImage imageNamed:@"first"] tag:0];
     myNC.title = @"个人中心";
-    myNC.navigationBar.translucent = NO;
+//    myNC.navigationBar.translucent = NO;
 
     
     NSMutableArray* controllers = [NSMutableArray arrayWithArray:self.viewControllers];
@@ -61,7 +62,7 @@
     NSString* token = (NSString*)[[EGOCache globalCache] objectForKey:@"userToken"];
     if(!token){
         UINavigationController* post = [self generateLoginNavController:@"发布" image:@"first"];
-        UINavigationController* my = [self generateLoginNavController:@"我的" image:@"first"];
+        UINavigationController* my = [self generateLoginNavController:@"个人中心" image:@"first"];
         
         NSMutableArray* controllers = [NSMutableArray arrayWithArray:self.viewControllers];
         [controllers replaceObjectAtIndex:2 withObject:post];

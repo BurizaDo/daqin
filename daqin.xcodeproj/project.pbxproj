@@ -23,6 +23,9 @@
 		E2901BE919873C01002DF983 /* RouteDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E2901BE719873C01002DF983 /* RouteDetailViewController.xib */; };
 		E2901BF01987AC55002DF983 /* DateSelectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E2901BEE1987AC55002DF983 /* DateSelectViewController.m */; };
 		E2901BF11987AC55002DF983 /* DateSelectViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E2901BEF1987AC55002DF983 /* DateSelectViewController.xib */; };
+		E2A449BC198F2CF7004F4476 /* UpYun.m in Sources */ = {isa = PBXBuildFile; fileRef = E2A449B7198F2CF7004F4476 /* UpYun.m */; };
+		E2A449BD198F2CF7004F4476 /* NSData+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = E2A449BB198F2CF7004F4476 /* NSData+Utils.m */; };
+		E2A449C0198F5021004F4476 /* Uploader.m in Sources */ = {isa = PBXBuildFile; fileRef = E2A449BF198F5021004F4476 /* Uploader.m */; };
 		E2BE86DA197E558D00B47378 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E2BE86D9197E558D00B47378 /* Foundation.framework */; };
 		E2BE86DC197E558D00B47378 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E2BE86DB197E558D00B47378 /* CoreGraphics.framework */; };
 		E2BE86DE197E558D00B47378 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E2BE86DD197E558D00B47378 /* UIKit.framework */; };
@@ -95,6 +98,12 @@
 		E2901BED1987AC55002DF983 /* DateSelectViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DateSelectViewController.h; sourceTree = "<group>"; };
 		E2901BEE1987AC55002DF983 /* DateSelectViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DateSelectViewController.m; sourceTree = "<group>"; };
 		E2901BEF1987AC55002DF983 /* DateSelectViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DateSelectViewController.xib; sourceTree = "<group>"; };
+		E2A449B6198F2CF7004F4476 /* UpYun.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UpYun.h; sourceTree = "<group>"; };
+		E2A449B7198F2CF7004F4476 /* UpYun.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UpYun.m; sourceTree = "<group>"; };
+		E2A449BA198F2CF7004F4476 /* NSData+Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+Utils.h"; sourceTree = "<group>"; };
+		E2A449BB198F2CF7004F4476 /* NSData+Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+Utils.m"; sourceTree = "<group>"; };
+		E2A449BE198F5021004F4476 /* Uploader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Uploader.h; sourceTree = "<group>"; };
+		E2A449BF198F5021004F4476 /* Uploader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Uploader.m; sourceTree = "<group>"; };
 		E2BE86D6197E558D00B47378 /* daqin.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = daqin.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E2BE86D9197E558D00B47378 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		E2BE86DB197E558D00B47378 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -181,6 +190,97 @@
 			path = resources;
 			sourceTree = "<group>";
 		};
+		E2A449AE198F2A06004F4476 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				E2901BE519873C01002DF983 /* RouteDetailViewController.h */,
+				E2901BE619873C01002DF983 /* RouteDetailViewController.m */,
+				E2901BE719873C01002DF983 /* RouteDetailViewController.xib */,
+				E2901BED1987AC55002DF983 /* DateSelectViewController.h */,
+				E2901BEE1987AC55002DF983 /* DateSelectViewController.m */,
+				E2901BEF1987AC55002DF983 /* DateSelectViewController.xib */,
+				E28B269019888BA7004DCF9D /* ProfileViewController.h */,
+				E28B269119888BA7004DCF9D /* ProfileViewController.m */,
+				E2BE87481980C77D00B47378 /* RootViewController.h */,
+				E2BE87491980C77D00B47378 /* RootViewController.m */,
+				E2BE874B1980D3FE00B47378 /* LoginViewController.h */,
+				E2BE874C1980D3FE00B47378 /* LoginViewController.m */,
+				E2BE874D1980D3FE00B47378 /* LoginViewController.xib */,
+				E2901BD71986261D002DF983 /* ListingViewController.h */,
+				E2901BD81986261D002DF983 /* ListingViewController.m */,
+				E2BE86EE197E558D00B47378 /* HomePageViewController.h */,
+				E2BE86EF197E558D00B47378 /* HomePageViewController.m */,
+				E2BE86F1197E558D00B47378 /* MyViewController.h */,
+				E2BE86F2197E558D00B47378 /* MyViewController.m */,
+				E2BE8711197F4FC800B47378 /* PostViewController.h */,
+				E2BE8712197F4FC800B47378 /* PostViewController.m */,
+			);
+			name = ViewController;
+			sourceTree = "<group>";
+		};
+		E2A449AF198F2A32004F4476 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				E2901BDA198627FD002DF983 /* ListingProvider.h */,
+				E2901BDB198627FD002DF983 /* ListingProvider.m */,
+				E2901BDD19863DB0002DF983 /* Route.h */,
+				E2901BDE19863DB0002DF983 /* Route.m */,
+				E28B269C1988E9FD004DCF9D /* UserProvider.h */,
+				E28B269D1988E9FD004DCF9D /* UserProvider.m */,
+				E28B269F1988EABB004DCF9D /* User.h */,
+				E28B26A01988EABB004DCF9D /* User.m */,
+			);
+			name = Data;
+			sourceTree = "<group>";
+		};
+		E2A449B0198F2A62004F4476 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				E2BE8717197F876900B47378 /* InputCell.h */,
+				E2BE8718197F876900B47378 /* InputCell.m */,
+				E2BE871C197F9F6100B47378 /* InputCell.xib */,
+				E2901BE019864306002DF983 /* RouteCell.h */,
+				E2901BE119864306002DF983 /* RouteCell.m */,
+				E2901BE219864306002DF983 /* RouteCell.xib */,
+			);
+			name = Cell;
+			sourceTree = "<group>";
+		};
+		E2A449B1198F2B0E004F4476 /* Thirdparty */ = {
+			isa = PBXGroup;
+			children = (
+				E2A449B5198F2CF7004F4476 /* UpYun */,
+			);
+			path = Thirdparty;
+			sourceTree = SOURCE_ROOT;
+		};
+		E2A449B5198F2CF7004F4476 /* UpYun */ = {
+			isa = PBXGroup;
+			children = (
+				E2A449B6198F2CF7004F4476 /* UpYun.h */,
+				E2A449B7198F2CF7004F4476 /* UpYun.m */,
+				E2A449B8198F2CF7004F4476 /* Utils */,
+			);
+			path = UpYun;
+			sourceTree = "<group>";
+		};
+		E2A449B8198F2CF7004F4476 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				E2A449B9198F2CF7004F4476 /* Data */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		E2A449B9198F2CF7004F4476 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				E2A449BA198F2CF7004F4476 /* NSData+Utils.h */,
+				E2A449BB198F2CF7004F4476 /* NSData+Utils.m */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
 		E2BE86CD197E558D00B47378 = {
 			isa = PBXGroup;
 			children = (
@@ -225,52 +325,23 @@
 		E2BE86DF197E558D00B47378 /* daqin */ = {
 			isa = PBXGroup;
 			children = (
+				E2A449B1198F2B0E004F4476 /* Thirdparty */,
+				E2A449B0198F2A62004F4476 /* Cell */,
+				E2A449AF198F2A32004F4476 /* Data */,
+				E2A449AE198F2A06004F4476 /* ViewController */,
 				E28B26991988C7DC004DCF9D /* resources */,
 				E2901BD41985ECA8002DF983 /* HttpClient.h */,
 				E2901BD51985ECA8002DF983 /* HttpClient.m */,
 				E2BE86E8197E558D00B47378 /* AppDelegate.h */,
 				E2BE86E9197E558D00B47378 /* AppDelegate.m */,
 				E2BE86EB197E558D00B47378 /* Main.storyboard */,
-				E2BE86EE197E558D00B47378 /* HomePageViewController.h */,
-				E2BE86EF197E558D00B47378 /* HomePageViewController.m */,
-				E2BE86F1197E558D00B47378 /* MyViewController.h */,
-				E2BE86F2197E558D00B47378 /* MyViewController.m */,
-				E2BE8711197F4FC800B47378 /* PostViewController.h */,
-				E2BE8712197F4FC800B47378 /* PostViewController.m */,
 				E2BE86F4197E558D00B47378 /* Images.xcassets */,
 				E2BE86E0197E558D00B47378 /* Supporting Files */,
-				E2BE8717197F876900B47378 /* InputCell.h */,
-				E2BE8718197F876900B47378 /* InputCell.m */,
-				E2BE871C197F9F6100B47378 /* InputCell.xib */,
 				E2BE873D1980A31800B47378 /* LoginHelper.h */,
 				E2BE873E1980A31800B47378 /* LoginHelper.m */,
-				E2BE87481980C77D00B47378 /* RootViewController.h */,
-				E2BE87491980C77D00B47378 /* RootViewController.m */,
-				E2BE874B1980D3FE00B47378 /* LoginViewController.h */,
-				E2BE874C1980D3FE00B47378 /* LoginViewController.m */,
-				E2BE874D1980D3FE00B47378 /* LoginViewController.xib */,
-				E2901BD71986261D002DF983 /* ListingViewController.h */,
-				E2901BD81986261D002DF983 /* ListingViewController.m */,
-				E2901BDA198627FD002DF983 /* ListingProvider.h */,
-				E2901BDB198627FD002DF983 /* ListingProvider.m */,
-				E2901BDD19863DB0002DF983 /* Route.h */,
-				E2901BDE19863DB0002DF983 /* Route.m */,
-				E2901BE019864306002DF983 /* RouteCell.h */,
-				E2901BE119864306002DF983 /* RouteCell.m */,
-				E2901BE219864306002DF983 /* RouteCell.xib */,
-				E2901BE519873C01002DF983 /* RouteDetailViewController.h */,
-				E2901BE619873C01002DF983 /* RouteDetailViewController.m */,
-				E2901BE719873C01002DF983 /* RouteDetailViewController.xib */,
 				E2901BEA198798CA002DF983 /* EventDefinition.h */,
-				E2901BED1987AC55002DF983 /* DateSelectViewController.h */,
-				E2901BEE1987AC55002DF983 /* DateSelectViewController.m */,
-				E2901BEF1987AC55002DF983 /* DateSelectViewController.xib */,
-				E28B269019888BA7004DCF9D /* ProfileViewController.h */,
-				E28B269119888BA7004DCF9D /* ProfileViewController.m */,
-				E28B269C1988E9FD004DCF9D /* UserProvider.h */,
-				E28B269D1988E9FD004DCF9D /* UserProvider.m */,
-				E28B269F1988EABB004DCF9D /* User.h */,
-				E28B26A01988EABB004DCF9D /* User.m */,
+				E2A449BE198F5021004F4476 /* Uploader.h */,
+				E2A449BF198F5021004F4476 /* Uploader.m */,
 			);
 			path = daqin;
 			sourceTree = "<group>";
@@ -447,6 +518,7 @@
 				E2BE8719197F876900B47378 /* InputCell.m in Sources */,
 				E2901BE319864306002DF983 /* RouteCell.m in Sources */,
 				E2901BF01987AC55002DF983 /* DateSelectViewController.m in Sources */,
+				E2A449BD198F2CF7004F4476 /* NSData+Utils.m in Sources */,
 				E2BE86F3197E558D00B47378 /* MyViewController.m in Sources */,
 				E2901BD61985ECA8002DF983 /* HttpClient.m in Sources */,
 				E2BE86EA197E558D00B47378 /* AppDelegate.m in Sources */,
@@ -459,10 +531,12 @@
 				E2BE873F1980A31800B47378 /* LoginHelper.m in Sources */,
 				E2901BDC198627FD002DF983 /* ListingProvider.m in Sources */,
 				E2BE86E6197E558D00B47378 /* main.m in Sources */,
+				E2A449BC198F2CF7004F4476 /* UpYun.m in Sources */,
 				E28B26A11988EABB004DCF9D /* User.m in Sources */,
 				E28B269E1988E9FD004DCF9D /* UserProvider.m in Sources */,
 				E2BE8713197F4FC800B47378 /* PostViewController.m in Sources */,
 				E2901BE819873C01002DF983 /* RouteDetailViewController.m in Sources */,
+				E2A449C0198F5021004F4476 /* Uploader.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

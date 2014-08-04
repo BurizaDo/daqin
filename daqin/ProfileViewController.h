@@ -7,11 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "User.h"
 
 @interface ProfileViewController : UIViewController
 @property (nonatomic, weak) IBOutlet UIImageView* avatar;
-@property (nonatomic, weak) IBOutlet UILabel* name;
-@property (nonatomic, weak) IBOutlet UILabel* age;
-@property (nonatomic, weak) IBOutlet UILabel* signature;
+@property (nonatomic, weak) IBOutlet UITextField* name;
+@property (nonatomic, weak) IBOutlet UITextField* age;
+@property (nonatomic, weak) IBOutlet UITextField* signature;
 @property (nonatomic, weak) IBOutlet UIScrollView* imagesView;
+@property (nonatomic, assign) BOOL isEdit;
+@property (nonatomic, strong) User* user;
 @end

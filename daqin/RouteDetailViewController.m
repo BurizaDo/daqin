@@ -49,7 +49,7 @@
     _signature.text = _route.user.signature;
     _destination.text = _route.destination;
     _description.text = _route.description;
-    _age.text = [_route.user.age stringByAppendingString:@"岁"];
+    _age.text = _route.user.age;
     
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setDateFormat:@"yyyy-MM-dd"];

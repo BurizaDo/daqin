@@ -6,9 +6,9 @@
 //
 //
 
-#import "AFHTTPClient.h"
+#import "AFNetworking.h"
 typedef void (^ResponseObject)(id obj);
-@interface HttpClient : AFHTTPClient
+@interface HttpClient : AFHTTPRequestOperationManager
 
 + (HttpClient *)sharedClient;
 

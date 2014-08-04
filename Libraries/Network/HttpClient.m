@@ -5,6 +5,7 @@
 //  Created by neoman on 8/20/13.
 
 #import "HttpClient.h"
+#import <Foundation/NSURL.h>
 //#import <Reachability.h>
 //#import "NSData+GZIP.h"
 //#import "NSString+BCAdditions.h"
@@ -38,7 +39,8 @@ static NSString* s_apiSecret;
 {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        SingleTon = [HttpClient clientWithBaseURL:[NSURL URLWithString:s_baseUrl]];
+        SingleTon = [[HttpClient alloc] initWithBaseURL:[NSURL URLWithString:s_baseUrl]];
+//        SingleTon = [HttpClient clientWithBaseURL:[NSURL URLWithString:s_baseUrl]];
     });
 
     return SingleTon;
@@ -46,7 +48,8 @@ static NSString* s_apiSecret;
 
 + (void)resetBaseUrlString:(NSString*)baseUrl
 {
-    SingleTon = [HttpClient clientWithBaseURL:[NSURL URLWithString:baseUrl]];
+    SingleTon = [[HttpClient alloc] initWithBaseURL:[NSURL URLWithString:s_baseUrl]];
+//    SingleTon = [HttpClient clientWithBaseURL:[NSURL URLWithString:baseUrl]];
 }
 
 - (void)dealloc
@@ -72,17 +75,20 @@ static NSString* s_apiSecret;
 //    NSString *path = [self generatePathWithApi:api];
     [params setObject:api forKey:@"api"];
     
-    [self getPath:@"" params:params success:sucBlock failure:errBlock];
+    [self getPath:api params:params success:sucBlock failure:errBlock];
 }
 
-- (void)getPath:(NSString *)path
+- (void)getPath:(NSString *)api
          params:(NSDictionary *)params
         success:(ResponseObject)sucBlock
         failure:(void (^)(NSString* errMsg)) errBlock;
 {
-//    NSString *api = [self generateApiWithPath:path];
+    NSString *path = [self generatePathWithApi:api];
     
-    NSMutableURLRequest *request = [self requestWithMethod:@"GET" path:path parameters:params];
+    
+    NSMutableURLRequest *request = [[AFHTTPRequestSerializer serializer] requestWithMethod:@"GET" URLString:path parameters:params error:nil];
+    
+//    NSMutableURLRequest *request = [self requestWithMethod:@"GET" path:path parameters:params];
     [request setValue:s_apiKey forHTTPHeaderField:@"BAPI-APP-KEY"];
 //    [request setValue:APP_VERSION forHTTPHeaderField:@"APP_VERSION"];
 //    [request setValue:UDID forHTTPHeaderField:@"UDID"];
@@ -99,6 +105,7 @@ static NSString* s_apiSecret;
 //    }
     
     AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
+    
     [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
         
         NSError *err = nil;
@@ -112,9 +119,11 @@ static NSString* s_apiSecret;
         }
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        errBlock([NSString stringWithFormat:@"%d", error.code]);
     }];
     
-    [self enqueueHTTPRequestOperation:operation];
+    [operation start];
+//    [self enqueueHTTPRequestOperation:operation];
 }
 
 /**
@@ -125,55 +134,43 @@ static NSString* s_apiSecret;
  *  @param sucBlock 成功时需要调用的block
  *  @param errBlock 失败时需要调用的block，errBlock不为nil的时候，caller负责错误逻辑，包含UI提示；errBlock为nil的时候该函数会根据err不同的type提示对用户友好的信息
  */
-//- (void)postAPI:(NSString *)api
-//         params:(NSDictionary *)params
-//        success:(ResponseObject)sucBlock
-//        failure:(ResponseError)errBlock
-//{
-//    NSString *uri = [self generatePathWithApi:api];
-//
+- (void)postAPI:(NSString *)api
+         params:(NSDictionary *)params
+        success:(ResponseObject)sucBlock
+        failure:(void(^)(NSString*))errBlock
+{
+    NSString *uri = [self generatePathWithApi:api];
+
+    NSMutableURLRequest *request = [[AFHTTPRequestSerializer serializer] requestWithMethod:@"POST" URLString:uri parameters:@{} error:nil];
 //    NSMutableURLRequest *request = [self requestWithMethod:@"POST" path:uri parameters:@{}];
-//
-//    NSString *requestBody = [params JSONString];
-//
-//    [request setHTTPBody:[requestBody dataUsingEncoding:NSUTF8StringEncoding]];
-//    [request setValue:s_apiKey forHTTPHeaderField:@"BAPI-APP-KEY"];
-//    [request setValue:[self signApi:api WithBody:requestBody] forHTTPHeaderField:@"BAPI-HASH"];
-//    [request setHTTPShouldHandleCookies:NO];
-//
-//    NSString* token = [params valueForKey:PARAM_USER_TOKEN];
-//    if(token){
-//        [request setValue:token forHTTPHeaderField:kHEADER_USERTOKEN];
-//    }
-//
-//    [request setTimeoutInterval:TIMEOUTINTERVAL];
-//    DDLogWarn(@"http post: %@\n heads: %@\n body: %@", uri, request.allHTTPHeaderFields, requestBody);
-//    AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
-//    [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
-//        DDLogInfo(@"http post:%@\nheaders: %@\nresponse:%@", operation.request.URL,
-//                  operation.request.allHTTPHeaderFields, operation.responseString);
-//        NSError *err = nil;
-//        id obj = [responseObject objectFromJSONDataWithError:&err];
-//        if(err) {
-//            if (errBlock) {
-//                BXError *bxerr = [BXError errorWithNSError:err type:kBxErrorJson];
-//                [self processError:bxerr withErrBlock:errBlock];
-//            }
-//        } else {
-//            obj = [obj objectForKey:@"result"];
-//            if (sucBlock) {
-//                sucBlock(obj);
-//            }
-//        }
-//    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-//        DDLogError(@"http post:%@\nheaders: %@\nresponse:%@", operation.request.URL,
-//                  operation.request.allHTTPHeaderFields, operation.responseString);
-//        BXError *bxError = [self transformError:error withOperation:operation];
-//        [self processError:bxError withErrBlock:errBlock];
-//    }];
-//
+
+    if(params){
+        NSData *data = [NSJSONSerialization dataWithJSONObject:params options:kNilOptions error:NULL];
+        NSString *requestBody = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+
+        [request setHTTPBody:[requestBody dataUsingEncoding:NSUTF8StringEncoding]];
+    }
+    [request setHTTPShouldHandleCookies:NO];
+
+    [request setTimeoutInterval:TIMEOUTINTERVAL];
+    AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
+    [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSError *err = nil;
+        id obj = [NSJSONSerialization JSONObjectWithData:responseObject options:0 error:&err];
+        if(err) {
+        } else {
+            obj = [obj objectForKey:@"result"];
+            if (sucBlock) {
+                sucBlock(obj);
+            }
+        }
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        errBlock([NSString stringWithFormat:@"%d", error.code]);
+    }];
+
+    [operation start];
 //    [self enqueueHTTPRequestOperation:operation];
-//}
+}
 //
 //- (void)postTrackingJson:(NSString *)json
 //            commonParams:(NSDictionary*)commonDic
@@ -268,6 +265,7 @@ static NSString* s_apiSecret;
 - (NSString *)generatePathWithApi:(NSString *)api
 {
     NSMutableString *path = [[NSMutableString alloc] init];
+    [path appendString:s_baseUrl];
     [path appendString:@"?api="];
     [path appendString:api];
     

@@ -15,7 +15,7 @@
 + (void)getAllListingFrom:(int)from size:(int)size
                 onSuccess:(void(^)(NSArray *areas))resultBlock
                 onFailure:(void(^)(NSString* error))failureBlock{
-    [[HttpClient sharedClient] getAPI:@"getMessage" params:nil success:^(id obj) {
+    [[HttpClient sharedClient] postAPI:@"getMessage" params:nil success:^(id obj) {
         NSArray* ary = obj;
         NSMutableArray* routes = [[NSMutableArray alloc] init];
         for(NSDictionary* dic in ary){
