@@ -41,6 +41,7 @@ install_resource()
       ;;
   esac
 }
+install_resource "MWPhotoBrowser/MWPhotoBrowser/MWPhotoBrowser.bundle"
 install_resource "SVProgressHUD/SVProgressHUD/SVProgressHUD.bundle"
 install_resource "WSAssetPickerController/demo/WSAssetViewSelectionIndicator.png"
 install_resource "WSAssetPickerController/demo/WSAssetViewSelectionIndicator@2x.png"

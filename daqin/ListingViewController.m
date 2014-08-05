@@ -47,11 +47,6 @@
 {
     [super viewDidLoad];
     [self loadData:NO];
-    [Uploader uploadImage:[UIImage imageNamed:@"first"] onSuccess:^(NSString* success) {
-        success = nil;
-    } onFailure:^(NSString* failure) {
-        failure = nil;
-    }];
 }
 
 - (void)viewDidAppear:(BOOL)animated{

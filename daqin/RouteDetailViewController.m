@@ -33,6 +33,7 @@
         UIImageView* iv = [[UIImageView alloc] initWithFrame:CGRectMake(x, y, size, size)];
         x += size + 5;
         [_imagesView addSubview:iv];
+
         [iv sd_setImageWithURL:[NSURL URLWithString:url]];
     }
     _imagesView.contentSize = CGSizeMake(x, frame.size.height);

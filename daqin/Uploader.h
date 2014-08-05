@@ -11,5 +11,6 @@
 @interface Uploader : NSObject
 + (void)uploadImage:(UIImage*)image
           onSuccess:(void(^)(NSString*))success
-          onFailure:(void(^)(NSString*))failure;
+          onFailure:(void(^)(NSString*))failure
+         onProgress:(void(^)(CGFloat, long long))progress;
 @end

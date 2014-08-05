@@ -14,8 +14,12 @@
 #import "LoginViewController.h"
 #import "WSAssetPickerController.h"
 #import "SVProgressHUD.h"
+#import "BXPickerViewController.h"
+#import "BCUpImageInfo.h"
 
-@interface ProfileViewController () <UINavigationControllerDelegate, WSAssetPickerControllerDelegate>
+@interface ProfileViewController () <UINavigationControllerDelegate, WSAssetPickerControllerDelegate, BXPickerViewControllerDelegate>
+
+@property (nonatomic, strong) NSString* uploadedImages;
 
 @end
 
@@ -55,28 +59,56 @@
     _imagesView.contentSize = CGSizeMake(x, frame.size.height);
 }
 
-- (void)addPicture{
-//    ALAssetsLibrary *libary = [[ALAssetsLibrary alloc] init];
-//    WSAssetPickerController *albumPickerVC = [[WSAssetPickerController alloc] initWithAssetsLibrary:libary];
-//    albumPickerVC.selectionLimit = 10 - [_user.images componentsSeparatedByString:@","].count;
-//    albumPickerVC.delegate = self;
-//    
-//    [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationSlide];
-//    [self presentViewController:albumPickerVC animated:YES completion:nil];
-//    if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+- (void)pickerViewController:(BXPickerViewController*)picker didPickImages:(NSMutableArray*)imageInfos{
+    if(!_uploadedImages){
+        _uploadedImages = [[NSString alloc] init];
+    }
+    for(BCUpImageInfo* image in imageInfos){
+        _uploadedImages = [_uploadedImages stringByAppendingString:@","];
+        _uploadedImages = [_uploadedImages stringByAppendingString:image.url];
+        _uploadedImages = [_uploadedImages substringFromIndex:1];
+    }
+    NSString* images = [[NSString alloc] initWithString:_user.images];
+    if(images.length > 0 && _uploadedImages.length > 0){
+        images = [images stringByAppendingString:@","];
+    }
+    images = [images stringByAppendingString:_uploadedImages];
     
-        //用模式窗体转换到图片选取界面。
-        UIImagePickerController *aImagePickerController = [[UIImagePickerController alloc] init];
-//        aImagePickerController.delegate = self;
-        aImagePickerController.sourceType = UIImagePickerControllerSourceTypeCamera;
-        [self presentViewController:aImagePickerController animated:YES completion:nil];
-//    }
+    [self setupImageScrollView:[images componentsSeparatedByString:@","]];
+}
+
+
+- (void)addPicture{
+    BXPickerViewController *pickerVC = [[BXPickerViewController alloc] init];
+    pickerVC.delegate = self;
+    pickerVC.maxPhotoCount = 9 - [_user.images componentsSeparatedByString:@","].count;
+    [pickerVC presentSelfFrom:self animated:YES];
+
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    if(!_user){
+        NSString* userId = (NSString*)[[EGOCache globalCache] objectForKey:@"userToken"];
+        [UserProvider getUsers:userId onSuccess:^(NSArray *users) {
+            if([users count] == 0) return;
+            _user = users[0];
+            [self setup];
+        } onFailure:^(NSString *error) {
+            
+        }];
+    }else{
+        [self setup];
+    }
+    if(!_isEdit){
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(profileChanged) name:@"profileChanged" object:nil];
+    }
+}
+
+- (void)profileChanged{
+    [self setup];
 }
 
 - (void)edit{
@@ -107,18 +139,18 @@
 
 - (void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
-    if(!_user){
-        NSString* userId = (NSString*)[[EGOCache globalCache] objectForKey:@"userToken"];
-        [UserProvider getUsers:userId onSuccess:^(NSArray *users) {
-            if([users count] == 0) return;
-            _user = users[0];
-            [self setup];
-        } onFailure:^(NSString *error) {
-            
-        }];
-    }else{
-        [self setup];
-    }
+//    if(!_user){
+//        NSString* userId = (NSString*)[[EGOCache globalCache] objectForKey:@"userToken"];
+//        [UserProvider getUsers:userId onSuccess:^(NSArray *users) {
+//            if([users count] == 0) return;
+//            _user = users[0];
+//            [self setup];
+//        } onFailure:^(NSString *error) {
+//            
+//        }];
+//    }else{
+//        [self setup];
+//    }
     if(!self.isEdit){
         self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"编辑" style:UIBarButtonItemStylePlain target:self action:@selector(edit)];
     }else{
@@ -130,6 +162,12 @@
     _user.name = _name.text;
     _user.age = _age.text;
     _user.signature = _signature.text;
+    if(_user.images.length > 0){
+        _user.images = [_user.images stringByAppendingString:@","];
+    }
+    _user.images = [_user.images stringByAppendingString:_uploadedImages];
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"profileChanged" object:nil];
 
     [SVProgressHUD showProgress:-1.0 status:@"更新中..." maskType:SVProgressHUDMaskTypeBlack];
     [UserProvider updateUser:_user onSuccess:^{
