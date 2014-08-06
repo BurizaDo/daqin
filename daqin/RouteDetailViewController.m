@@ -8,8 +8,10 @@
 
 #import "RouteDetailViewController.h"
 #import <UIImageView+WebCache.h>
+#import "UIButton+WebCache.h"
+#import "MWPhotoBrowser.h"
 
-@interface RouteDetailViewController ()
+@interface RouteDetailViewController () <MWPhotoBrowserDelegate>
 
 @end
 
@@ -29,14 +31,44 @@
     int size = frame.size.height - 5 * 2;
     float y = 5;
     float x = 5;
-    for(NSString* url in imageUrls){
-        UIImageView* iv = [[UIImageView alloc] initWithFrame:CGRectMake(x, y, size, size)];
-        x += size + 5;
-        [_imagesView addSubview:iv];
+    for(int i = 0; i < imageUrls.count; ++ i){
+        NSString* url = imageUrls[i];
+        UIButton* btn = [UIButton buttonWithType:UIButtonTypeCustom];
+        btn.frame = CGRectMake(x, y, size, size);
+        [btn sd_setImageWithURL:[NSURL URLWithString:url] forState:UIControlStateNormal];
+        [btn.imageView setContentMode:UIViewContentModeScaleToFill];
+        btn.tag = i;
+        [btn addTarget:self action:@selector(imageClicked:) forControlEvents:UIControlEventTouchUpInside];
 
-        [iv sd_setImageWithURL:[NSURL URLWithString:url]];
+        x += size + 5;
+        [_imagesView addSubview:btn];
     }
     _imagesView.contentSize = CGSizeMake(x, frame.size.height);
+}
+
+- (NSUInteger)numberOfPhotosInPhotoBrowser:(MWPhotoBrowser *)photoBrowser{
+    return [_route.user.images componentsSeparatedByString:@","].count;
+}
+
+- (id <MWPhoto>)photoBrowser:(MWPhotoBrowser *)photoBrowser photoAtIndex:(NSUInteger)index{
+    NSString* url = [_route.user.images componentsSeparatedByString:@","][index];
+    return [MWPhoto photoWithURL:[NSURL URLWithString:url]];
+}
+
+
+- (void)imageClicked:(id)sender{
+    UIButton* btn = sender;
+    
+    MWPhotoBrowser *imgBrowser = [[MWPhotoBrowser alloc] initWithDelegate:self];
+    imgBrowser.displayActionButton = YES;
+    imgBrowser.wantsFullScreenLayout = YES;
+    imgBrowser.zoomPhotosToFill = YES;
+    [imgBrowser setCurrentPhotoIndex:btn.tag];
+    
+    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:imgBrowser];
+    nav.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+    [self presentViewController:nav animated:YES completion:nil];
+
 }
 
 - (void)viewDidLoad

@@ -8,6 +8,7 @@
 
 #import "ProfileViewController.h"
 #import <UIImageView+WebCache.h>
+#import <UIButton+WebCache.h>
 #import "User.h"
 #import "UserProvider.h"
 #import "EGOCache.h"
@@ -16,10 +17,12 @@
 #import "SVProgressHUD.h"
 #import "BXPickerViewController.h"
 #import "BCUpImageInfo.h"
+#import "BlockActionSheet.h"
+#import "MWPhotoBrowser.h"
 
-@interface ProfileViewController () <UINavigationControllerDelegate, WSAssetPickerControllerDelegate, BXPickerViewControllerDelegate>
+@interface ProfileViewController () <UINavigationControllerDelegate, WSAssetPickerControllerDelegate, BXPickerViewControllerDelegate, MWPhotoBrowserDelegate>
 
-@property (nonatomic, strong) NSString* uploadedImages;
+@property (nonatomic, strong) NSMutableArray* allImages;
 
 @end
 
@@ -35,46 +38,82 @@
 }
 
 - (void)setupImageScrollView:(NSArray*) imageUrls{
+    [[_imagesView subviews]makeObjectsPerformSelector:@selector(removeFromSuperview)];
     CGRect frame = _imagesView.frame;
     int size = frame.size.height - 5 * 2;
     float y = 5;
     float x = 5;
-    for(NSString* url in imageUrls){
-        UIImageView* iv = [[UIImageView alloc] initWithFrame:CGRectMake(x, y, size, size)];
+    for(int i = 0; i < imageUrls.count; ++ i){
+        NSString* url = imageUrls[i];
+        UIButton* btn = [UIButton buttonWithType:UIButtonTypeCustom];
+        btn.frame = CGRectMake(x, y, size, size);
         x += size + 5;
-        [_imagesView addSubview:iv];
-        [iv sd_setImageWithURL:[NSURL URLWithString:url]];
+        [btn sd_setImageWithURL:[NSURL URLWithString:url] forState:UIControlStateNormal];
+        [btn addTarget:self action:@selector(imageClicked:) forControlEvents:UIControlEventTouchUpInside];
+        btn.tag = i;
+        [_imagesView addSubview:btn];
     }
     if(self.isEdit){
         if(imageUrls.count < 10){
-            UIImageView* iv = [[UIImageView alloc] initWithFrame:CGRectMake(x, y, size, size)];
-            iv.image = [UIImage imageNamed:@"more_plus"];
-            iv.userInteractionEnabled = YES;
-            UITapGestureRecognizer* gesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(addPicture)];
-            [iv addGestureRecognizer:gesture];
-            [_imagesView addSubview:iv];
+            UIButton* btn = [UIButton buttonWithType:UIButtonTypeCustom];
+            btn.frame = CGRectMake(x, y, size, size);
+            [btn setImage:[UIImage imageNamed:@"more_plus"] forState:UIControlStateNormal];
+            [btn addTarget:self action:@selector(addPicture) forControlEvents:UIControlEventTouchUpInside];
+            [_imagesView addSubview:btn];
             x += size + 5;
         }
     }
     _imagesView.contentSize = CGSizeMake(x, frame.size.height);
 }
 
-- (void)pickerViewController:(BXPickerViewController*)picker didPickImages:(NSMutableArray*)imageInfos{
-    if(!_uploadedImages){
-        _uploadedImages = [[NSString alloc] init];
-    }
-    for(BCUpImageInfo* image in imageInfos){
-        _uploadedImages = [_uploadedImages stringByAppendingString:@","];
-        _uploadedImages = [_uploadedImages stringByAppendingString:image.url];
-        _uploadedImages = [_uploadedImages substringFromIndex:1];
-    }
-    NSString* images = [[NSString alloc] initWithString:_user.images];
-    if(images.length > 0 && _uploadedImages.length > 0){
-        images = [images stringByAppendingString:@","];
-    }
-    images = [images stringByAppendingString:_uploadedImages];
+- (NSUInteger)numberOfPhotosInPhotoBrowser:(MWPhotoBrowser *)photoBrowser{
+    return _allImages.count;
+}
+
+- (id <MWPhoto>)photoBrowser:(MWPhotoBrowser *)photoBrowser photoAtIndex:(NSUInteger)index{
+    NSString* url = _allImages[index];
+    return [MWPhoto photoWithURL:[NSURL URLWithString:url]];
+}
+
+- (void)showBigPicture:(int)index{
+    MWPhotoBrowser *imgBrowser = [[MWPhotoBrowser alloc] initWithDelegate:self];
+    imgBrowser.displayActionButton = YES;
+    imgBrowser.wantsFullScreenLayout = YES;
+    imgBrowser.zoomPhotosToFill = YES;
+    [imgBrowser setCurrentPhotoIndex:index];
     
-    [self setupImageScrollView:[images componentsSeparatedByString:@","]];
+    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:imgBrowser];
+    nav.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+    [self presentViewController:nav animated:YES completion:nil];
+}
+
+- (void)imageClicked:(id)sender{
+    UIButton* btn = sender;
+    if(_isEdit){
+        BlockActionSheet* sheet = [[BlockActionSheet alloc] init];
+        [sheet addButtonWithTitle:@"查看" atIndex:0 block:^{
+            [self showBigPicture:btn.tag];
+        }];
+        [sheet addButtonWithTitle:@"删除" atIndex:1 block:^{
+            [_allImages removeObjectAtIndex:btn.tag];
+            [self setupImageScrollView:_allImages];
+        }];
+        [sheet setCancelButtonWithTitle:@"取消" atIndex:2 block:^{
+            
+        }];
+        [sheet showInView:self.view];
+    }else{
+        [self showBigPicture:btn.tag];
+    }
+}
+
+- (void)pickerViewController:(BXPickerViewController*)picker didPickImages:(NSMutableArray*)imageInfos{
+    for(BCUpImageInfo* image in imageInfos){
+        if(image.url){
+            [_allImages addObject:image.url];
+        }
+    }
+    [self setupImageScrollView:_allImages];
 }
 
 
@@ -94,7 +133,7 @@
         NSString* userId = (NSString*)[[EGOCache globalCache] objectForKey:@"userToken"];
         [UserProvider getUsers:userId onSuccess:^(NSArray *users) {
             if([users count] == 0) return;
-            _user = users[0];
+            self.user = users[0];
             [self setup];
         } onFailure:^(NSString *error) {
             
@@ -104,6 +143,14 @@
     }
     if(!_isEdit){
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(profileChanged) name:@"profileChanged" object:nil];
+    }
+}
+
+- (void)setUser:(User *)user{
+    _user = user;
+    _allImages = [[NSMutableArray alloc] init];
+    if(_user.images.length > 0){
+        [_allImages addObjectsFromArray:[_user.images componentsSeparatedByString:@","]];
     }
 }
 
@@ -165,7 +212,7 @@
     if(_user.images.length > 0){
         _user.images = [_user.images stringByAppendingString:@","];
     }
-    _user.images = [_user.images stringByAppendingString:_uploadedImages];
+    _user.images = [_allImages componentsJoinedByString:@","];
     
     [[NSNotificationCenter defaultCenter] postNotificationName:@"profileChanged" object:nil];
 
