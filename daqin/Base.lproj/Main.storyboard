@@ -54,12 +54,12 @@
             <objects>
                 <tableViewController id="nzq-v1-4LQ" customClass="ListingViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="Wlv-HR-v0Y">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="tfu-gV-4WT">
-                                <rect key="frame" x="0.0" y="86" width="320" height="44"/>
+                                <rect key="frame" x="0.0" y="22" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="tfu-gV-4WT" id="F8l-L0-M65">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
@@ -73,6 +73,8 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="最新动态" id="hxq-kx-zCi"/>
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UY0-MM-iQR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -83,7 +85,8 @@
             <objects>
                 <navigationController definesPresentationContext="YES" id="l60-kl-TTi" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="动态" image="first" id="XOX-4F-iD9"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="D62-u9-d0W">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="D62-u9-d0W">
+                        <rect key="frame" x="0.0" y="0.0" width="0.0" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>

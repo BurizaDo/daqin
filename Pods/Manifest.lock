@@ -38,6 +38,11 @@ PODS:
     - BlocksKit/DynamicDelegate
   - DACircularProgress (2.2.0)
   - EGOCache (2.1)
+  - FMDB (2.3):
+    - FMDB/standard
+  - FMDB/common (2.3)
+  - FMDB/standard (2.3):
+    - FMDB/common
   - MBProgressHUD (0.8)
   - MWPhotoBrowser (1.4.0):
     - DACircularProgress
@@ -58,6 +63,7 @@ DEPENDENCIES:
   - Base64
   - BlocksKit
   - EGOCache
+  - FMDB
   - MWPhotoBrowser
   - NSData+MD5Digest
   - SDWebImage
@@ -71,6 +77,7 @@ SPEC CHECKSUMS:
   BlocksKit: 07c8a80f04275efac6a5f8b973782489c083a182
   DACircularProgress: 3b41941891a56dc6aa17971f5322a9a38a6f446e
   EGOCache: bf414333c425fe47f5182351d1dd47ebf72d8352
+  FMDB: 31ec26773c7f7b7890a6038235a1f2bbd933a7cb
   MBProgressHUD: c356980b0cd097f19acec959b49dca5eb8ec31be
   MWPhotoBrowser: 4efcdb9da34751f97992128a5356f3929d1af537
   NSData+MD5Digest: 3662c71c33c32cac0302dce76df6df7a6d81acca

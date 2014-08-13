@@ -7,7 +7,8 @@
 //
 
 #import "AFNetworking.h"
-typedef void (^ResponseObject)(id obj);
+#import "EventDefinition.h"
+
 @interface HttpClient : AFHTTPRequestOperationManager
 
 + (HttpClient *)sharedClient;
@@ -20,24 +21,24 @@ typedef void (^ResponseObject)(id obj);
 - (void)getAPI:(NSString *)api
         params:(NSDictionary *)params
         success:(ResponseObject)sucBlock
-       failure:(void (^)(NSString* errMsg)) errBlock;
+       failure:(ResponseError) errBlock;
 
 // get Path
 - (void)getPath:(NSString *)path
          params:(NSDictionary *)params
         success:(ResponseObject)sucBlock
-        failure:(void (^)(NSString* errMsg)) errBlock;
+        failure:(ResponseError) errBlock;
 
 // POST API
 - (void)postAPI:(NSString *)api
          params:(NSDictionary *)params
         success:(ResponseObject)sucBlock
-        failure:(void (^)(NSString* errMsg)) errBlock;
+        failure:(ResponseError) errBlock;
 
 // Track data API
 - (void)postTrackingJson:(NSString *)json
              commonParams:(NSDictionary*)commonDic
                  success:(ResponseObject)sucBlock
-                 failure:(void (^)(NSString* errMsg)) errBlock;
+                 failure:(ResponseError) errBlock;
 
 @end

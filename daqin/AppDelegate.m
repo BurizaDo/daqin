@@ -9,13 +9,26 @@
 #import "AppDelegate.h"
 #import <TencentOpenAPI/TencentOAuth.h>
 #import "HttpClient.h"
+#define HOST @"http://192.168.1.149:8888/Rome/"
+#import "ChatSession.h"
 
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
-    [HttpClient configWith:@"http://localhost:8888/Rome/" key:@"" secret:@""];
+    [HttpClient configWith:HOST key:@"" secret:@""];
+    [[ChatSession sharedInstance] setup];
+    [[UIApplication sharedApplication] registerForRemoteNotificationTypes:
+     (UIRemoteNotificationTypeAlert
+      | UIRemoteNotificationTypeBadge
+      | UIRemoteNotificationTypeSound)];
+
+
+    [[UINavigationBar appearance] setBarTintColor:[UIColor colorWithRed:0x33/255.0 green:0x33/255.0 blue:0x33/255.0 alpha:0.95]];
+//    [[UINavigationBar appearance] setTranslucent:NO];
+    [[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor colorWithWhite:1.0 alpha:1]}];
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
     return YES;
 }
 							
@@ -54,5 +67,16 @@
 - (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url{
     return [TencentOAuth HandleOpenURL:url];
 }
+
+- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)webDeviceToken
+{
+    NSString *pushToken = [[webDeviceToken description] stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"<>"]];
+    pushToken = [pushToken stringByReplacingOccurrencesOfString:@" " withString:@""];
+    
+    if(pushToken == nil) return; // from umeng crash report, deviceToken here may be nil. So just ignore.
+    
+    [[ChatSession sharedInstance] setDeviceToken:webDeviceToken];
+}
+
 
 @end

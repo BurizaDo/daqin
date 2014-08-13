@@ -5,6 +5,7 @@
 //  Created by neoman on 8/20/13.
 
 #import "HttpClient.h"
+#import "NSData+JSON.h"
 #import <Foundation/NSURL.h>
 //#import <Reachability.h>
 //#import "NSData+GZIP.h"
@@ -69,7 +70,7 @@ static NSString* s_apiSecret;
 - (void)getAPI:(NSString *)api
         params:(NSDictionary *)par
        success:(ResponseObject)sucBlock
-       failure:(void (^)(NSString* errMsg)) errBlock;
+       failure:(ResponseError) errBlock;
 {
     NSMutableDictionary *params = [NSMutableDictionary dictionaryWithDictionary:par];
 //    NSString *path = [self generatePathWithApi:api];
@@ -81,7 +82,7 @@ static NSString* s_apiSecret;
 - (void)getPath:(NSString *)api
          params:(NSDictionary *)params
         success:(ResponseObject)sucBlock
-        failure:(void (^)(NSString* errMsg)) errBlock;
+        failure:(ResponseError) errBlock;
 {
     NSString *path = [self generatePathWithApi:api];
     
@@ -119,7 +120,9 @@ static NSString* s_apiSecret;
         }
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        errBlock([NSString stringWithFormat:@"%d", error.code]);
+        NSError *err = nil;
+        NSDictionary *errDic = [operation.responseData objectFromJSONDataWithError:&err];
+        errBlock([Error errorWithCode:[[errDic objectForKey:@"code"] intValue] message:[errDic objectForKey:@"msg"]]);
     }];
     
     [operation start];
@@ -137,7 +140,7 @@ static NSString* s_apiSecret;
 - (void)postAPI:(NSString *)api
          params:(NSDictionary *)params
         success:(ResponseObject)sucBlock
-        failure:(void(^)(NSString*))errBlock
+        failure:(ResponseError)errBlock
 {
     NSString *uri = [self generatePathWithApi:api];
 
@@ -165,7 +168,10 @@ static NSString* s_apiSecret;
             }
         }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        errBlock([NSString stringWithFormat:@"%d", error.code]);
+        NSError* err = nil;
+        NSDictionary *errDic = [operation.responseData objectFromJSONDataWithError:&err];
+        errBlock([Error errorWithCode:[[errDic objectForKey:@"code"] intValue] message:[errDic objectForKey:@"msg"]]);
+
     }];
 
     [operation start];

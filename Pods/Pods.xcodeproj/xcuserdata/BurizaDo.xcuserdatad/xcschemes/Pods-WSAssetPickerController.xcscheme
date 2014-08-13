@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "3A2988F402B54DBEA8CBA26B"
+               BlueprintIdentifier = "4C9766BB2BD14102969A9456"
                BuildableName = "libPods-WSAssetPickerController.a"
                BlueprintName = "Pods-WSAssetPickerController"
                ReferencedContainer = "container:Pods.xcodeproj">
