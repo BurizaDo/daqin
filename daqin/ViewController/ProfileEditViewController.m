@@ -70,6 +70,8 @@
         UIButton* btn = [UIButton buttonWithType:UIButtonTypeCustom];
         btn.frame = CGRectMake(x, y, size, size);
         x += size + 5;
+        [[btn layer] setCornerRadius:4.0];
+        [btn layer].masksToBounds = YES;
         [btn sd_setImageWithURL:[NSURL URLWithString:url] forState:UIControlStateNormal];
         [btn.imageView setContentMode:UIViewContentModeScaleAspectFill];        
         [btn addTarget:self action:@selector(imageClicked:) forControlEvents:UIControlEventTouchUpInside];

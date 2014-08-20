@@ -445,8 +445,8 @@
     FMDatabaseQueue *dbQueue = [self fmDatabaseQueue];
     [dbQueue inDatabase:^(FMDatabase *db) {
         
-        NSString *sql = @"UPDATE chat_friends SET lastChatTime = ? WHERE receiverId = ?";
-        result = [db executeUpdate:sql, [NSDate date], chatPeer.peerId];
+        NSString *sql = @"UPDATE chat_friends SET lastChatTime = ?, avatar=?,displayName=? WHERE receiverId = ?";
+        result = [db executeUpdate:sql, [NSDate date], chatPeer.iconUrl, chatPeer.displayName, chatPeer.peerId];
     }];
     
     return result;

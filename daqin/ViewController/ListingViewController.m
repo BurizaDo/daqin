@@ -97,7 +97,8 @@
     cell.age.layer.cornerRadius = cell.age.bounds.size.height/2;
     cell.destination.text = route.destination;
     cell.name.text = route.user.name;
-    cell.signature.text = route.user.signature;
+//    cell.signature.text = route.user.signature;
+    cell.signature.text = route.description;
     
     UIColor* colorF = [UIColor colorWithRed:255/255.0 green:172/255.0 blue:184/255.0 alpha:1];
     UIColor* colorM = [UIColor colorWithRed:172/255.0 green:215/255.0 blue:255/255.0 alpha:1];

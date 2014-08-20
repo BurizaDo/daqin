@@ -32,7 +32,9 @@
 		E21C5B7F19A3535C0008811B /* select_02@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E21C5B7B19A3535C0008811B /* select_02@2x.png */; };
 		E21C5B8019A3535C0008811B /* select_03@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E21C5B7C19A3535C0008811B /* select_03@2x.png */; };
 		E21C5B8119A3535C0008811B /* select_04@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E21C5B7D19A3535C0008811B /* select_04@2x.png */; };
-		E21C5B8319A35A410008811B /* ProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E21C5B8219A35A410008811B /* ProfileViewController.xib */; };
+		E21C5B8619A485F00008811B /* message_bg_receiving_pic@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E21C5B8419A485F00008811B /* message_bg_receiving_pic@2x.png */; };
+		E21C5B8719A485F00008811B /* message_bg_sending_pic@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E21C5B8519A485F00008811B /* message_bg_sending_pic@2x.png */; };
+		E21C5B8919A489A60008811B /* Public_Body_Icon_Loadpic@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E21C5B8819A489A60008811B /* Public_Body_Icon_Loadpic@2x.png */; };
 		E255F005199B15EF002BD40C /* Error.m in Sources */ = {isa = PBXBuildFile; fileRef = E255F004199B15EF002BD40C /* Error.m */; };
 		E28B269B1988C7DC004DCF9D /* My_Body_Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E28B269A1988C7DC004DCF9D /* My_Body_Icon@2x.png */; };
 		E28B26A31989DF32004DCF9D /* more_plus@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E28B26A21989DF32004DCF9D /* more_plus@2x.png */; };
@@ -224,7 +226,9 @@
 		E21C5B7B19A3535C0008811B /* select_02@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "select_02@2x.png"; sourceTree = "<group>"; };
 		E21C5B7C19A3535C0008811B /* select_03@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "select_03@2x.png"; sourceTree = "<group>"; };
 		E21C5B7D19A3535C0008811B /* select_04@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "select_04@2x.png"; sourceTree = "<group>"; };
-		E21C5B8219A35A410008811B /* ProfileViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfileViewController.xib; sourceTree = "<group>"; };
+		E21C5B8419A485F00008811B /* message_bg_receiving_pic@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "message_bg_receiving_pic@2x.png"; sourceTree = "<group>"; };
+		E21C5B8519A485F00008811B /* message_bg_sending_pic@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "message_bg_sending_pic@2x.png"; sourceTree = "<group>"; };
+		E21C5B8819A489A60008811B /* Public_Body_Icon_Loadpic@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Public_Body_Icon_Loadpic@2x.png"; sourceTree = "<group>"; };
 		E255F003199B15EF002BD40C /* Error.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Error.h; sourceTree = "<group>"; };
 		E255F004199B15EF002BD40C /* Error.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Error.m; sourceTree = "<group>"; };
 		E28B269A1988C7DC004DCF9D /* My_Body_Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "My_Body_Icon@2x.png"; sourceTree = "<group>"; };
@@ -519,6 +523,9 @@
 		E28B26991988C7DC004DCF9D /* resources */ = {
 			isa = PBXGroup;
 			children = (
+				E21C5B8819A489A60008811B /* Public_Body_Icon_Loadpic@2x.png */,
+				E21C5B8419A485F00008811B /* message_bg_receiving_pic@2x.png */,
+				E21C5B8519A485F00008811B /* message_bg_sending_pic@2x.png */,
 				E21C5B7A19A3535C0008811B /* select_01@2x.png */,
 				E21C5B7B19A3535C0008811B /* select_02@2x.png */,
 				E21C5B7C19A3535C0008811B /* select_03@2x.png */,
@@ -747,7 +754,6 @@
 				E2A44A4619985C24004F4476 /* RouteDetailViewController.xib */,
 				E21C5B5319A1E07D0008811B /* ProfileViewController.h */,
 				E21C5B5419A1E07D0008811B /* ProfileViewController.m */,
-				E21C5B8219A35A410008811B /* ProfileViewController.xib */,
 				E21C5B5819A1F3600008811B /* ProfileEditViewController.h */,
 				E21C5B5919A1F3600008811B /* ProfileEditViewController.m */,
 				E21C5B5A19A1F3600008811B /* ProfileEditViewController.xib */,
@@ -1112,7 +1118,6 @@
 				E21C5B7919A34B5A0008811B /* icon_avatar@2x.png in Resources */,
 				E2E7C67B199C58EF00A2E39A /* 01@2x.png in Resources */,
 				E2A44A151990A698004F4476 /* btn_gallery_on@2x.png in Resources */,
-				E21C5B8319A35A410008811B /* ProfileViewController.xib in Resources */,
 				E21C5B8119A3535C0008811B /* select_04@2x.png in Resources */,
 				E2A44A0619908F1E004F4476 /* btn_small_green_on@2x.png in Resources */,
 				E21C5B7319A2F2210008811B /* MessageInfoCell.xib in Resources */,
@@ -1133,8 +1138,10 @@
 				E2A44AF61998B12C004F4476 /* chatting_setmode_voice_btn_pressed.png in Resources */,
 				E2A44AFE1998B18B004F4476 /* chatting_setmode_keyboard_btn_pressed.png in Resources */,
 				E2A44A0A19908F1E004F4476 /* Post_Body_Btn_Pic@2x.png in Resources */,
+				E21C5B8719A485F00008811B /* message_bg_sending_pic@2x.png in Resources */,
 				E2A44A0919908F1E004F4476 /* Post_Body_Btn_Add_Pic@2x.png in Resources */,
 				E21C5B44199DB6780008811B /* scenery2.jpg in Resources */,
+				E21C5B8919A489A60008811B /* Public_Body_Icon_Loadpic@2x.png in Resources */,
 				E2A44AFC1998B17C004F4476 /* chatting_setmode_keyboard_btn_normal.png in Resources */,
 				E2A44A0819908F1E004F4476 /* Post_Body_Btn_Add_Pic_On@2x.png in Resources */,
 				E2A44AF41998B11D004F4476 /* chatting_setmode_voice_btn_normal.png in Resources */,
@@ -1161,6 +1168,7 @@
 				E2A44A0419908F1E004F4476 /* btn_small_gray_on@2x.png in Resources */,
 				E2BE86ED197E558D00B47378 /* Main.storyboard in Resources */,
 				E2A44A121990A651004F4476 /* btn_shutter@2x.png in Resources */,
+				E21C5B8619A485F00008811B /* message_bg_receiving_pic@2x.png in Resources */,
 				E2A44AAF199875B7004F4476 /* MJPhotoBrowser.bundle in Resources */,
 				E21C5B4B199F20030008811B /* detail_01@2x.png in Resources */,
 				E2A44A4819985C24004F4476 /* DateSelectViewController.xib in Resources */,

@@ -11,6 +11,10 @@
 #import "HttpClient.h"
 #define HOST @"http://192.168.1.149:8888/Rome/"
 #import "ChatSession.h"
+#import "EGOCache.h"
+#import "UserProvider.h"
+#import "ChatUser.h"
+#import "GlobalDataManager.h"
 
 @implementation AppDelegate
 
@@ -29,7 +33,19 @@
 
     [[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor colorWithWhite:1.0 alpha:1]}];
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
-                                                
+    
+    NSString* userId = (NSString*)[[EGOCache globalCache] objectForKey:@"userToken"];
+    if(userId){
+        [UserProvider getUsers:userId onSuccess:^(NSArray *users) {
+            if([users count] == 0) return;
+            User* user = users[0];
+            [GlobalDataManager sharedInstance].user = user;
+            ChatUser* selfUser = [[ChatUser alloc] initWithPeerId:user.userId displayName:user.name iconUrl:user.avatar];
+            [[ChatSession sharedInstance] enableChat:selfUser];
+        } onFailure:^(Error *error) {
+        }];
+    }
+    
     return YES;
 }
 							

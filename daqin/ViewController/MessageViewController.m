@@ -336,8 +336,14 @@
     pickerController.delegate = self;
     if ([UIImagePickerController isSourceTypeAvailable:source] ) {
         pickerController.sourceType = source;
-        [self presentViewController:pickerController animated:YES completion:nil];
+        [self.navigationController presentViewController:pickerController animated:YES completion:nil];
     }
+}
+
+-(void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
+{
+    [self dismissViewControllerAnimated:YES completion:nil];
+//    [self dismissModalViewControllerAnimated:YES];
 }
 
 

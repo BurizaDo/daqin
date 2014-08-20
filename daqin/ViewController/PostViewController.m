@@ -187,8 +187,9 @@
     
     UIView *footerView=[[UIView alloc]initWithFrame:CGRectMake(0, 0, 320, 250)];
     UIButton *post = [UIButton buttonWithType:UIButtonTypeCustom];
-    [post setTitle:@"发布" forState:UIControlStateNormal];
-    post.backgroundColor = [UIColor colorWithRed:0xfe/255.0 green:0x77/255.0 blue:0x00/255.0 alpha:1];
+    [post setTitle:@"发  布" forState:UIControlStateNormal];
+    [post setImage:[UIImage imageNamed:@"button"] forState:UIControlStateNormal];
+    post.titleEdgeInsets = UIEdgeInsetsMake(0, -290, 0, 0);
     post.frame=CGRectMake(10, 30, 300, 40);
     [post addTarget:self action:@selector(doPost) forControlEvents:UIControlEventTouchUpInside];
     

@@ -27,7 +27,7 @@
 
 - (void)loginClicked{
     if (TARGET_IPHONE_SIMULATOR){
-    [[EGOCache globalCache] setObject:@"1234" forKey:@"userToken"];
+    [[EGOCache globalCache] setObject:@"123" forKey:@"userToken"];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"loginSucceed" object:nil];
     }else{
         [[QQHelper sharedInstance] doLogin];

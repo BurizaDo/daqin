@@ -184,8 +184,13 @@
     MessageInfo* messageInfo = [_messageInfoes objectAtIndex:indexPath.row];
     [MessageProvider removeChatPeerWithReceiverId:messageInfo.receiveId];
 //    [MessageProvider addPrivateMessageItem];
-    
+
     [_messageInfoes removeObjectAtIndex:indexPath.row];
+    [tableView beginUpdates];
+    [tableView deleteRowsAtIndexPaths:@[indexPath]
+                          withRowAnimation:UITableViewRowAnimationAutomatic];
+    [self.tableView endUpdates];
+    
 }
 
 @end

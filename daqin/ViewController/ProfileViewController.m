@@ -34,6 +34,7 @@
 @property (nonatomic, weak) IBOutlet UILabel* age;
 @property (nonatomic, weak) IBOutlet UILabel* signature;
 @property (nonatomic, weak) IBOutlet UIScrollView* imagesView;
+@property (nonatomic, weak) IBOutlet UIImageView* mask;
 
 @end
 
@@ -71,7 +72,7 @@
     }
     [_avatar.layer setCornerRadius:CGRectGetHeight(_avatar.bounds)/2];
     _avatar.layer.masksToBounds = YES;
-    
+    _name.text = _user.name;
     CGSize maximumLabelSize = CGSizeMake(999,999);
     CGSize expectedLabelSize = [_name.text sizeWithFont:_name.font
                                       constrainedToSize:maximumLabelSize
@@ -92,7 +93,7 @@
         _age.backgroundColor = colorF;
     }
     
-    _name.text = _user.name;
+
     _signature.text = _user.signature;
     _age.text = _user.age;
     if(_user.images.length > 0){
@@ -128,6 +129,8 @@
         UIButton* btn = [UIButton buttonWithType:UIButtonTypeCustom];
         btn.frame = CGRectMake(x, y, size, size);
         x += size + 5;
+        [[btn layer] setCornerRadius:4.0];
+        [btn layer].masksToBounds = YES;
         [btn sd_setImageWithURL:[NSURL URLWithString:url] forState:UIControlStateNormal];
         [btn.imageView setContentMode:UIViewContentModeScaleAspectFill];
         [btn addTarget:self action:@selector(imageClicked:) forControlEvents:UIControlEventTouchUpInside];
@@ -192,6 +195,19 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    float width = [UIScreen mainScreen].bounds.size.width;
+    
+    self.avatar.frame = CGRectMake((width - 90)/2, 20, 90, 90);
+    _mask.frame = CGRectMake((width - 108)/2, 11, 108, 108);
+    _name.frame = CGRectMake(_name.frame.origin.x, 11 + 108 + 5, _name.frame.size.width, _name.frame.size.height);
+    _age.frame = CGRectMake(_age.frame.origin.x, 11 + 108 + 10, _age.frame.size.width, _age.frame.size.height);
+    _signature.frame = CGRectMake(_signature.frame.origin.x, 11 + 108 + 10 + _age.frame.size.height + 10, _signature.frame.size.width, _signature.frame.size.height);
+    _imagesView.frame = CGRectMake(0, _signature.frame.origin.y + _signature.frame.size.height + 30, width, _imagesView.frame.size.height);
+    
 }
 
 /*

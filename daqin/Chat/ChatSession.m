@@ -14,6 +14,7 @@
 #import "MessageProvider.h"
 #import "EGOCache.h"
 #import <CommonCrypto/CommonHMAC.h>
+#import "UserProvider.h"
 
 #define APPID @"72atif126iweafj2eu4v78ip7sa6u72wfx3u4vx1mobsyngs"
 #define CLIENTKEY @"z9kai6hs3qit5ri8arkciiqh8q0z8gilmpzzb0baczp1hx81"
@@ -101,7 +102,14 @@ static ChatSession *_sharedInstance = nil;
     BOOL isChatting = [peerId isEqualToString:self.isChattingPeerId];
     [MessageProvider addMessageWithContent:message fromId:peerId toId:myPeerId isRead:isChatting];
     
-    [MessageProvider saveChatUser:chatSession.receiverUser];
+    [UserProvider getUsers:peerId onSuccess:^(NSArray *responseArray) {
+        User* user = responseArray[0];
+        ChatUser* cu = [[ChatUser alloc] initWithPeerId:peerId displayName:user.name iconUrl:user.avatar];
+        [MessageProvider saveChatUser:cu];
+    } onFailure:^(Error *error) {
+        
+    }];
+    
     
     if (isChatting) {
         [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationNewMessage object:peerId];

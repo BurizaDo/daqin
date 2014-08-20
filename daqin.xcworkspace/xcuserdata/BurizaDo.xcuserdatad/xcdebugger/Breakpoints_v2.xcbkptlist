@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "daqin/ViewController/ProfileEditViewController.m"
-            timestampString = "430130768.309735"
+            timestampString = "430196563.992917"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "397"
-            endingLineNumber = "397">
+            startingLineNumber = "399"
+            endingLineNumber = "399">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -24,11 +24,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "daqin/ViewController/ProfileEditViewController.m"
-            timestampString = "430130768.309735"
+            timestampString = "430196563.992917"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "345"
-            endingLineNumber = "345">
+            startingLineNumber = "347"
+            endingLineNumber = "347">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -38,11 +38,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "daqin/ViewController/ProfileEditViewController.m"
-            timestampString = "430130768.309735"
+            timestampString = "430196563.992917"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "363"
-            endingLineNumber = "363">
+            startingLineNumber = "365"
+            endingLineNumber = "365">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -52,11 +52,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "daqin/ViewController/ProfileEditViewController.m"
-            timestampString = "430130768.309735"
+            timestampString = "430196563.992917"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "255"
-            endingLineNumber = "255"
+            startingLineNumber = "257"
+            endingLineNumber = "257"
             landmarkName = "-didReceiveMemoryWarning"
             landmarkType = "5">
          </BreakpointContent>
@@ -68,11 +68,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "daqin/ViewController/ProfileEditViewController.m"
-            timestampString = "430130768.309735"
+            timestampString = "430196563.992917"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "369"
-            endingLineNumber = "369">
+            startingLineNumber = "371"
+            endingLineNumber = "371">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -82,11 +82,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "daqin/ViewController/ProfileEditViewController.m"
-            timestampString = "430130768.309735"
+            timestampString = "430196563.992917"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "409"
-            endingLineNumber = "409">
+            startingLineNumber = "411"
+            endingLineNumber = "411">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -143,28 +143,12 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "daqin/ViewController/BXChatListViewController.m"
-            timestampString = "430131663.687635"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "183"
-            endingLineNumber = "183"
-            landmarkName = "-tableView:commitEditingStyle:forRowAtIndexPath:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "daqin/Chat/ChatSession.m"
-            timestampString = "430128852.322549"
+            timestampString = "430208666.562091"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "143"
-            endingLineNumber = "143"
+            startingLineNumber = "151"
+            endingLineNumber = "151"
             landmarkName = "-onSessionMessageFailure:message:toPeerIds:"
             landmarkType = "5">
          </BreakpointContent>
@@ -175,13 +159,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "daqin/Cell/MessageCell/MessageCell.m"
-            timestampString = "430132320.178511"
+            filePath = "daqin/ViewController/ProfileEditViewController.m"
+            timestampString = "430196876.752766"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "110"
-            endingLineNumber = "110"
-            landmarkName = "-configCellWithMessage:"
+            startingLineNumber = "59"
+            endingLineNumber = "59"
+            landmarkName = "-scrollViewWillBeginDragging:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -191,13 +175,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "daqin/Chat/ChatSession.m"
-            timestampString = "430132525.961638"
+            filePath = "daqin/ViewController/MessageViewController.m"
+            timestampString = "430210258.623895"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "99"
-            endingLineNumber = "99"
-            landmarkName = "-onSessionMessage:message:peerId:"
+            startingLineNumber = "371"
+            endingLineNumber = "371"
+            landmarkName = "-didSendText:fromSender:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -207,13 +191,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "daqin/Data/MessageProvider.m"
-            timestampString = "430132724.729827"
+            filePath = "daqin/ViewController/MessageViewController.m"
+            timestampString = "430211258.995806"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "516"
-            endingLineNumber = "516"
-            landmarkName = "+addMessage:chatPeer:"
+            startingLineNumber = "378"
+            endingLineNumber = "378"
+            landmarkName = "-didSendImage:fromSender:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -223,13 +207,73 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "daqin/Data/MessageProvider.m"
-            timestampString = "430133031.542523"
+            filePath = "daqin/ViewController/MessageViewController.m"
+            timestampString = "430211260.891876"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "148"
-            endingLineNumber = "148"
-            landmarkName = "+saveChatUser:"
+            startingLineNumber = "396"
+            endingLineNumber = "396"
+            landmarkName = "-didSendImage:fromSender:"
+            landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__49-[MessageViewController didSendImage:fromSender:]_block_invoke"
+                  moduleName = "daqin"
+                  urlString = "file:///Users/BurizaDo/Code/daqin/daqin/ViewController/MessageViewController.m"
+                  timestampString = "430216476.205631"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "397"
+                  endingLineNumber = "397"
+                  offsetFromSymbolStart = "681">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__49-[MessageViewController didSendImage:fromSender:]_block_invoke"
+                  moduleName = "daqin"
+                  urlString = "file:///Users/BurizaDo/Code/daqin/daqin/ViewController/MessageViewController.m"
+                  timestampString = "430216476.205796"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "397"
+                  endingLineNumber = "397"
+                  offsetFromSymbolStart = "735">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__49-[MessageViewController didSendImage:fromSender:]_block_invoke311"
+                  moduleName = "daqin"
+                  urlString = "file:///Users/BurizaDo/Code/daqin/daqin/ViewController/MessageViewController.m"
+                  timestampString = "430216476.205926"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "397"
+                  endingLineNumber = "397"
+                  offsetFromSymbolStart = "48">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "daqin/ViewController/MessageViewController.m"
+            timestampString = "430211282.388754"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "452"
+            endingLineNumber = "452"
+            landmarkName = "-didSendVoice:duration:fromSender:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -239,13 +283,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "daqin/ViewController/BXChatListViewController.m"
-            timestampString = "430133506.35156"
+            filePath = "daqin/ViewController/MessageViewController.m"
+            timestampString = "430211315.121875"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "137"
-            endingLineNumber = "137"
-            landmarkName = "-openMessageInfo:"
+            startingLineNumber = "391"
+            endingLineNumber = "391"
+            landmarkName = "-didSendImage:fromSender:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -255,13 +299,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "daqin/ViewController/ProfileViewController.m"
-            timestampString = "430134772.883382"
+            filePath = "daqin/ViewController/MessageViewController.m"
+            timestampString = "430216066.502987"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "122"
-            endingLineNumber = "122"
-            landmarkName = "-setupImageScrollView:"
+            startingLineNumber = "335"
+            endingLineNumber = "335"
+            landmarkName = "-choosePhotoFromSource:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -271,29 +315,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "daqin/ViewController/LoginViewController.m"
-            timestampString = "430136089.452221"
+            filePath = "daqin/ViewController/MessageViewController.m"
+            timestampString = "430216312.229837"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "29"
-            endingLineNumber = "29"
-            landmarkName = "-loginClicked"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "daqin/ViewController/RootViewController.m"
-            timestampString = "430136121.228289"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "44"
-            endingLineNumber = "44"
-            landmarkName = "-loginSucceed"
+            startingLineNumber = "345"
+            endingLineNumber = "345"
+            landmarkName = "-imagePickerControllerDidCancel:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
