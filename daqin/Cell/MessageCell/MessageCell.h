@@ -11,7 +11,7 @@
 #define kAvatarMargin   10.0f
 #define kAvatarWidth    40.0f
 #define kAvatarAll      (kAvatarMargin+kAvatarWidth)
-#define kAvatarWidth    40.0f
+#define kAvatarWidth    50.0f
 #define kTimeHeight     30.0f
 
 typedef NS_ENUM(NSInteger, MessageDirection)

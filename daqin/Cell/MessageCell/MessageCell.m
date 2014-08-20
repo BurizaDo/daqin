@@ -116,7 +116,8 @@ static NSDateFormatter *dateFormatter;
             CGFloat fullWidth = self.frame.size.width;
             self.avatarView.frame = CGRectMake(fullWidth-kAvatarMargin-kAvatarWidth, yOffset+kAvatarMargin, kAvatarWidth, kAvatarWidth);
         }
-        
+        self.avatarView.layer.cornerRadius = _avatarView.bounds.size.height/2;
+        _avatarView.layer.masksToBounds = YES;
         [self.avatarView setImageWithURL:[NSURL URLWithString:message.avatarUrl] placeholderImage:[UIImage imageNamed:@"icon_avatar"]];
         
         if (message.state == MessageStateSending) {

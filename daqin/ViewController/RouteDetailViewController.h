@@ -21,4 +21,7 @@
 @property (nonatomic, weak) IBOutlet UIButton* chatButton;
 @property (nonatomic, weak) IBOutlet UILabel* age;
 @property (nonatomic, weak) IBOutlet UIScrollView* scrollView;
+@property (nonatomic, weak) IBOutlet UIImageView* iv_dest;
+@property (nonatomic, weak) IBOutlet UIImageView* iv_time;
+@property (nonatomic, weak) IBOutlet UIImageView* iv_desc;
 @end

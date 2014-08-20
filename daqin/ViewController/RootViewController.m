@@ -13,7 +13,7 @@
 #import "EventDefinition.h"
 #import "ProfileViewController.h"
 
-@interface RootViewController ()
+@interface RootViewController () <UITabBarControllerDelegate>
 
 @end
 
@@ -24,33 +24,42 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+
     }
     return self;
+}
+
+- (UITabBarItem*) createTabBarItemImage:(NSString*)imageName selected:(NSString*)selName{
+    UITabBarItem* item = [[UITabBarItem alloc]init];
+    item.title = nil;
+    [item setFinishedSelectedImage:[UIImage imageNamed:selName] withFinishedUnselectedImage:[UIImage imageNamed:imageName]];
+    item.imageInsets = UIEdgeInsetsMake(6, 0, -6, 0);
+
+    return item;
+    
+    
 }
 
 - (void)loginSucceed{
     PostViewController* postVC = [[PostViewController alloc] init];
     UINavigationController* postNC = [[UINavigationController alloc] initWithRootViewController:postVC];
-    postNC.tabBarItem = [[UITabBarItem alloc]initWithTitle:@"发布" image:[UIImage imageNamed:@"first"] tag:0];
+    postNC.tabBarItem = [self createTabBarItemImage:@"03" selected:@"select_03"];
 
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     UIViewController *myVC = (UIViewController *) [storyboard instantiateViewControllerWithIdentifier:@"ProfileVC"];
     UINavigationController* myNC = [[UINavigationController alloc] initWithRootViewController:myVC];
-    myNC.tabBarItem = [[UITabBarItem alloc]initWithTitle:@"个人中心" image:[UIImage imageNamed:@"first"] tag:0];
-    myNC.title = @"个人中心";
-//    myNC.navigationBar.translucent = NO;
+    myNC.tabBarItem = [self createTabBarItemImage:@"04" selected:@"select_04"];
 
-    
     NSMutableArray* controllers = [NSMutableArray arrayWithArray:self.viewControllers];
-    [controllers replaceObjectAtIndex:1 withObject:myNC];
+    [controllers replaceObjectAtIndex:3 withObject:myNC];
     [controllers replaceObjectAtIndex:2 withObject:postNC];
     self.viewControllers = controllers;
 }
 
-- (UINavigationController*)generateLoginNavController:(NSString*)tabItemText image:(NSString*)imageName{
+- (UINavigationController*)generateLoginNavControllerImage:(NSString*)imageName selected:(NSString*)sel{
     LoginViewController* loginVC = [[LoginViewController alloc] initWithNibName:@"LoginViewController" bundle:nil];
     UINavigationController* newNC = [[UINavigationController alloc] initWithRootViewController:loginVC];
-    newNC.tabBarItem = [[UITabBarItem alloc]initWithTitle:tabItemText image:[UIImage imageNamed:imageName] tag:0];
+    newNC.tabBarItem = [self createTabBarItemImage:imageName selected:sel];
     return newNC;
     
 }
@@ -58,19 +67,39 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.delegate = self;
     // Do any additional setup after loading the view.
     NSString* token = (NSString*)[[EGOCache globalCache] objectForKey:@"userToken"];
+    NSMutableArray* controllers = [NSMutableArray arrayWithArray:self.viewControllers];
     if(!token){
-        UINavigationController* post = [self generateLoginNavController:@"发布" image:@"first"];
-        UINavigationController* my = [self generateLoginNavController:@"个人中心" image:@"first"];
+        UINavigationController* post = [self generateLoginNavControllerImage:@"03" selected:@"select_03"];
+        UINavigationController* my = [self generateLoginNavControllerImage:@"04" selected:@"select_04"];
         
-        NSMutableArray* controllers = [NSMutableArray arrayWithArray:self.viewControllers];
         [controllers replaceObjectAtIndex:2 withObject:post];
-        [controllers replaceObjectAtIndex:1 withObject:my];
+        [controllers replaceObjectAtIndex:3 withObject:my];
         self.viewControllers = controllers;
+    }else{
+//        ProfileViewController* profileVC = [[ProfileViewController alloc] initWithNibName:@"ProfileViewController" bundle:nil];
+//        UINavigationController* newNC = [[UINavigationController alloc] initWithRootViewController:profileVC];
+//        newNC.tabBarItem = [self createTabBarItemImage:@"04" selected:@"select_04"];
+//        [controllers replaceObjectAtIndex:3 withObject:newNC];
     }
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loginSucceed) name:@"loginSucceed" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(postSucceed) name:kPostSucceed object:nil];
+    
+    UINavigationController* list = controllers[0];
+    list.tabBarItem = [self createTabBarItemImage:@"01" selected:@"select_01"];
+    list = controllers[1];
+    list.tabBarItem = [self createTabBarItemImage:@"02" selected:@"select_02"];
+    list = controllers[2];
+    list.tabBarItem = [self createTabBarItemImage:@"03" selected:@"select_03"];
+    list = controllers[3];
+    list.tabBarItem = [self createTabBarItemImage:@"04" selected:@"select_04"];
+
+    
+    self.tabBar.barTintColor = [UIColor colorWithRed:0x33/255.0 green:0x33/255.0 blue:0x33/255.0 alpha:1];
+    self.tabBar.translucent = NO;
+    self.tabBar.opaque = YES;
     
 }
 
@@ -82,6 +111,10 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController{
+    
 }
 
 /*

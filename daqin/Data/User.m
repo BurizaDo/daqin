@@ -17,13 +17,17 @@
     user.signature = [dic objectForKey:@"signature"];
     user.avatar = [dic objectForKey:@"avatar"];
     user.images = [dic objectForKey:@"images"];
+    if(user.images.length == 0){
+        user.images = nil;
+    }
+    user.gender = [dic objectForKey:@"gender"];
     return user;
 }
 
 - (id) init{
     self = [super init];
     if(self){
-        _userId = _name = _age = _signature = _avatar = _images = @"";
+        _gender = _userId = _name = _age = _signature = _avatar = @"";
     }
     return self;
 }

@@ -36,6 +36,7 @@
     NSDictionary* param = @{@"userId":user.userId,
                             @"name":user.name,
                             @"age":user.age,
+                            @"gender":user.gender,
                             @"signature":user.signature,
                             @"avatar":user.avatar,
                             @"images":user.images};

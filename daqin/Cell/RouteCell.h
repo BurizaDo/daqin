@@ -14,5 +14,7 @@
 @property (nonatomic, weak) IBOutlet UILabel* schedule;
 @property (nonatomic, weak) IBOutlet UILabel* age;
 @property (nonatomic, weak) IBOutlet UILabel* destination;
+@property (nonatomic, weak) IBOutlet UILabel* name;
+@property (nonatomic, weak) IBOutlet UILabel* signature;
 
 @end

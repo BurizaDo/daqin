@@ -35,6 +35,7 @@
 #import "AFHTTPRequestOperation.h"
 #import "GlobalDataManager.h"
 #import "User.h"
+#import "ViewUtil.h"
 
 #define kStatusBarHeight    20.0f
 #define kNaviBarHeight      44.0f
@@ -83,8 +84,15 @@
         
         
         [ChatSession sharedInstance].isChattingPeerId = @"";
+        
+        self.navigationItem.leftBarButtonItem = [ViewUtil createBackItem:self action:@selector(backAction)];
+        
     }
     return self;
+}
+
+- (void)backAction{
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 

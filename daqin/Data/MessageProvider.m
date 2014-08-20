@@ -62,6 +62,8 @@
                 receiverId varchar UNIQUE not null, \
                 type varchar, \
                 lastChatTime long, \
+                avatar varchar,\
+                displayName varchar,\
                 settings varchar);";
             [db executeUpdate:sql];
             
@@ -205,7 +207,7 @@
     FMDatabaseQueue *dbQueue = [self fmDatabaseQueue];
     [dbQueue inDatabase:^(FMDatabase *db) {
        
-        NSString *sql = @"SELECT f.receiverId, f.settings, sum(case when m.read = 0 and m.fromId = f.receiverId then 1 else 0 end) as readCount,\
+        NSString *sql = @"SELECT f.receiverId, f.avatar, f.displayName, sum(case when m.read = 0 and m.fromId = f.receiverId then 1 else 0 end) as readCount,\
                             m.content, m.type, m.timestamp, m.id \
                             FROM chat_friends f \
                             LEFT JOIN chat_message m \
@@ -219,9 +221,11 @@
             NSString *contentData = [rs stringForColumn:@"content"];
             NSString *type = [rs stringForColumn:@"type"];
             messageInfo.content = [self extractContentFromContentData:contentData type:type];
-            NSDictionary *settings = [[rs stringForColumn:@"settings"] objectFromJSONString];
-            messageInfo.name = settings[@"displayName"];
-            messageInfo.iconUrl = settings[@"icon"];
+//            NSDictionary *settings = [[rs stringForColumn:@"settings"] objectFromJSONString];
+//            messageInfo.name = settings[@"displayName"];
+//            messageInfo.iconUrl = settings[@"icon"];
+            messageInfo.name = [rs stringForColumn:@"displayName"];
+            messageInfo.iconUrl = [rs stringForColumn:@"avatar"];
             messageInfo.timeStamp = [rs dateForColumn:@"timestamp"];
             messageInfo.receiveId = [rs stringForColumn:@"receiverId"];
             [result addObject: messageInfo];
@@ -240,14 +244,14 @@
     FMDatabaseQueue *dbQueue = [self fmDatabaseQueue];
     [dbQueue inDatabase:^(FMDatabase *db) {
         
-        NSString *sql = @"SELECT settings from chat_friends where receiverId = ?";
+        NSString *sql = @"SELECT avatar,displayName from chat_friends where receiverId = ?";
         FMResultSet *rs = [db executeQuery:sql,receiverId];
         if ([rs next]) {
             chatUser = [ChatUser new];
             chatUser.peerId = receiverId;
-            NSDictionary *settings = [[rs stringForColumn:@"settings"] objectFromJSONString];
-            chatUser.displayName = settings[@"displayName"];;
-            chatUser.iconUrl = settings[@"icon"];
+//            NSDictionary *settings = [[rs stringForColumn:@"settings"] objectFromJSONString];
+            chatUser.displayName = [rs stringForColumn:@"displayName"];
+            chatUser.iconUrl = [rs stringForColumn:@"avatar"];
         }
         
         [rs close];
@@ -422,9 +426,13 @@
     
     [dbQueue inDatabase:^(FMDatabase *db) {
         
-        NSString *sql = @"INSERT INTO chat_friends (receiverId, lastChatTime) \
-                            VALUES (?, ?, ?)";
-        result = [db executeUpdate:sql, chatPeer.peerId, [NSDate date]];
+        NSString *sql = @"INSERT INTO chat_friends (receiverId, lastChatTime, avatar, displayName) \
+                            VALUES (?, ?, ?, ?)";
+        result = [db executeUpdate:sql,
+                  chatPeer.peerId,
+                  [NSDate date],
+                  chatPeer.iconUrl,
+                  chatPeer.displayName];
     }];
     
     return result;
@@ -512,9 +520,9 @@
         
         rollback = &result;
         
-        NSString *sql = @"INSERT INTO chat_friends (receiverId, lastChatTime, settings) \
-        VALUES (?, ?, ?)";
-        [db executeUpdate:sql, chatPeer.receiverId, [NSDate date], [chatPeer.settings JSONString]];
+        NSString *sql = @"INSERT INTO chat_friends (receiverId, lastChatTime) \
+        VALUES (?, ? )";
+        [db executeUpdate:sql, chatPeer.receiverId, [NSDate date]];
         
         sql = @"INSERT INTO chat_message (guid, fromId, toId, status,\
                     timestamp, type, content, read, object) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";

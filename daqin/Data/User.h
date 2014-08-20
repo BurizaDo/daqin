@@ -15,6 +15,7 @@
 @property (nonatomic, copy) NSString* signature;
 @property (nonatomic, copy) NSString* avatar;
 @property (nonatomic, copy) NSString* images;
+@property (nonatomic, copy) NSString* gender;
 
 +(instancetype) parseFromDictionary:(NSDictionary*) dic;
 @end
