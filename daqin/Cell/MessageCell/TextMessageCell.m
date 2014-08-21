@@ -33,7 +33,7 @@
         self.bgImageView = [[UIImageView alloc] init];
         
         [self.contentView addSubview:self.bgImageView];
-        self.titleLabel = [[UILabel alloc] init];
+        self.titleLabel = [[OHAttributedLabel alloc] init];
         self.titleLabel.backgroundColor = [UIColor clearColor];
         self.titleLabel.numberOfLines = 0;
         self.titleLabel.font = [UIFont systemFontOfSize:kTextFontSize];
@@ -83,12 +83,14 @@
     }
     self.bgImageView.image = [image resizableImageWithCapInsets:UIEdgeInsetsMake(30, 20, 10, 20)];
     
-    UIFont* font = [UIFont systemFontOfSize:kTextFontSize];
     CGFloat maxTextWidth = kMaxMessageWidth-kArrowWidth-kTextLeftSideMargin-kTextRightSideMargin;
-    CGSize size = [text sizeWithFont:font constrainedToSize:CGSizeMake(maxTextWidth, 1000) lineBreakMode:NSLineBreakByWordWrapping];
-    size.width = ceil(size.width);
-    size.height = ceil(size.height);
-
+    
+    for(UIView* sub in [self.titleLabel subviews]) {
+        [sub removeFromSuperview];
+    }
+    [TextMessageCell setAttributedLabel:[TextMessageCell transformString:text] Label:self.titleLabel maxTextWidth:maxTextWidth];
+    CGSize size = self.titleLabel.frame.size;
+    
     CGRect loadingRect;
     
     if (self.messageDirection == MessageDirectionLeft) {
@@ -114,27 +116,6 @@
     
     self.loadingView.frame = loadingRect;
     self.retryButton.frame = loadingRect;
-
-    self.titleLabel.text = text;
-    
-    
-}
-
-+ (CGFloat)cellHeightWithMessage:(Message*)message
-{
-    TextMessage* textMessage = (TextMessage*)message;
-    NSString* text = textMessage.text;
-    
-    UIFont* font = [UIFont systemFontOfSize:kTextFontSize];
-    CGFloat maxTextWidth = kMaxMessageWidth-kArrowWidth-kTextLeftSideMargin-kTextRightSideMargin;
-
-    OHAttributedLabel* label = [[OHAttributedLabel alloc] init];
-    [TextMessageCell setAttributedLabel:[TextMessageCell transformString:text] Label:label maxTextWidth:maxTextWidth];
-
-    CGSize size = [text sizeWithFont:font constrainedToSize:CGSizeMake(maxTextWidth, 1000) lineBreakMode:NSLineBreakByWordWrapping];
-    size.height = ceil(size.height);
-    
-    return size.height+(kTextImageYMargin+kImageTopMargin)*2;
 }
 
 + (void)setAttributedLabel:(NSString *)str Label:(OHAttributedLabel *)label maxTextWidth:(CGFloat)maxTextWidth {
@@ -189,5 +170,18 @@
     return text;
 }
 
++ (CGFloat)cellHeightWithMessage:(Message*)message
+{
+    TextMessage* textMessage = (TextMessage*)message;
+    NSString* text = textMessage.text;
+    
+    CGFloat maxTextWidth = kMaxMessageWidth-kArrowWidth-kTextLeftSideMargin-kTextRightSideMargin;
+    // 这里new了个label，感觉非常不好。。。以后想个办法把size的计算写成static的吧
+    OHAttributedLabel* label = [[OHAttributedLabel alloc] init];
+    [TextMessageCell setAttributedLabel:[TextMessageCell transformString:text] Label:label maxTextWidth:maxTextWidth];
+    CGSize size = label.frame.size;
+    
+    return size.height+(kTextImageYMargin+kImageTopMargin)*2;
+}
 
 @end
