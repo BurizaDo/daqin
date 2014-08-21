@@ -15,6 +15,13 @@
 #import <UIKit/UIKit.h>
 #import "JSMessageTextView.h"
 
+@protocol EmotionBtnDelegate
+- (void) onEmotionBtnClicked;
+@end
+
+#define COMMON_PADDING 4.0F
+#define COMMON_BTN_SIZE 35.0F
+#define INPUT_VIEW_HEIGHT 45.0F
 /**
  *  An instance of `JSMessageInputView` defines the input toolbar for composing a new message that is to be displayed above the keyboard.
  */
@@ -28,6 +35,8 @@
 @property (nonatomic, weak) UIButton* audioButton;
 @property (weak, nonatomic) UIButton* speakButton;
 @property (nonatomic, readonly) BOOL inAudio;
+@property (weak, nonatomic) UIButton* emotionButton;
+@property (weak, nonatomic) id<EmotionBtnDelegate> emotionDelegate;
 
 #pragma mark - Initialization
 

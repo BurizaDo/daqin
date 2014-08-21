@@ -7,11 +7,12 @@
 //
 
 #import "MessageCell.h"
+#import "OHAttributedLabel.h"
 
 @interface TextMessageCell : MessageCell
 
 @property (nonatomic,assign) BOOL           showTime;
 @property (nonatomic,strong) UIImageView*   bgImageView;
-@property (nonatomic,strong) UILabel*       titleLabel;
+@property (nonatomic,strong) OHAttributedLabel*       titleLabel;
 
 @end

@@ -11,7 +11,7 @@
 #import "MessageCell.h"
 #import "JSMessageInputView.h"
 #import "BlockActionSheet.h"
-
+#import "InputToolBar.h"
 #import "MJPhoto.h"
 #import "MJPhotoBrowser.h"
 #import "UIImage+Resize.h"
@@ -46,10 +46,11 @@
 
 @interface MessageViewController ()<UITableViewDataSource,UITableViewDelegate,
             UITextViewDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate,
-            AudioRecordDelegate, AudioPlayerDelegate>
+            AudioRecordDelegate, AudioPlayerDelegate, InputToolBarDelegate>
 
 @property (nonatomic, weak) UITableView             *messageTableView;
-@property (nonatomic, weak) JSMessageInputView      *messageInputView;
+@property (nonatomic, weak) InputToolBar            *messageInputView;
+//@property (nonatomic, weak) JSMessageInputView      *messageInputView;
 
 @property (nonatomic, assign) BOOL                  isUserScrolling;
 @property (nonatomic, assign) CGFloat               previousTextViewContentHeight;
@@ -145,8 +146,9 @@
     [self.messageTableView addGestureRecognizer:tapGesture];
     
     // set up the input view
-    CGRect inputFrame = CGRectMake(0, inputY, self.view.frame.size.width, kInputViewHeight);
-    JSMessageInputView  *inputView = [[JSMessageInputView alloc] initWithFrame:inputFrame delegate:self];
+    // set up the input view
+    CGRect inputFrame = CGRectMake(0, inputY, self.view.bounds.size.width, kInputViewHeight);
+    InputToolBar* inputView = [[InputToolBar alloc] initWithFrame:inputFrame superView:self.view];
     [self.view addSubview:inputView];
     self.messageInputView = inputView;
 
@@ -160,21 +162,23 @@
     
     [self scrollToBottomAnimated:NO];
     
-    [self.messageInputView.moreButton addTarget: self
-                                         action:@selector(moreButtonClicked:)
-                               forControlEvents:UIControlEventTouchUpInside];
-
-    [self.messageInputView.audioButton addTarget: self
-                                         action:@selector(audioButtonClicked:)
-                               forControlEvents:UIControlEventTouchUpInside];
+    self.messageInputView.delegate = self;
     
-    [self.messageInputView.speakButton addTarget:self
-                                          action:@selector(speakButtonDown:)
-                                forControlEvents:UIControlEventTouchDown];
-    
-    [self.messageInputView.speakButton addTarget:self
-                                          action:@selector(speakButtonUp:)
-                                forControlEvents:UIControlEventTouchUpInside];
+//    [self.messageInputView.moreButton addTarget: self
+//                                         action:@selector(moreButtonClicked:)
+//                               forControlEvents:UIControlEventTouchUpInside];
+//
+//    [self.messageInputView.audioButton addTarget: self
+//                                         action:@selector(audioButtonClicked:)
+//                               forControlEvents:UIControlEventTouchUpInside];
+//    
+//    [self.messageInputView.speakButton addTarget:self
+//                                          action:@selector(speakButtonDown:)
+//                                forControlEvents:UIControlEventTouchDown];
+//    
+//    [self.messageInputView.speakButton addTarget:self
+//                                          action:@selector(speakButtonUp:)
+//                                forControlEvents:UIControlEventTouchUpInside];
 
     
     NSString* myPeerId = (NSString*)[[EGOCache globalCache] objectForKey:@"userToken"];
@@ -209,10 +213,11 @@
 												 name:UIKeyboardWillHideNotification
                                                object:nil];
     
-    [self.messageInputView.textView addObserver:self
-                                     forKeyPath:@"contentSize"
-                                        options:NSKeyValueObservingOptionNew
-                                        context:nil];
+//    [self.messageInputView.textView addObserver:self
+//                                     forKeyPath:@"contentSize"
+//                                        options:NSKeyValueObservingOptionNew
+//                                        context:nil];
+    [self.messageInputView registerTextViewObserver];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -224,7 +229,8 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillShowNotification object:nil];
 	[[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
     
-    [self.messageInputView.textView removeObserver:self forKeyPath:@"contentSize"];
+//    [self.messageInputView.textView removeObserver:self forKeyPath:@"contentSize"];
+    [self.messageInputView unregisterTextViewObserver];
 }
 
 - (void)didReceiveMemoryWarning
@@ -313,6 +319,12 @@
         [_timer invalidate];
         _timer = nil;
     }
+}
+
+- (void)endEditing {
+    [self.messageInputView endEditing];
+    [self setTableViewInsetsWithBottomValue:self.view.bounds.size.height - self.messageInputView.frame.origin.y];
+    [self.view endEditing:YES];
 }
 
 
@@ -480,70 +492,87 @@
     [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationReloadSessionFromDB object:nil];
 }
 
+#pragma mark - InputToolBarDelegate
+
+- (void) onInputing {
+    [self setTableViewInsetsWithBottomValue:self.view.bounds.size.height - self.messageInputView.frame.origin.y];
+    [self scrollToBottomAnimated:YES];
+}
+
+- (void) onSendTextMessage:(NSString*)txt {
+    [self didSendText:txt fromSender:MessageFromMine];
+}
+
 #pragma mark - Layout message input view
 
-- (void)layoutAndAnimateMessageInputTextView:(UITextView *)textView
-{
-    CGFloat maxHeight = [JSMessageInputView maxHeight];
-    
-    BOOL isShrinking = textView.contentSize.height < self.previousTextViewContentHeight;
-    CGFloat changeInHeight = textView.contentSize.height - self.previousTextViewContentHeight;
-    
-    if (!isShrinking && (self.previousTextViewContentHeight == maxHeight || textView.text.length == 0)) {
-        
-        changeInHeight = 0;
-        
-    } else {
-        /**
-         *  不知道为啥拿到的textView的contentSize.height的值不对, 有想法的同学过来解决下???
-         */
-        if (abs(changeInHeight) == 24) {
-            return;
-        } else {
-            changeInHeight = MIN(changeInHeight, maxHeight - self.previousTextViewContentHeight);
-        }
-    }
-    
-    if (changeInHeight != 0.0f) {
-        [UIView animateWithDuration:0.25f
-                         animations:^
-        {
-             [self setTableViewInsetsWithBottomValue:self.messageTableView.contentInset.bottom + changeInHeight];
-             
-             [self scrollToBottomAnimated:NO];
-             
-             if (isShrinking) {
-                 // if shrinking the view, animate text view frame BEFORE input view frame
-                 [self.messageInputView adjustTextViewHeightBy:changeInHeight];
-             }
-             
-             CGRect inputViewFrame = self.messageInputView.frame;
-             self.messageInputView.frame = CGRectMake(0.0f,
-                                                      inputViewFrame.origin.y - changeInHeight,
-                                                      inputViewFrame.size.width,
-                                                      inputViewFrame.size.height + changeInHeight);
-             if (!isShrinking) {
-                 // growing the view, animate the text view frame AFTER input view frame
-                 [self.messageInputView adjustTextViewHeightBy:changeInHeight];
-             }
-         } completion:^(BOOL finished) {
-         }];
-    
-        self.previousTextViewContentHeight = MIN(textView.contentSize.height, maxHeight);
-    }
-    
-    // Once we reached the max height, we have to consider the bottom offset for the text view.
-    // To make visible the last line, again we have to set the content offset.
-    if (self.previousTextViewContentHeight == maxHeight) {
-        double delayInSeconds = 0.01;
-        dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
-        dispatch_after(popTime, dispatch_get_main_queue(), ^(void)
-        {
-           CGPoint bottomOffset = CGPointMake(0.0f, textView.contentSize.height - textView.bounds.size.height);
-           [textView setContentOffset:bottomOffset animated:YES];
-        });
-    }
+- (void) inputLayoutResized:(CGFloat)changeInHeight {
+    [self setTableViewInsetsWithBottomValue:self.messageTableView.contentInset.bottom + changeInHeight];
+    [self scrollToBottomAnimated:NO];
 }
+
+
+//- (void)layoutAndAnimateMessageInputTextView:(UITextView *)textView
+//{
+//    CGFloat maxHeight = [JSMessageInputView maxHeight];
+//    
+//    BOOL isShrinking = textView.contentSize.height < self.previousTextViewContentHeight;
+//    CGFloat changeInHeight = textView.contentSize.height - self.previousTextViewContentHeight;
+//    
+//    if (!isShrinking && (self.previousTextViewContentHeight == maxHeight || textView.text.length == 0)) {
+//        
+//        changeInHeight = 0;
+//        
+//    } else {
+//        /**
+//         *  不知道为啥拿到的textView的contentSize.height的值不对, 有想法的同学过来解决下???
+//         */
+//        if (abs(changeInHeight) == 24) {
+//            return;
+//        } else {
+//            changeInHeight = MIN(changeInHeight, maxHeight - self.previousTextViewContentHeight);
+//        }
+//    }
+//    
+//    if (changeInHeight != 0.0f) {
+//        [UIView animateWithDuration:0.25f
+//                         animations:^
+//        {
+//             [self setTableViewInsetsWithBottomValue:self.messageTableView.contentInset.bottom + changeInHeight];
+//             
+//             [self scrollToBottomAnimated:NO];
+//             
+//             if (isShrinking) {
+//                 // if shrinking the view, animate text view frame BEFORE input view frame
+//                 [self.messageInputView adjustTextViewHeightBy:changeInHeight];
+//             }
+//             
+//             CGRect inputViewFrame = self.messageInputView.frame;
+//             self.messageInputView.frame = CGRectMake(0.0f,
+//                                                      inputViewFrame.origin.y - changeInHeight,
+//                                                      inputViewFrame.size.width,
+//                                                      inputViewFrame.size.height + changeInHeight);
+//             if (!isShrinking) {
+//                 // growing the view, animate the text view frame AFTER input view frame
+//                 [self.messageInputView adjustTextViewHeightBy:changeInHeight];
+//             }
+//         } completion:^(BOOL finished) {
+//         }];
+//    
+//        self.previousTextViewContentHeight = MIN(textView.contentSize.height, maxHeight);
+//    }
+//    
+//    // Once we reached the max height, we have to consider the bottom offset for the text view.
+//    // To make visible the last line, again we have to set the content offset.
+//    if (self.previousTextViewContentHeight == maxHeight) {
+//        double delayInSeconds = 0.01;
+//        dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
+//        dispatch_after(popTime, dispatch_get_main_queue(), ^(void)
+//        {
+//           CGPoint bottomOffset = CGPointMake(0.0f, textView.contentSize.height - textView.bounds.size.height);
+//           [textView setContentOffset:bottomOffset animated:YES];
+//        });
+//    }
+//}
 
 #pragma mark - gesture recogonizer handler
 
@@ -625,12 +654,14 @@
 
 - (void)handleWillShowKeyboardNotification:(NSNotification *)notification
 {
+    [_messageInputView handleWillShowKeyboardNotification:notification];
     self.isShowingKeyBorad = YES;
     [self keyboardWillShowOrHide:notification];
 }
 
 - (void)handleWillHideKeyboardNotification:(NSNotification *)notification
 {
+    [_messageInputView handleWillHideKeyboardNotification:notification];
     self.isShowingKeyBorad = NO;
     [self keyboardWillShowOrHide:notification];
 }
@@ -666,17 +697,17 @@
      }];
 }
 
-#pragma mark - Key-value observing
-
-- (void)observeValueForKeyPath:(NSString *)keyPath
-                      ofObject:(id)object
-                        change:(NSDictionary *)change
-                       context:(void *)context
-{
-    if (object == self.messageInputView.textView && [keyPath isEqualToString:@"contentSize"]) {
-        [self layoutAndAnimateMessageInputTextView:object];
-    }
-}
+//#pragma mark - Key-value observing
+//
+//- (void)observeValueForKeyPath:(NSString *)keyPath
+//                      ofObject:(id)object
+//                        change:(NSDictionary *)change
+//                       context:(void *)context
+//{
+//    if (object == self.messageInputView.textView && [keyPath isEqualToString:@"contentSize"]) {
+//        [self layoutAndAnimateMessageInputTextView:object];
+//    }
+//}
 
 #pragma mark - private method
 

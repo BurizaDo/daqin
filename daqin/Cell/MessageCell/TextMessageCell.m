@@ -8,6 +8,11 @@
 
 #import "TextMessageCell.h"
 #import "TextMessage.h"
+#import "EmotionUtil.h"
+#import "EmotionData.h"
+#import "MarkUpParser.h"
+#import "SCGIFImageView.h"
+#import "NSAttributedString+Attributes.h"
 
 #define kArrowWidth             10.0f
 #define kTextLeftSideMargin     10.0f
@@ -15,6 +20,8 @@
 #define kTextImageYMargin       10.0f
 #define kImageTopMargin         10.0f
 #define kTextFontSize           16.0f
+
+#define EMOTION_SIZE            18
 
 @implementation TextMessageCell
 
@@ -120,10 +127,67 @@
     
     UIFont* font = [UIFont systemFontOfSize:kTextFontSize];
     CGFloat maxTextWidth = kMaxMessageWidth-kArrowWidth-kTextLeftSideMargin-kTextRightSideMargin;
+
+    OHAttributedLabel* label = [[OHAttributedLabel alloc] init];
+    [TextMessageCell setAttributedLabel:[TextMessageCell transformString:text] Label:label maxTextWidth:maxTextWidth];
+
     CGSize size = [text sizeWithFont:font constrainedToSize:CGSizeMake(maxTextWidth, 1000) lineBreakMode:NSLineBreakByWordWrapping];
     size.height = ceil(size.height);
     
     return size.height+(kTextImageYMargin+kImageTopMargin)*2;
 }
+
++ (void)setAttributedLabel:(NSString *)str Label:(OHAttributedLabel *)label maxTextWidth:(CGFloat)maxTextWidth {
+    [label setNeedsDisplay];
+    
+    MarkUpParser* parser = [[MarkUpParser alloc] init];
+    NSMutableAttributedString* attString = [parser attrStringFromMarkUp:str];
+    
+    [attString setFont:[UIFont systemFontOfSize:kTextFontSize]];
+    [label setBackgroundColor:[UIColor clearColor]];
+    
+    [label setAttString:attString withImages:parser.images];
+    
+    CGRect labelRect = label.frame;
+    labelRect.size.width = [label sizeThatFits:CGSizeMake(maxTextWidth, CGFLOAT_MAX)].width;
+    labelRect.size.height = [label sizeThatFits:CGSizeMake(maxTextWidth, CGFLOAT_MAX)].height;
+    
+    label.frame = labelRect;
+    
+    [label.layer display];
+    
+    for (NSArray *info in label.imageInfoArr) {
+        UIImageView* imageView = [[UIImageView alloc] init];
+        imageView.frame = CGRectFromString([info objectAtIndex:2]);
+        [imageView setImage:[UIImage imageNamed:[info objectAtIndex:0]]];
+        [label addSubview:imageView];//label内添加图片层
+        [label bringSubviewToFront:imageView];
+    }
+}
+
++ (NSString *)transformString:(NSString *)originalStr
+{
+    //匹配表情，将表情转化为html格式
+    NSString* text = originalStr;
+    NSArray *matches = [EmotionUtil findEmojiInStr:text range:NSMakeRange(0, [text length])];
+    if(nil == matches) {
+        return text;
+    }
+    NSMutableArray* results = [[NSMutableArray alloc] init];
+    for(NSTextCheckingResult* match in matches) {
+        [results addObject:[text substringWithRange:[match range]]];
+    }
+    for(NSString* str in results) {
+        EmotionData* emotion = [EmotionUtil findEmotionByStr:str];
+        if(nil != emotion) {
+            NSRange range = [text rangeOfString:str];
+            NSString *imageHtml = [NSString stringWithFormat:@"<img src='%@' width='%d' height='%d'>", emotion.emotionImg, EMOTION_SIZE, EMOTION_SIZE];
+            text = [text stringByReplacingCharactersInRange:NSMakeRange(range.location, [str length]) withString:imageHtml];
+        }
+    }
+    //返回转义后的字符串
+    return text;
+}
+
 
 @end

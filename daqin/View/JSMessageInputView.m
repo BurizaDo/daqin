@@ -17,6 +17,8 @@
 #import <QuartzCore/QuartzCore.h>
 #import "NSString+JSMessagesView.h"
 #import "UIColor+JSMessagesView.h"
+#import "AudioRecorder.h"
+#import "AudioPlayer.h"
 
 @interface JSMessageInputView ()
 
@@ -36,7 +38,7 @@
 - (void)setup
 {
     self.backgroundColor = [UIColor whiteColor];
-    self.autoresizingMask = (UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleTopMargin);
+    self.autoresizingMask = (UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight);
     self.opaque = YES;
     self.userInteractionEnabled = YES;
     _inAudio = NO;
@@ -44,12 +46,13 @@
 
 - (void)configureInputBar
 {
+    CGFloat emotionButtonWidth = 35.0F;
     CGFloat moreButtonWidth = 35.0F;
     CGFloat audioButtonWidth = 35.0F;
     CGFloat leftPadding = 4.0f;
     CGFloat rightPadding = 4.0f;
     
-    CGFloat width = self.frame.size.width - moreButtonWidth - audioButtonWidth - leftPadding * 2- rightPadding * 2;
+    CGFloat width = self.frame.size.width - moreButtonWidth - audioButtonWidth - emotionButtonWidth - leftPadding * 2- rightPadding * 4;
     CGFloat height = [JSMessageInputView textViewLineHeight];
     
     JSMessageTextView *textView = [[JSMessageTextView  alloc] initWithFrame:CGRectZero];
@@ -65,6 +68,21 @@
     
     self.image = [[UIImage imageNamed:@"input-bar-flat"] resizableImageWithCapInsets:UIEdgeInsetsMake(2.0f, 0.0f, 0.0f, 0.0f)
                                                                         resizingMode:UIImageResizingModeStretch];
+}
+
+- (void) configureEmotionButton {
+    UIButton* emotionButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [emotionButton setBackgroundImage:[UIImage imageNamed:@"btn_emotion"] forState:UIControlStateNormal];
+    [emotionButton setBackgroundImage:[UIImage imageNamed:@"btn_emotion_HL"] forState:UIControlStateHighlighted];
+    [emotionButton addTarget:self action:@selector(emotionBtnClicked) forControlEvents: UIControlEventTouchUpInside];
+    
+    [self setEmotionButton:emotionButton];
+}
+
+- (void) emotionBtnClicked {
+    if(nil != _emotionDelegate) {
+        [_emotionDelegate onEmotionBtnClicked];
+    }
 }
 
 - (void)configureMoreButton
@@ -106,7 +124,7 @@
         _inAudio = YES;
         [_audioButton setBackgroundImage:[UIImage imageNamed:@"chatting_setmode_keyboard_btn_normal"] forState:UIControlStateNormal];
         [_audioButton setBackgroundImage:[UIImage imageNamed:@"chatting_setmode_keyboard_btn_pressed"] forState:UIControlStateHighlighted | UIControlStateSelected];
-
+        
     }else{
         _speakButton.hidden = YES;
         _textView.hidden = NO;
@@ -125,7 +143,7 @@
     
     [self addSubview:audioButton];
     _audioButton = audioButton;
-
+    
 }
 
 - (instancetype)initWithFrame:(CGRect)frame
@@ -136,6 +154,7 @@
         [self setup];
         [self configureAudioButton];
         [self configureInputBar];
+        [self configureEmotionButton];
         [self configureMoreButton];
         [self configureSpeakingButton];
         
@@ -148,6 +167,7 @@
 {
     _textView = nil;
     _moreButton = nil;
+    _emotionButton = nil;
 }
 
 #pragma mark - UIView
@@ -158,17 +178,32 @@
     return [super resignFirstResponder];
 }
 
+- (BOOL)becomeFirstResponder {
+    return [self.textView becomeFirstResponder];
+}
+
 #pragma mark - Setters
+
+- (void)setEmotionButton:(UIButton *)emotionButton {
+    if(_emotionButton) {
+        [_emotionButton removeFromSuperview];
+    }
+    CGRect leftRect = self.textView.frame;
+    emotionButton.frame = CGRectMake(leftRect.origin.x + leftRect.size.width + COMMON_PADDING,
+                                     (self.frame.size.height - COMMON_BTN_SIZE) / 2,
+                                     COMMON_BTN_SIZE, COMMON_BTN_SIZE);
+    [self addSubview:emotionButton];
+    _emotionButton = emotionButton;
+}
 
 - (void)setMoreButton:(UIButton *)btn
 {
     if (_moreButton)
         [_moreButton removeFromSuperview];
-    
-    btn.frame = CGRectMake(self.textView.frame.origin.x + self.textView.frame.size.width + 4.0f,
-                               (self.frame.size.height - 35.0f) / 2,
-                               35.0F,
-                               35.0f);
+    CGRect leftRect = self.emotionButton.frame;
+    btn.frame = CGRectMake(leftRect.origin.x + leftRect.size.width + COMMON_PADDING,
+                           (self.frame.size.height - COMMON_BTN_SIZE) / 2,
+                           COMMON_BTN_SIZE, COMMON_BTN_SIZE);
     
     [self addSubview:btn];
     _moreButton = btn;
@@ -202,7 +237,7 @@
                     forKeyPath:@"contentSize"
                        options:NSKeyValueObservingOptionNew
                        context:nil];
-
+    
     self.textView.contentInset = UIEdgeInsetsMake((numLines >= 6 ? 4.0f : 0.0f),
                                                   0.0f,
                                                   (numLines >= 6 ? 4.0f : 0.0f),
