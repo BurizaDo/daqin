@@ -42,6 +42,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+
     // Do any additional setup after loading the view.
 }
 
@@ -67,7 +68,7 @@
     {
         return;
     }
-    self.tableView.contentInset =  UIEdgeInsetsMake(0, 0, keyboardBounds.size.height, 0);
+    self.tableView.contentInset =  UIEdgeInsetsMake(-20, 0, 20, 0);
     
 //    UIView *input = [BXUtil findFirstResponder:self.view];
 //    if ([input isKindOfClass:[UITextField class]] || [input isKindOfClass:[UITextView class]])
@@ -79,7 +80,7 @@
 
 - (void)keyboardDidHide:(NSNotification*)notification
 {
-    self.tableView.contentInset = _insets;
+    self.tableView.contentInset = _insets;//(UIEdgeInsets){0, 0, 0, 0};
 }
 
 -(void)hideKeyboard{
@@ -142,11 +143,13 @@
 }
 
 - (void)endCellTapGesture{
+    [self hideKeyboard];
     _isStartTime = NO;
     [self pushDateController];
 }
 
 - (void)startCellTapGesture{
+    [self hideKeyboard];
     _isStartTime = YES;
     [self pushDateController];
 }
@@ -172,11 +175,11 @@
     return 80.0f;
 }
 
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
-    UIView *footView =[[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 50)];
-    footView.backgroundColor = [UIColor colorWithRed:244/255.0 green:244/255.0 blue:244/255.0 alpha:1];
-    return footView;
-}
+//- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+//    UIView *footView =[[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 50)];
+//    footView.backgroundColor = [UIColor colorWithRed:244/255.0 green:244/255.0 blue:244/255.0 alpha:1];
+//    return footView;
+//}
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {
@@ -185,7 +188,7 @@
 
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
     
-    UIView *footerView=[[UIView alloc]initWithFrame:CGRectMake(0, 0, 320, 250)];
+    UIView *footerView=[[UIView alloc]initWithFrame:CGRectMake(0, 0, 320, 100)];
     UIButton *post = [UIButton buttonWithType:UIButtonTypeCustom];
     [post setTitle:@"发  布" forState:UIControlStateNormal];
     [post setImage:[UIImage imageNamed:@"button"] forState:UIControlStateNormal];
