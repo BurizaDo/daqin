@@ -125,6 +125,10 @@
 - (void)setText:(NSString *)text
 {
     [super setText:text];
+    if(nil != self.delegate) {
+        [self.delegate textViewDidChange:self];
+    }
+    
     [self setNeedsDisplay];
 }
 

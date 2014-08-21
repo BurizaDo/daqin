@@ -19,6 +19,7 @@
 @property (nonatomic, assign) CGFloat previousTextViewContentHeight;
 // 之所以需要设这个变量，是因为当toolbar控件变大时，inputlayout也会变高适应（UIViewAutoresizingFlexibleHeight）
 @property (nonatomic, assign) CGFloat inputLayoutHeight;
+@property (nonatomic, assign) BOOL showEmotion;
 
 @end
 
@@ -45,6 +46,7 @@
         [_facialLayout setDelegate:self];
         [_facialLayout setHidden:YES];
         [self addSubview:_facialLayout];
+        _showEmotion = YES;
     }
     return self;
 }
@@ -84,13 +86,21 @@
 
 - (void) onEmotionBtnClicked {
     //如果直接点击表情，通过toolbar的位置来判断
-    if (self.frame.origin.y == self.superView.frame.size.height - _inputLayoutHeight && self.frame.size.height == _inputLayoutHeight) {
+    CGRect rc = self.frame;
+    CGRect rc1 = self.superView.frame;
+//    if (self.frame.origin.y == self.superView.frame.size.height - _inputLayoutHeight && self.frame.size.height == _inputLayoutHeight) {
+    if(_showEmotion){
+
         [UIView animateWithDuration:Time animations:^{
             self.frame = CGRectMake(0, self.superView.frame.size.height - keyboardHeight - _inputLayoutHeight, self.superView.bounds.size.width, keyboardHeight + _inputLayoutHeight);
         }];
+        [_inputLayout resignFirstResponder];
         [self showFacialLayout];
+        _showEmotion = NO;
+        
     }
     else {
+        _showEmotion = YES;
         //如果键盘没有显示，点击表情了，隐藏表情，显示键盘
         if (!_keyboardIsShow) {
             [self hideFacialLayout];
@@ -129,6 +139,7 @@
     self.frame = CGRectMake(0, self.frame.origin.y, self.superView.bounds.size.width,
                             _inputLayoutHeight);
     [self hideFacialLayout];
+    _showEmotion = YES;
 }
 
 - (void)handleWillHideKeyboardNotification:(NSNotification *)notification {
