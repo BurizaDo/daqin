@@ -427,41 +427,34 @@
 
 - (void)didSendVoice:(NSString *)localPath duration:(int)duration fromSender:(MessageFrom)sender
 {
-//    NSString* guid = [Util GUID];
-//    [[BCUploadProvider sharedInstance] uploadFile:localPath
-//                                               progressBlock:nil
-//                                                     success:^(NSString *returnUrl)
-//     {
-//         // 上传成功
-//         [HJUrlProvider getUrlOfMedia:returnUrl onSucc:^(NSDictionary *responseDic) {
-//             NSString* fullUrl = responseDic[@"mediaUrl"];
-//             BXMessage* message = [BXMessage createVoiceMessage:fullUrl
-//                                                      localPath:localPath
-//                                                       duration:duration from:MessageFromMine];
-//             message.fromId = [BXChatSession sharedInstance].selfUser.peerId;
-//             message.toId = [BXChatSession sharedInstance].receiverUser.peerId;
-//             message.guid = guid;
-//             
-//             [HJMessageProvider addMessage:message];
-//             [BXChatSession sendMessage:message.contentToSend];
-//         } onFail:^(BXError *err) {
-//             
-//         }];
-//         
-//     } failure:^(BXError *err) {
-//         // 上传失败
-//     }];
-//    
-//    Message* message = [Message createVoiceMessage:nil
-//                                             localPath:localPath
-//                                              duration:duration from:MessageFromMine];
-//    message.fromId = [ChatSession sharedInstance].selfUser.peerId;
-//    message.toId = [ChatSession sharedInstance].receiverUser.peerId;
-//    message.guid = guid;
-//    
-//    [self.messages addObject:message];
-//    
-//    [self finishSend];
+    NSString* guid = [Util GUID];
+    [Uploader uploadFile:localPath onSuccess:^(NSString * returnUrl) {
+         // 上传成功
+         Message* message = [Message createVoiceMessage:returnUrl
+                                                  localPath:localPath
+                                                   duration:duration from:MessageFromMine];
+         message.fromId = [ChatSession sharedInstance].selfUser.peerId;
+         message.toId = [ChatSession sharedInstance].receiverUser.peerId;
+         message.guid = guid;
+         
+         [MessageProvider addMessage:message];
+         [ChatSession sendMessage:message.contentToSend];
+     } onFailure:^(NSString * error) {
+         // 上传失败
+     } onProgress:^(CGFloat percent, long long sent) {
+         
+     }];
+    
+    Message* message = [Message createVoiceMessage:nil
+                                             localPath:localPath
+                                              duration:duration from:MessageFromMine];
+    message.fromId = [ChatSession sharedInstance].selfUser.peerId;
+    message.toId = [ChatSession sharedInstance].receiverUser.peerId;
+    message.guid = guid;
+    
+    [self.messages addObject:message];
+    
+    [self finishSend];
 }
 
 

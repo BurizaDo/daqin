@@ -112,6 +112,8 @@
     [_speakButton setBackgroundImage:image forState:UIControlStateNormal];
     [_speakButton setBackgroundImage:imageOn forState:UIControlStateHighlighted | UIControlStateSelected];
     [_speakButton setTitle:@"按住 说话" forState:UIControlStateNormal];
+    [_speakButton setTitleColor:[UIColor colorWithRed:0 green:169/255.0 blue:180/255.0 alpha:1] forState:UIControlStateNormal];
+
 	_speakButton.frame = _textView.frame;
     [self addSubview:_speakButton];
     _speakButton.hidden = YES;

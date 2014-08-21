@@ -13,4 +13,10 @@
           onSuccess:(void(^)(NSString*))success
           onFailure:(void(^)(NSString*))failure
          onProgress:(void(^)(CGFloat, long long))progress;
+
++ (void)uploadFile:(NSString*)filePath
+          onSuccess:(void(^)(NSString*))success
+          onFailure:(void(^)(NSString*))failure
+         onProgress:(void(^)(CGFloat, long long))progress;
+
 @end

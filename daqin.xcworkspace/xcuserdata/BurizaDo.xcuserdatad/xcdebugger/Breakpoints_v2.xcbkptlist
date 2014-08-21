@@ -191,12 +191,12 @@
                   symbolName = "__49-[MessageViewController didSendImage:fromSender:]_block_invoke"
                   moduleName = "daqin"
                   urlString = "file:///Users/BurizaDo/Code/daqin/daqin/ViewController/MessageViewController.m"
-                  timestampString = "430302190.44599"
+                  timestampString = "430304332.334368"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "409"
                   endingLineNumber = "409"
-                  offsetFromSymbolStart = "681">
+                  offsetFromSymbolStart = "736">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -205,12 +205,12 @@
                   symbolName = "__49-[MessageViewController didSendImage:fromSender:]_block_invoke"
                   moduleName = "daqin"
                   urlString = "file:///Users/BurizaDo/Code/daqin/daqin/ViewController/MessageViewController.m"
-                  timestampString = "430302190.446229"
+                  timestampString = "430304332.334554"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "409"
                   endingLineNumber = "409"
-                  offsetFromSymbolStart = "735">
+                  offsetFromSymbolStart = "760">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -219,12 +219,12 @@
                   symbolName = "__49-[MessageViewController didSendImage:fromSender:]_block_invoke297"
                   moduleName = "daqin"
                   urlString = "file:///Users/BurizaDo/Code/daqin/daqin/ViewController/MessageViewController.m"
-                  timestampString = "430302190.44647"
+                  timestampString = "430304332.334723"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "409"
                   endingLineNumber = "409"
-                  offsetFromSymbolStart = "48">
+                  offsetFromSymbolStart = "34">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -348,12 +348,28 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "daqin/ViewController/MessageViewController.m"
-            timestampString = "430302031.483224"
+            timestampString = "430306364.378658"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "486"
-            endingLineNumber = "486"
+            startingLineNumber = "479"
+            endingLineNumber = "479"
             landmarkName = "-finishSend"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "daqin/ViewController/MessageViewController.m"
+            timestampString = "430303962.477874"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "291"
+            endingLineNumber = "291"
+            landmarkName = "-onRecordingFinished:duration:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
