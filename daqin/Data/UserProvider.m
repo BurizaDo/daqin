@@ -39,7 +39,7 @@
                             @"gender":user.gender,
                             @"signature":user.signature,
                             @"avatar":user.avatar,
-                            @"images":user.images};
+                            @"images":user.images ? user.images : @""};
     [[HttpClient sharedClient] getAPI:@"updateUserProfile" params:param success:^(id obj) {
         resultBlock();
     } failure:^(Error *errMsg) {

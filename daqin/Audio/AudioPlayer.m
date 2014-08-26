@@ -10,6 +10,7 @@
 #import <AVFoundation/AVAudioPlayer.h>
 #import <AVFoundation/AVAudioSession.h>
 #import "amrFileCodec.h"
+#import <AudioToolbox/AudioSession.h>
 
 @interface AudioPlayer() <AVAudioPlayerDelegate>
 @property (nonatomic, assign) id<AudioPlayerDelegate> listener;
@@ -32,7 +33,16 @@ static AudioPlayer *_sharedInstance = nil;
 -(BOOL) play:(NSString*)filePath listener:(id<AudioPlayerDelegate>)listener{
     if(!filePath) return NO;
     _listener = listener;
+
+    NSError* err = nil;
+    AVAudioSession* audioSession = [AVAudioSession sharedInstance];
+    [audioSession setCategory :AVAudioSessionCategoryPlayAndRecord error:&err];
     
+    // route to speaker
+    UInt32 ASRoute = kAudioSessionOverrideAudioRoute_Speaker;
+    AudioSessionSetProperty(kAudioSessionProperty_OverrideAudioRoute, sizeof(ASRoute), &ASRoute);
+
+
     NSURL *url = [NSURL fileURLWithPath:filePath];
     _player = [[AVAudioPlayer alloc] initWithContentsOfURL:url error:nil];
     _player.delegate = self;

@@ -860,7 +860,8 @@
             
             [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
                 NSString* wavPath = [NSString stringWithString:path];
-                wavPath = [[wavPath substringToIndex:[wavPath rangeOfString:@"." options:NSBackwardsSearch].location] stringByAppendingString:@".wav"];
+//                wavPath = [[wavPath substringToIndex:[wavPath rangeOfString:@"." options:NSBackwardsSearch].location] stringByAppendingString:@".wav"];
+                wavPath = [wavPath stringByAppendingString:@".wav"];
                 DecodeAMRFileToWAVEFile([path UTF8String], [wavPath UTF8String]);
                 ((VoiceMessage*)message).localPath = wavPath;
                 [MessageProvider updateMessageObject:message];

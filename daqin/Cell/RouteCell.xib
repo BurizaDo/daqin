@@ -53,8 +53,8 @@
                         <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="location.png" id="wEU-d7-hpZ">
-                        <rect key="frame" x="300" y="23" width="12" height="15"/>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="goal.png" id="wEU-d7-hpZ">
+                        <rect key="frame" x="300" y="23" width="15" height="15"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     </imageView>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="separator.png" id="Wjf-2A-he6">
@@ -78,7 +78,7 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="location.png" width="20" height="25"/>
+        <image name="goal.png" width="29" height="29"/>
         <image name="round_border.png" width="104" height="104"/>
         <image name="separator.png" width="284" height="2"/>
     </resources>

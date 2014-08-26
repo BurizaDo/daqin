@@ -14,6 +14,8 @@
 #import "MessageViewController.h"
 #import "ChatSession.h"
 #import "ViewUtil.h"
+#import "GlobalDataManager.h"
+#import "SVProgressHUD/SVProgressHUD.h"
 
 @interface RouteDetailViewController () <MWPhotoBrowserDelegate>
 @property (nonatomic, weak) IBOutlet UILabel* seperator2;
@@ -157,6 +159,10 @@
 }
 
 - (void)chatClicked{
+    if([GlobalDataManager sharedInstance].user == nil){
+        [SVProgressHUD showErrorWithStatus:@"请先登录"];
+        return;
+    }
     MessageViewController* messageVC = [MessageViewController new];
     messageVC.receiverChatUser = [[ChatUser alloc] initWithPeerId:_route.user.userId displayName:_route.user.name iconUrl:_route.user.avatar];
     [ChatSession sharedInstance].receiverUser = messageVC.receiverChatUser;
