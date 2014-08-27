@@ -14,9 +14,11 @@
 #import "Route.h"
 #import "RouteDetailViewController.h"
 #import "Uploader.h"
+#import "GlobalDataManager.h"
+#import "ViewUtil.h"
 
 @interface ListingViewController ()
-@property (nonatomic, strong) NSArray* routes;
+@property (nonatomic, strong) NSMutableArray* routes;
 @end
 
 @implementation ListingViewController
@@ -31,16 +33,29 @@
 }
 
 - (void)loadData:(BOOL)stopAnimation{
-    [ListingProvider getAllListingFrom:0 size:30 onSuccess:^(NSArray *areas) {
-        _routes = areas;
-        [self.tableView reloadData];
-        if(stopAnimation){
-            [self.tableView.pullToRefreshView stopAnimating];
-        }
+    if(_isMyListing){
+        [ListingProvider getUserListing:[GlobalDataManager sharedInstance].user.userId from:0 size:30 onSuccess:^(NSArray *areas) {
+            _routes = areas;
+            [self.tableView reloadData];
+            if(stopAnimation){
+                [self.tableView.pullToRefreshView stopAnimating];
+            }
+            
+        } onFailure:^(Error *error) {
+            
+        }];
+    }else{
+        [ListingProvider getAllListingFrom:0 size:30 onSuccess:^(NSArray *areas) {
+            _routes = areas;
+            [self.tableView reloadData];
+            if(stopAnimation){
+                [self.tableView.pullToRefreshView stopAnimating];
+            }
 
-    } onFailure:^(Error *error) {
-        
-    }];
+        } onFailure:^(Error *error) {
+            
+        }];
+    }
 }
 
 - (void)viewDidLoad
@@ -48,7 +63,15 @@
     [super viewDidLoad];
     [self loadData:NO];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    if(_isMyListing){
+        self.navigationItem.leftBarButtonItem = [ViewUtil createBackItem:self action:@selector(backAction)];
+    }
 }
+
+- (void)backAction{
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
 
 - (void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
@@ -138,27 +161,33 @@
     [self.navigationController pushViewController:detail animated:YES];
 }
 
-/*
+
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
 {
     // Return NO if you do not want the specified item to be editable.
     return YES;
 }
-*/
 
-/*
+
+
 // Override to support editing the table view.
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+        [_routes removeObjectAtIndex:indexPath.row];
+        [tableView beginUpdates];
+        [tableView deleteRowsAtIndexPaths:@[indexPath]
+                         withRowAnimation:UITableViewRowAnimationAutomatic];
+        [tableView endUpdates];
+
+//        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
     } else if (editingStyle == UITableViewCellEditingStyleInsert) {
         // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
     }   
 }
-*/
+
 
 /*
 // Override to support rearranging the table view.

@@ -16,7 +16,8 @@
 + (void)getAllListingFrom:(int)from size:(int)size
                 onSuccess:(ResponseArray)resultBlock
                 onFailure:(ResponseError)failureBlock{
-    [[HttpClient sharedClient] postAPI:@"getMessage" params:nil success:^(id obj) {
+    NSDictionary* param = @{@"from":[NSNumber numberWithInt:from], @"size":[NSNumber numberWithInt:size]};
+    [[HttpClient sharedClient] postAPI:@"getMessage" params:param success:^(id obj) {
         NSArray* ary = obj;
         NSMutableArray* routes = [[NSMutableArray alloc] init];
         for(NSDictionary* dic in ary){
@@ -35,5 +36,34 @@
         }
     }];
 }
+
++ (void)getUserListing:(NSString*)userId
+                  from:(int)from size:(int)size
+             onSuccess:(ResponseArray)resultBlock
+             onFailure:(ResponseError)failureBlock{
+    NSDictionary* param = @{@"userId" : userId,
+                            @"from":[NSNumber numberWithInt:from],
+                            @"size":[NSNumber numberWithInt:size]};
+    [[HttpClient sharedClient] postAPI:@"getUserMessage" params:param success:^(id obj) {
+        NSArray* ary = obj;
+        NSMutableArray* routes = [[NSMutableArray alloc] init];
+        for(NSDictionary* dic in ary){
+            Route* route = [[Route alloc] init];
+            route.destination = [dic objectForKey:@"destination"];
+            route.description = [dic objectForKey:@"message"];
+            route.user = [User parseFromDictionary:[dic objectForKey:@"user"]];
+            route.startTime = [dic objectForKey:@"start_time"];
+            route.endTime = [dic objectForKey:@"end_time"];
+            [routes addObject:route];
+        }
+        resultBlock(routes);
+    } failure:^(Error* error) {
+        if(failureBlock){
+            failureBlock(error);
+        }
+    }];
+    
+}
+
 
 @end

@@ -165,7 +165,11 @@
     MessageInfo* msg = self.messageInfoes[indexPath.row];
     cell.titleLabel.text = msg.name;
     cell.subTitleLabel.text = msg.content;
-
+    if(msg.badgeCount > 0){
+        cell.badgeImageView.hidden = NO;
+    }else{
+        cell.badgeImageView.hidden = YES;
+    }
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setDateFormat:@"MM/dd"];
     cell.dateLabel.text = [formatter stringFromDate:msg.timeStamp];

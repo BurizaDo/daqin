@@ -37,6 +37,12 @@
 		E21C5B8919A489A60008811B /* Public_Body_Icon_Loadpic@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E21C5B8819A489A60008811B /* Public_Body_Icon_Loadpic@2x.png */; };
 		E255F005199B15EF002BD40C /* Error.m in Sources */ = {isa = PBXBuildFile; fileRef = E255F004199B15EF002BD40C /* Error.m */; };
 		E2604EC319AB2816005EC778 /* libMobClickLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E2604EC019AB2816005EC778 /* libMobClickLibrary.a */; };
+		E284643A19AC542600F7953E /* chat_new@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E284643919AC542600F7953E /* chat_new@2x.png */; };
+		E284644019AC918100F7953E /* My_Body_Redpoint@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E284643F19AC918100F7953E /* My_Body_Redpoint@2x.png */; };
+		E284644319ADBA3800F7953E /* ProfileView.m in Sources */ = {isa = PBXBuildFile; fileRef = E284644219ADBA3800F7953E /* ProfileView.m */; };
+		E284644519ADBA4B00F7953E /* ProfileView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E284644419ADBA4B00F7953E /* ProfileView.xib */; };
+		E284644E19ADCF5300F7953E /* SettingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E284644C19ADCF5300F7953E /* SettingCell.m */; };
+		E284644F19ADCF5300F7953E /* SettingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E284644D19ADCF5300F7953E /* SettingCell.xib */; };
 		E28B269B1988C7DC004DCF9D /* My_Body_Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E28B269A1988C7DC004DCF9D /* My_Body_Icon@2x.png */; };
 		E28B26A31989DF32004DCF9D /* more_plus@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E28B26A21989DF32004DCF9D /* more_plus@2x.png */; };
 		E2901BD61985ECA8002DF983 /* HttpClient.m in Sources */ = {isa = PBXBuildFile; fileRef = E2901BD51985ECA8002DF983 /* HttpClient.m */; };
@@ -296,6 +302,14 @@
 		E2604EC019AB2816005EC778 /* libMobClickLibrary.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libMobClickLibrary.a; sourceTree = "<group>"; };
 		E2604EC119AB2816005EC778 /* MobClick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobClick.h; sourceTree = "<group>"; };
 		E2604EC219AB2816005EC778 /* MobClickSocialAnalytics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobClickSocialAnalytics.h; sourceTree = "<group>"; };
+		E284643919AC542600F7953E /* chat_new@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chat_new@2x.png"; sourceTree = "<group>"; };
+		E284643F19AC918100F7953E /* My_Body_Redpoint@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "My_Body_Redpoint@2x.png"; sourceTree = "<group>"; };
+		E284644119ADBA3800F7953E /* ProfileView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileView.h; sourceTree = "<group>"; };
+		E284644219ADBA3800F7953E /* ProfileView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileView.m; sourceTree = "<group>"; };
+		E284644419ADBA4B00F7953E /* ProfileView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfileView.xib; sourceTree = "<group>"; };
+		E284644B19ADCF5300F7953E /* SettingCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingCell.h; sourceTree = "<group>"; };
+		E284644C19ADCF5300F7953E /* SettingCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingCell.m; sourceTree = "<group>"; };
+		E284644D19ADCF5300F7953E /* SettingCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingCell.xib; sourceTree = "<group>"; };
 		E28B269A1988C7DC004DCF9D /* My_Body_Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "My_Body_Icon@2x.png"; sourceTree = "<group>"; };
 		E28B26A21989DF32004DCF9D /* more_plus@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "more_plus@2x.png"; sourceTree = "<group>"; };
 		E2901BD41985ECA8002DF983 /* HttpClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HttpClient.h; path = Libraries/Network/HttpClient.h; sourceTree = SOURCE_ROOT; };
@@ -670,6 +684,8 @@
 		E28B26991988C7DC004DCF9D /* resources */ = {
 			isa = PBXGroup;
 			children = (
+				E284643F19AC918100F7953E /* My_Body_Redpoint@2x.png */,
+				E284643919AC542600F7953E /* chat_new@2x.png */,
 				E2A22FFF19A72D00008C0AB6 /* goal.png */,
 				E2A22FF119A5EC3B008C0AB6 /* amp1.png */,
 				E2A22FF219A5EC3B008C0AB6 /* amp2.png */,
@@ -886,6 +902,9 @@
 				E2A449E7199076EC004F4476 /* BlockActionSheet */,
 				E2A449D1198F8F96004F4476 /* ProgressView.h */,
 				E2A449D2198F8F96004F4476 /* ProgressView.m */,
+				E284644119ADBA3800F7953E /* ProfileView.h */,
+				E284644219ADBA3800F7953E /* ProfileView.m */,
+				E284644419ADBA4B00F7953E /* ProfileView.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1013,6 +1032,9 @@
 				E2A44A5719985C31004F4476 /* RouteCell.h */,
 				E2A44A5819985C31004F4476 /* RouteCell.m */,
 				E2A44A5919985C31004F4476 /* RouteCell.xib */,
+				E284644B19ADCF5300F7953E /* SettingCell.h */,
+				E284644C19ADCF5300F7953E /* SettingCell.m */,
+				E284644D19ADCF5300F7953E /* SettingCell.xib */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -1389,6 +1411,7 @@
 				E2A22FBD19A5CF0E008C0AB6 /* emoji_17.png in Resources */,
 				E2E7C684199C901C00A2E39A /* round_border.png in Resources */,
 				E2A44A5D19985C31004F4476 /* RouteCell.xib in Resources */,
+				E284644519ADBA4B00F7953E /* ProfileView.xib in Resources */,
 				E2A44AF81998B14A004F4476 /* btn_speak@2x.png in Resources */,
 				E2A22F7D19A5C903008C0AB6 /* btn_emotion.png in Resources */,
 				E2A22FCE19A5CF0E008C0AB6 /* emoji_32.png in Resources */,
@@ -1412,6 +1435,7 @@
 				E2A22FC619A5CF0E008C0AB6 /* emoji_25.png in Resources */,
 				E21C5B44199DB6780008811B /* scenery2.jpg in Resources */,
 				E2A22FBC19A5CF0E008C0AB6 /* emoji_16.png in Resources */,
+				E284644019AC918100F7953E /* My_Body_Redpoint@2x.png in Resources */,
 				E21C5B8919A489A60008811B /* Public_Body_Icon_Loadpic@2x.png in Resources */,
 				E2A44AFC1998B17C004F4476 /* chatting_setmode_keyboard_btn_normal.png in Resources */,
 				E2A22FFA19A5EC3B008C0AB6 /* amp3.png in Resources */,
@@ -1426,6 +1450,7 @@
 				E21C5B3B199DA7FA0008811B /* button@2x.png in Resources */,
 				E28B269B1988C7DC004DCF9D /* My_Body_Icon@2x.png in Resources */,
 				E2A44B08199A0AF8004F4476 /* message_bg_receiving@2x.png in Resources */,
+				E284644F19ADCF5300F7953E /* SettingCell.xib in Resources */,
 				E2A22FC019A5CF0E008C0AB6 /* emoji_2.png in Resources */,
 				E2A22FFD19A5EC3B008C0AB6 /* amp6.png in Resources */,
 				E28B26A31989DF32004DCF9D /* more_plus@2x.png in Resources */,
@@ -1433,6 +1458,7 @@
 				E2A22FC519A5CF0E008C0AB6 /* emoji_24.png in Resources */,
 				E2A44AFA1998B15E004F4476 /* btn_speak_on@2x.png in Resources */,
 				E2A22FC919A5CF0E008C0AB6 /* emoji_28.png in Resources */,
+				E284643A19AC542600F7953E /* chat_new@2x.png in Resources */,
 				E2BE86E4197E558D00B47378 /* InfoPlist.strings in Resources */,
 				E21C5B7F19A3535C0008811B /* select_02@2x.png in Resources */,
 				E2A22FCA19A5CF0E008C0AB6 /* emoji_29.png in Resources */,
@@ -1534,6 +1560,7 @@
 				E2A22FE719A5D24A008C0AB6 /* NSAttributedString+Attributes.m in Sources */,
 				E255F005199B15EF002BD40C /* Error.m in Sources */,
 				E2A44A2E19985C10004F4476 /* Route.m in Sources */,
+				E284644E19ADCF5300F7953E /* SettingCell.m in Sources */,
 				E2A44A8C19986FA8004F4476 /* StateMessageCell.m in Sources */,
 				E21C5B7719A2F4EB0008811B /* JSBadgeView.m in Sources */,
 				E2A22FE219A5D1BB008C0AB6 /* SCGIFImageView.m in Sources */,
@@ -1553,6 +1580,7 @@
 				E2A449CD198F8EE9004F4476 /* BCUpScrollView.m in Sources */,
 				E2A44A9C1998743F004F4476 /* AudioRecorder.m in Sources */,
 				E2A44AB2199875B7004F4476 /* MJPhotoProgressView.m in Sources */,
+				E284644319ADBA3800F7953E /* ProfileView.m in Sources */,
 				E2A44A7719986B20004F4476 /* Message.m in Sources */,
 				E2A44A7819986B20004F4476 /* StateMessage.m in Sources */,
 				E2A44AC419987790004F4476 /* JSMessageTextView.m in Sources */,
@@ -1763,6 +1791,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "daqin/daqin-Prefix.pch";
 				INFOPLIST_FILE = "daqin/daqin-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Thirdparty/opencore/lib",
@@ -1791,6 +1820,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "daqin/daqin-Prefix.pch";
 				INFOPLIST_FILE = "daqin/daqin-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Thirdparty/opencore/lib",

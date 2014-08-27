@@ -220,6 +220,17 @@
     [self.messageInputView registerTextViewObserver];
 }
 
+- (void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+    NSString* receiveId = self.receiverChatUser.peerId;
+    [ChatSession sharedInstance].isChattingPeerId = receiveId;
+}
+
+- (void)viewDidDisappear:(BOOL)animated{
+    [super viewDidDisappear:animated];
+    [ChatSession sharedInstance].isChattingPeerId = @"";
+}
+
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];

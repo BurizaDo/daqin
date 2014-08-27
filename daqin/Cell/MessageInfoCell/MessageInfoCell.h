@@ -16,7 +16,7 @@
 @property (nonatomic, weak) IBOutlet UILabel*           subTitleLabel;
 @property (nonatomic, weak) IBOutlet UIImageView*       iconView;
 @property (nonatomic, weak) IBOutlet UILabel*           dateLabel;
-
+@property (weak, nonatomic) IBOutlet UIImageView *      badgeImageView;
 - (void)configureCellWithMessageInfo:(MessageInfo *)messageInfo;
 
 @end

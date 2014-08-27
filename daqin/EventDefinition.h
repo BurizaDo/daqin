@@ -18,6 +18,7 @@
 #define kNotificationReloadSessionFromDB              @"kNotificationReloadSessionFromDB"
 #define kNotificationShouldReloadSession    @"kNotificationShouldReloadSession"
 #define kNotificationMessageSent            @"kNotificationMessageSent"
+#define kNotificationMessageMarkRead        @"kNotificationMessageMarkRead"
 
 
 #define IOS_VERSION [[[UIDevice currentDevice] systemVersion] floatValue]

@@ -9,6 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "User.h"
 
-@interface ProfileViewController : UIViewController
+@interface ProfileViewController : UITableViewController
 @property (nonatomic, strong) User* user;
 @end

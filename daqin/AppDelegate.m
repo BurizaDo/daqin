@@ -9,8 +9,8 @@
 #import "AppDelegate.h"
 #import <TencentOpenAPI/TencentOAuth.h>
 #import "HttpClient.h"
-#define HOST @"http://121.40.155.102/Rome/"
-//#define HOST @"http://192.168.1.149:8888/Rome/"
+//#define HOST @"http://121.40.155.102/Rome/"
+#define HOST @"http://192.168.1.149:8888/Rome/"
 #import "ChatSession.h"
 #import "EGOCache.h"
 #import "UserProvider.h"
@@ -91,13 +91,13 @@
 }
 
 - (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error{
-    [SVProgressHUD showErrorWithStatus:@"Register for remote fail"];
+//    [SVProgressHUD showErrorWithStatus:@"Register for remote fail"];
 }
 
 
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)webDeviceToken
 {
-    [SVProgressHUD showErrorWithStatus:@"in didRegister"];
+//    [SVProgressHUD showErrorWithStatus:@"in didRegister"];
     NSString *pushToken = [[webDeviceToken description] stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"<>"]];
     pushToken = [pushToken stringByReplacingOccurrencesOfString:@" " withString:@""];
     

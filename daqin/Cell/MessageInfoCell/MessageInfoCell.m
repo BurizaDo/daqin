@@ -17,6 +17,7 @@
 
 @property (nonatomic, strong) JSBadgeView *badgeView;
 
+
 @end
 
 @implementation MessageInfoCell

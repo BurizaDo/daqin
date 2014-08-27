@@ -14,4 +14,9 @@
                 onSuccess:(ResponseArray)resultBlock
                 onFailure:(ResponseError)failureBlock;
 
++ (void)getUserListing:(NSString*)userId
+                  from:(int)from size:(int)size
+                onSuccess:(ResponseArray)resultBlock
+                onFailure:(ResponseError)failureBlock;
+
 @end
