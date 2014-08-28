@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface LoginViewController : UIViewController
+@property (weak, nonatomic) IBOutlet UIButton *weiboLoginBtn;
 @property (nonatomic, strong) IBOutlet UIButton* loginBtn;
 @end

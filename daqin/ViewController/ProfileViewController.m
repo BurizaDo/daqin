@@ -28,6 +28,9 @@
 #import "ProfileView.h"
 #import "SettingCell.h"
 #import "ListingViewController.h"
+#import "UMFeedback.h"
+#import "MobClick.h"
+#import "WeiboProvider.h"
 
 @interface ProfileViewController () <UIAlertViewDelegate>
 @property (nonatomic, strong) ProfileView* headerView;
@@ -56,7 +59,16 @@
         [self setup];
     } onFailure:^(Error *error) {
         if(error.errorCode){
-            [[QQHelper sharedInstance] getUserInfo];
+            if([userId rangeOfString:@"uidqq"].location != NSNotFound){
+                [[QQHelper sharedInstance] getUserInfo];
+            }else{
+                [[WeiboProvider sharedInstance] getUserSuccess:^(id object) {
+                    [GlobalDataManager sharedInstance].user = object;
+                    [[NSNotificationCenter defaultCenter] postNotificationName:@"userGot" object:nil];
+                } failure:^(Error *error) {
+                    
+                }];
+            }
         }
     }];
 }
@@ -104,7 +116,7 @@
     }
 
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(setup) name:@"profileChanged" object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(createNewUser) name:@"qqUserGot" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(createNewUser) name:@"userGot" object:nil];
  
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"个人资料" style:UIBarButtonItemStylePlain target:self action:@selector(edit)];
 }
@@ -195,6 +207,11 @@
                                               cancelButtonTitle:@"取消"
                                               otherButtonTitles:@"退出", nil];
         [alert show];
+    }else if(indexPath.section == 1){
+        if(indexPath.row == 0){
+            [UMFeedback showFeedback:self withAppkey:@"53faac1cfd98c506e50003af"];
+        }else if(indexPath.row == 1){
+        }
     }
     
     [tableView deselectRowAtIndexPath:indexPath animated:YES];

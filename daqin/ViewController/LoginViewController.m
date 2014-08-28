@@ -9,6 +9,7 @@
 #import "LoginViewController.h"
 #import "QQHelper.h"
 #import "EGOCache.h"
+#import "WeiboSDK.h"
 
 @interface LoginViewController ()
 
@@ -27,17 +28,39 @@
 
 - (void)loginClicked{
     if (TARGET_IPHONE_SIMULATOR){
-    [[EGOCache globalCache] setObject:@"123" forKey:@"userToken"];
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"loginSucceed" object:nil];
+//    [[EGOCache globalCache] setObject:@"123" forKey:@"userToken"];
+//    [[NSNotificationCenter defaultCenter] postNotificationName:@"loginSucceed" object:nil];
+        WBAuthorizeRequest* request = [WBAuthorizeRequest request];
+        request.redirectURI = @"https://api.weibo.com/oauth2/default.html";
+        request.scope = @"all";
+        [WeiboSDK sendRequest:request];
     }else{
         [[QQHelper sharedInstance] doLogin];
     }
+}
+
+- (void)weiboLogin{
+    if (TARGET_IPHONE_SIMULATOR){
+        //    [[EGOCache globalCache] setObject:@"123" forKey:@"userToken"];
+        //    [[NSNotificationCenter defaultCenter] postNotificationName:@"loginSucceed" object:nil];
+        WBAuthorizeRequest* request = [WBAuthorizeRequest request];
+        request.redirectURI = @"https://api.weibo.com/oauth2/default.html";
+        request.scope = @"all";
+        [WeiboSDK sendRequest:request];
+    }else{
+        WBAuthorizeRequest* request = [WBAuthorizeRequest request];
+        request.redirectURI = @"https://api.weibo.com/oauth2/default.html";
+        request.scope = @"all";
+        [WeiboSDK sendRequest:request];
+    }
+    
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     [self.loginBtn addTarget:self action:@selector(loginClicked) forControlEvents:UIControlEventTouchUpInside];
+    [self.weiboLoginBtn addTarget:self action:@selector(weiboLogin) forControlEvents:UIControlEventTouchUpInside];
     // Do any additional setup after loading the view from its nib.
 }
 
