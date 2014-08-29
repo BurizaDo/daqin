@@ -32,24 +32,35 @@
     return self;
 }
 
-- (void)loadData:(BOOL)stopAnimation{
+- (void)loadData:(BOOL)stopAnimation from:(int)from{
     if(_isMyListing){
-        [ListingProvider getUserListing:[GlobalDataManager sharedInstance].user.userId from:0 size:30 onSuccess:^(NSArray *areas) {
-            _routes = areas;
+        [ListingProvider getUserListing:[GlobalDataManager sharedInstance].user.userId from:from size:30 onSuccess:^(NSArray *areas) {
+            if(from == 0){
+                _routes = [NSMutableArray arrayWithArray:areas];
+            }else{
+                [_routes addObjectsFromArray:areas];
+            }
             [self.tableView reloadData];
             if(stopAnimation){
                 [self.tableView.pullToRefreshView stopAnimating];
+                [self.tableView.infiniteScrollingView stopAnimating];
             }
             
         } onFailure:^(Error *error) {
             
         }];
     }else{
-        [ListingProvider getAllListingFrom:0 size:30 onSuccess:^(NSArray *areas) {
-            _routes = areas;
+        [ListingProvider getAllListingFrom:from size:30 onSuccess:^(NSArray *areas) {
+            if(from == 0){
+                _routes = [NSMutableArray arrayWithArray:areas];
+            }else{
+                [_routes addObjectsFromArray:areas];
+            }
+
             [self.tableView reloadData];
             if(stopAnimation){
                 [self.tableView.pullToRefreshView stopAnimating];
+                [self.tableView.infiniteScrollingView stopAnimating];
             }
 
         } onFailure:^(Error *error) {
@@ -61,7 +72,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self loadData:NO];
+    [self loadData:NO from:0];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     if(_isMyListing){
         self.navigationItem.leftBarButtonItem = [ViewUtil createBackItem:self action:@selector(backAction)];
@@ -77,7 +88,15 @@
     [super viewDidAppear:animated];
     __weak ListingViewController* wlv = self;
     [self.tableView addPullToRefreshWithActionHandler:^{
-        [wlv loadData:YES];
+        [wlv loadData:YES from:0];
+    }];
+
+    [self.tableView addInfiniteScrollingWithActionHandler:^{
+        if(wlv.routes.count % 30 == 0){
+            [wlv loadData:YES from:wlv.routes.count];
+        }else{
+            [wlv.tableView.infiniteScrollingView stopAnimating];
+        }
     }];
 
 }

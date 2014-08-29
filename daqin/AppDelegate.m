@@ -7,7 +7,6 @@
 //
 
 #import "AppDelegate.h"
-#import <TencentOpenAPI/TencentOAuth.h>
 #import "HttpClient.h"
 #define HOST @"http://121.40.155.102/Rome/"
 //#define HOST @"http://192.168.1.149:8888/Rome/"
@@ -19,8 +18,9 @@
 #import "MobClick.h"
 #import "SVProgressHUD.h"
 #import "WeiboSDK.h"
+#import "LoginManager.h"
 
-@interface AppDelegate () <WeiboSDKDelegate>
+@interface AppDelegate ()
 
 @end
 
@@ -90,40 +90,12 @@
 
 
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation{
-    NSString* str = [url absoluteString];
-    if([str rangeOfString:@"tencent"].location != NSNotFound){
-        return [TencentOAuth HandleOpenURL:url];
-    }else{
-        return [WeiboSDK handleOpenURL:url delegate:self];
-    }
+    return [[LoginManager sharedInstance] handleOpenURL:url];
 }
 
 - (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url{
-    NSString* str = [url absoluteString];
-    if([str rangeOfString:@"tencent"].location != NSNotFound){
-        return [TencentOAuth HandleOpenURL:url];
-    }else{
-        return [WeiboSDK handleOpenURL:url delegate:self];
-    }
+    return [[LoginManager sharedInstance] handleOpenURL:url];
 }
-
-- (void)didReceiveWeiboRequest:(WBBaseRequest *)request{
-    
-}
-
-- (void)didReceiveWeiboResponse:(WBBaseResponse *)response{
-    if(response.statusCode == WeiboSDKResponseStatusCodeSuccess && [response isKindOfClass:[WBAuthorizeResponse class]]){
-        NSString* pre = @"uidwb_";
-        [[EGOCache globalCache] setObject:[pre stringByAppendingString:((WBAuthorizeResponse*)response).userID] forKey:@"userToken"];
-        [[EGOCache globalCache] setObject:((WBAuthorizeResponse*)response).accessToken forKey:@"wb_access_token"];
-        [[EGOCache globalCache] setObject:((WBAuthorizeResponse*)response).userID forKey:@"wb_uid"];
-
-        
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"loginSucceed" object:nil];
-    }
-}
-
-
 
 - (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error{
 //    [SVProgressHUD showErrorWithStatus:@"Register for remote fail"];

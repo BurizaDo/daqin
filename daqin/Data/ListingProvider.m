@@ -16,7 +16,7 @@
 + (void)getAllListingFrom:(int)from size:(int)size
                 onSuccess:(ResponseArray)resultBlock
                 onFailure:(ResponseError)failureBlock{
-    NSDictionary* param = @{@"from":[NSNumber numberWithInt:from], @"size":[NSNumber numberWithInt:size]};
+    NSDictionary* param = @{@"start":[NSNumber numberWithInt:from], @"size":[NSNumber numberWithInt:size]};
     [[HttpClient sharedClient] postAPI:@"getMessage" params:param success:^(id obj) {
         NSArray* ary = obj;
         NSMutableArray* routes = [[NSMutableArray alloc] init];

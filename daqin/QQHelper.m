@@ -44,17 +44,15 @@
 }
 
 - (void)getUserInfo{
-    NSLog(@"getUserInfo");
     [_tencentOAuth getUserInfo];
 }
 
 - (void)tencentDidLogin
 {
     if (_tencentOAuth.accessToken && 0 != [_tencentOAuth.accessToken length]){
-        NSString* pre = @"uidqq_";
-        [[EGOCache globalCache] setObject:[pre stringByAppendingString:_tencentOAuth.openId] forKey:@"userToken"];
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"loginSucceed" object:nil];
-
+        if(_delegate){
+            [_delegate handleLoginResponse:_tencentOAuth.openId type:LOGINTYPE_QQ];
+        }
     }else{
         
     }
@@ -97,8 +95,7 @@
     user.userId = (NSString*)[[EGOCache globalCache] objectForKey:@"userToken"];
     user.name = [data objectForKey:@"nickname"];
     user.avatar = [data objectForKey:@"figureurl_qq_2"];
-    [GlobalDataManager sharedInstance].user = user;
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"userGot" object:nil];
+    [_delegate handleUserResponse:user];
 }
 
 - (void)getListAlbumResponse:(APIResponse*) response{

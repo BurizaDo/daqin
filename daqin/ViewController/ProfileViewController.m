@@ -47,32 +47,6 @@
     return self;
 }
 
-- (void)loadUser{
-    NSLog(@"loadUser");
-    NSString* userId = (NSString*)[[EGOCache globalCache] objectForKey:@"userToken"];
-    [UserProvider getUsers:userId onSuccess:^(NSArray *users) {
-        if([users count] == 0) return;
-        self.user = users[0];
-        [GlobalDataManager sharedInstance].user = self.user;
-        ChatUser* selfUser = [[ChatUser alloc] initWithPeerId:self.user.userId displayName:self.user.name iconUrl:self.user.avatar];
-        [[ChatSession sharedInstance] enableChat:selfUser];
-        [self setup];
-    } onFailure:^(Error *error) {
-        if(error.errorCode){
-            if([userId rangeOfString:@"uidqq"].location != NSNotFound){
-                [[QQHelper sharedInstance] getUserInfo];
-            }else{
-                [[WeiboProvider sharedInstance] getUserSuccess:^(id object) {
-                    [GlobalDataManager sharedInstance].user = object;
-                    [[NSNotificationCenter defaultCenter] postNotificationName:@"userGot" object:nil];
-                } failure:^(Error *error) {
-                    
-                }];
-            }
-        }
-    }];
-}
-
 - (void)setup{
     if([_user.avatar length] > 0){
         [_headerView.avatar sd_setImageWithURL:[NSURL URLWithString:_user.avatar]];
@@ -102,6 +76,10 @@
     _headerView.age.text = _user.age;
 }
 
+- (void)setUser:(User *)user{
+    _user = user;
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -109,14 +87,10 @@
     _headerView = [[NSBundle mainBundle] loadNibNamed:@"ProfileView" owner:nil options:nil][0];
     self.tableView.tableHeaderView = _headerView;
     // Do any additional setup after loading the view.
-    if(!_user){
-        [self loadUser];
-    }else{
-        [self setup];
-    }
+    _user = [GlobalDataManager sharedInstance].user;
+    [self setup];
 
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(setup) name:@"profileChanged" object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(createNewUser) name:@"userGot" object:nil];
  
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"个人资料" style:UIBarButtonItemStylePlain target:self action:@selector(edit)];
 }
@@ -126,18 +100,6 @@
     edit.title = @"个人资料";
     edit.user = _user;
     [self.navigationController pushViewController:edit animated:YES];
-}
-
-- (void)createNewUser{
-    User* user = [GlobalDataManager sharedInstance].user;
-    
-    [UserProvider updateUser:user onSuccess:^{
-        NSLog(@"updateUser Succeeded");
-        _user = user;
-        [self loadUser];
-    } onFailure:^(Error *error) {
-        
-    }];
 }
 
 - (void)didReceiveMemoryWarning

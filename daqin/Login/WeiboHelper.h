@@ -1,21 +1,19 @@
 //
-//  LoginUtil.h
+//  WeiboHelper.h
 //  daqin
 //
-//  Created by BurizaDo on 7/24/14.
+//  Created by BurizaDo on 8/29/14.
 //  Copyright (c) 2014 BurizaDo. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
-#import "EventDefinition.h"
+#import "WeiboSDK.h"
 #import "LoginDelegate.h"
 
-@interface QQHelper : NSObject
+@interface WeiboHelper : NSObject <WeiboSDKDelegate>
 @property (nonatomic, assign) id<LoginDelegate> delegate;
-
-+ (instancetype)sharedInstance;
 
 - (void)doLogin;
 
-- (void)getUserInfo;
++ (instancetype)sharedInstance;
 @end
