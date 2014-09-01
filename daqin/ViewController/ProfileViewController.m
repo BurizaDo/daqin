@@ -30,7 +30,8 @@
 #import "ListingViewController.h"
 #import "UMFeedback.h"
 #import "MobClick.h"
-#import "WeiboProvider.h"
+#import "AboutViewController.h"
+#import "Util.h"
 
 @interface ProfileViewController () <UIAlertViewDelegate>
 @property (nonatomic, strong) ProfileView* headerView;
@@ -146,7 +147,7 @@
         }else if(indexPath.row == 1){
             cell.name.text = @"检查更新";
         }else if(indexPath.row == 2){
-            cell.name.text = @"推送设置";
+            cell.name.text = @"关于";
         }
     }else if(indexPath.section == 2){
         cell.name.text = @"退出登录";
@@ -168,11 +169,16 @@
                                                        delegate:self
                                               cancelButtonTitle:@"取消"
                                               otherButtonTitles:@"退出", nil];
+        alert.tag = 1;
         [alert show];
     }else if(indexPath.section == 1){
         if(indexPath.row == 0){
             [UMFeedback showFeedback:self withAppkey:@"53faac1cfd98c506e50003af"];
         }else if(indexPath.row == 1){
+            [Util checkUpdate:self];
+        }else if(indexPath.row == 2){
+            AboutViewController* avc = [[AboutViewController alloc]init];
+            [self.navigationController pushViewController:avc animated:YES];
         }
     }
     
@@ -180,9 +186,15 @@
 }
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
-    if(buttonIndex == 1){
-        [[EGOCache globalCache] removeCacheForKey:@"userToken"];
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"didlogout" object:nil];
+    if(alertView.tag == 1){
+        if(buttonIndex == 1){
+            [[EGOCache globalCache] removeCacheForKey:@"userToken"];
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"didlogout" object:nil];
+        }
+    }else{
+        if(buttonIndex == 1){
+            [Util doUpdate];
+        }
     }
 }
 

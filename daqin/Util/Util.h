@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <Foundation/NSObject.h>
 #import <CoreLocation/CoreLocation.h>
+#import <UIKit/UIAlertView.h>
 #define INT_VAL(x)             [BXUtil longLongValue:(x)]
 #define STR_VAL(x)             [BXUtil stringValue:(x)]
 #define DOUBLE_VAL(x)          [BXUtil doubleValue:(x)]
@@ -23,4 +24,8 @@
 
 + (CGSize)scaleSize:(CGSize)size maxSize:(CGSize)maxSize;
 + (NSString *) GUID;
+
++ (void)checkUpdate:(id<UIAlertViewDelegate>)delegate;
+
++ (void)doUpdate;
 @end

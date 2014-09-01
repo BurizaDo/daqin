@@ -8,6 +8,8 @@
 
 #import "WeiboHelper.h"
 #import "EGOCache.h"
+@interface WeiboHelper () <WBHttpRequestDelegate>
+@end
 
 @implementation WeiboHelper
 static WeiboHelper *_sharedInstance = nil;
@@ -28,6 +30,14 @@ static WeiboHelper *_sharedInstance = nil;
     [WeiboSDK sendRequest:request];
 }
 
+- (void)getUserInfo{
+    NSString* url = @"https://api.weibo.com/2/users/show.json";
+    NSDictionary* param = @{@"source":@"653706130",
+                            @"access_Token":[[EGOCache globalCache] objectForKey:@"wb_access_token"],
+                            @"uid":[[EGOCache globalCache] objectForKey:@"wb_uid"]};
+    [WBHttpRequest requestWithURL:url httpMethod:@"GET" params:param delegate:self withTag:nil];
+}
+
 
 #pragma mark - WeiboSDKDelegate
 - (void)didReceiveWeiboRequest:(WBBaseRequest *)request{
@@ -43,6 +53,23 @@ static WeiboHelper *_sharedInstance = nil;
         [[EGOCache globalCache] setObject:((WBAuthorizeResponse*)response).userID forKey:@"wb_uid"];
         [_delegate handleLoginResponse:wbuid type:LOGINTYPE_WEIBO];
     }
+}
+
+#pragma mark - WBHttpRequestDelegate
+- (void)request:(WBHttpRequest *)request didReceiveResponse:(NSURLResponse *)response{
+    
+}
+
+- (void)request:(WBHttpRequest *)request didFailWithError:(NSError *)error{
+    
+}
+
+- (void)request:(WBHttpRequest *)request didFinishLoadingWithResult:(NSString *)result{
+    
+}
+
+- (void)request:(WBHttpRequest *)request didFinishLoadingWithDataResult:(NSData *)data{
+    
 }
 
 @end

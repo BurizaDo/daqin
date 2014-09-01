@@ -26,8 +26,11 @@
 #import "QQHelper.h"
 #import "GlobalDataManager.h"
 #import "ViewUtil.h"
+#import <UIKit/UIApplication.h>
+#import "Uploader.h"
+#import "UIImage+Resize.h"
 
-@interface ProfileEditViewController () <UINavigationControllerDelegate, WSAssetPickerControllerDelegate, BXPickerViewControllerDelegate, MWPhotoBrowserDelegate, UIScrollViewDelegate>
+@interface ProfileEditViewController () <UINavigationControllerDelegate, WSAssetPickerControllerDelegate, BXPickerViewControllerDelegate, MWPhotoBrowserDelegate, UIScrollViewDelegate, UIActionSheetDelegate, UIImagePickerControllerDelegate>
 
 @property (nonatomic, strong) NSMutableArray* allImages;
 @property (nonatomic, weak) IBOutlet UIScrollView* scrollView;
@@ -214,7 +217,65 @@
             _genderSeg.selectedSegmentIndex = 1;
         }
     }
+    UITapGestureRecognizer* tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleAvatarTap:)];
+
+    [_avatar addGestureRecognizer:tapGestureRecognizer];
 }
+
+- (void)handleAvatarTap:(id)sender{
+    UIActionSheet* sheet = [[UIActionSheet alloc] initWithTitle:@"选择照片" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"拍照", @"相册", nil];
+    [sheet showInView:[UIApplication sharedApplication].keyWindow];
+}
+
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
+    
+    UIImagePickerController *imagePickerController = [[UIImagePickerController alloc] init];
+    imagePickerController.delegate = self;
+    UIImagePickerControllerSourceType source = (buttonIndex == 0 ? UIImagePickerControllerSourceTypeCamera
+                                              : UIImagePickerControllerSourceTypeSavedPhotosAlbum);
+    if ([UIImagePickerController isSourceTypeAvailable:source] ) {
+        imagePickerController.sourceType = source;
+        imagePickerController.allowsEditing = YES;
+        [self.navigationController presentViewController:imagePickerController animated:YES completion:nil];
+    }
+}
+
+#pragma mark - uiimagepickercontroller delegate methods
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
+{
+    self.navigationItem.rightBarButtonItem.enabled = NO;
+    UIImage *image = info[UIImagePickerControllerEditedImage];
+    image = [image bx_imageResizetoMaxLength:300];
+    [image bx_imageResizetoMaxLength:300];
+
+    [Uploader uploadImage:image onSuccess:^(NSString * fileUrl) {
+        _user.avatar = fileUrl;
+        _avatar.image = image;
+        self.navigationItem.rightBarButtonItem.enabled = YES;
+    } onFailure:^(NSString * error) {
+        self.navigationItem.rightBarButtonItem.enabled = YES;
+    } onProgress:^(CGFloat percent, long long sent) {
+        self.navigationItem.rightBarButtonItem.enabled = YES;
+    }];
+    [picker dismissViewControllerAnimated:YES completion:nil];
+}
+
+
+-(void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
+{
+    [self dismissViewControllerAnimated:YES completion:nil];
+    //    [self dismissModalViewControllerAnimated:YES];
+}
+
+
+- (void)actionSheet:(UIActionSheet *)actionSheet willDismissWithButtonIndex:(NSInteger)buttonIndex{
+    
+}
+
+- (void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex{
+    
+}
+
 
 - (void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];

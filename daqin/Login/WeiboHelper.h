@@ -13,7 +13,9 @@
 @interface WeiboHelper : NSObject <WeiboSDKDelegate>
 @property (nonatomic, assign) id<LoginDelegate> delegate;
 
++ (instancetype)sharedInstance;
+
 - (void)doLogin;
 
-+ (instancetype)sharedInstance;
+- (void)getUserInfo;
 @end

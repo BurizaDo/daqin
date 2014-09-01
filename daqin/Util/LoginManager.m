@@ -16,7 +16,6 @@
 #import "GlobalDataManager.h"
 #import "ChatUser.h"
 #import "ChatSession.h"
-#import "WeiboProvider.h"
 
 @interface LoginManager() <LoginDelegate>
 
@@ -70,12 +69,7 @@ static LoginManager *_sharedInstance = nil;
             if([userId rangeOfString:@"uidqq"].location != NSNotFound){
                 [[QQHelper sharedInstance] getUserInfo];
             }else{
-                [[WeiboProvider sharedInstance] getUserSuccess:^(id object) {
-                    [GlobalDataManager sharedInstance].user = object;
-                    [[NSNotificationCenter defaultCenter] postNotificationName:@"userGot" object:nil];
-                } failure:^(Error *error) {
-                    
-                }];
+                [[WeiboHelper sharedInstance] getUserInfo];
             }
         }
     }];

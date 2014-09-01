@@ -35,7 +35,6 @@
 		E21C5B8619A485F00008811B /* message_bg_receiving_pic@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E21C5B8419A485F00008811B /* message_bg_receiving_pic@2x.png */; };
 		E21C5B8719A485F00008811B /* message_bg_sending_pic@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E21C5B8519A485F00008811B /* message_bg_sending_pic@2x.png */; };
 		E21C5B8919A489A60008811B /* Public_Body_Icon_Loadpic@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E21C5B8819A489A60008811B /* Public_Body_Icon_Loadpic@2x.png */; };
-		E23E1E5419AF230100B5B1F2 /* WeiboProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = E23E1E5319AF230100B5B1F2 /* WeiboProvider.m */; };
 		E23E1E5619AF34C100B5B1F2 /* weibo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E23E1E5519AF34C100B5B1F2 /* weibo@2x.png */; };
 		E255F005199B15EF002BD40C /* Error.m in Sources */ = {isa = PBXBuildFile; fileRef = E255F004199B15EF002BD40C /* Error.m */; };
 		E2604EC319AB2816005EC778 /* libMobClickLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E2604EC019AB2816005EC778 /* libMobClickLibrary.a */; };
@@ -53,12 +52,16 @@
 		E28B269B1988C7DC004DCF9D /* My_Body_Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E28B269A1988C7DC004DCF9D /* My_Body_Icon@2x.png */; };
 		E28B26A31989DF32004DCF9D /* more_plus@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E28B26A21989DF32004DCF9D /* more_plus@2x.png */; };
 		E2901BD61985ECA8002DF983 /* HttpClient.m in Sources */ = {isa = PBXBuildFile; fileRef = E2901BD51985ECA8002DF983 /* HttpClient.m */; };
-		E2969CB719B02684009E24F9 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E2969CB619B02684009E24F9 /* Default@2x.png */; };
 		E2969CBA19B02978009E24F9 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = E2969CB819B02978009E24F9 /* Icon.png */; };
 		E2969CBB19B02978009E24F9 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E2969CB919B02978009E24F9 /* Icon@2x.png */; };
-		E2969CBD19B02ADD009E24F9 /* splash_001-568h.png in Resources */ = {isa = PBXBuildFile; fileRef = E2969CBC19B02ADD009E24F9 /* splash_001-568h.png */; };
 		E2969CC019B04C51009E24F9 /* LoginManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E2969CBF19B04C51009E24F9 /* LoginManager.m */; };
 		E2969CC419B04FCD009E24F9 /* WeiboHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = E2969CC319B04FCD009E24F9 /* WeiboHelper.m */; };
+		E2969CCD19B076D4009E24F9 /* splash.png in Resources */ = {isa = PBXBuildFile; fileRef = E2969CCC19B076D4009E24F9 /* splash.png */; };
+		E2969CCF19B076FE009E24F9 /* Default@2x-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E2969CCE19B076FE009E24F9 /* Default@2x-568h@2x.png */; };
+		E2969CD319B089C8009E24F9 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E2969CD219B089C8009E24F9 /* Default@2x.png */; };
+		E2969CDB19B45D2C009E24F9 /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E2969CD919B45D2C009E24F9 /* AboutViewController.m */; };
+		E2969CDC19B45D2C009E24F9 /* AboutViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E2969CDA19B45D2C009E24F9 /* AboutViewController.xib */; };
+		E2969CDE19B45E11009E24F9 /* Icon03.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E2969CDD19B45E11009E24F9 /* Icon03.jpg */; };
 		E2A22F7C19A5C903008C0AB6 /* btn_emotion_HL.png in Resources */ = {isa = PBXBuildFile; fileRef = E2A22F7A19A5C903008C0AB6 /* btn_emotion_HL.png */; };
 		E2A22F7D19A5C903008C0AB6 /* btn_emotion.png in Resources */ = {isa = PBXBuildFile; fileRef = E2A22F7B19A5C903008C0AB6 /* btn_emotion.png */; };
 		E2A22F8219A5CA0E008C0AB6 /* FacialLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = E2A22F7F19A5CA0E008C0AB6 /* FacialLayout.m */; };
@@ -310,8 +313,6 @@
 		E21C5B8419A485F00008811B /* message_bg_receiving_pic@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "message_bg_receiving_pic@2x.png"; sourceTree = "<group>"; };
 		E21C5B8519A485F00008811B /* message_bg_sending_pic@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "message_bg_sending_pic@2x.png"; sourceTree = "<group>"; };
 		E21C5B8819A489A60008811B /* Public_Body_Icon_Loadpic@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Public_Body_Icon_Loadpic@2x.png"; sourceTree = "<group>"; };
-		E23E1E5219AF230100B5B1F2 /* WeiboProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WeiboProvider.h; path = Data/WeiboProvider.h; sourceTree = "<group>"; };
-		E23E1E5319AF230100B5B1F2 /* WeiboProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WeiboProvider.m; path = Data/WeiboProvider.m; sourceTree = "<group>"; };
 		E23E1E5519AF34C100B5B1F2 /* weibo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "weibo@2x.png"; sourceTree = "<group>"; };
 		E255F003199B15EF002BD40C /* Error.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Error.h; sourceTree = "<group>"; };
 		E255F004199B15EF002BD40C /* Error.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Error.m; sourceTree = "<group>"; };
@@ -338,15 +339,20 @@
 		E2901BD41985ECA8002DF983 /* HttpClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HttpClient.h; path = Libraries/Network/HttpClient.h; sourceTree = SOURCE_ROOT; };
 		E2901BD51985ECA8002DF983 /* HttpClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HttpClient.m; path = Libraries/Network/HttpClient.m; sourceTree = SOURCE_ROOT; };
 		E2901BEA198798CA002DF983 /* EventDefinition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventDefinition.h; sourceTree = "<group>"; };
-		E2969CB619B02684009E24F9 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		E2969CB819B02978009E24F9 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
 		E2969CB919B02978009E24F9 /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
-		E2969CBC19B02ADD009E24F9 /* splash_001-568h.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "splash_001-568h.png"; sourceTree = "<group>"; };
 		E2969CBE19B04C51009E24F9 /* LoginManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LoginManager.h; path = Util/LoginManager.h; sourceTree = "<group>"; };
 		E2969CBF19B04C51009E24F9 /* LoginManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LoginManager.m; path = Util/LoginManager.m; sourceTree = "<group>"; };
 		E2969CC219B04FCD009E24F9 /* WeiboHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WeiboHelper.h; path = Login/WeiboHelper.h; sourceTree = "<group>"; };
 		E2969CC319B04FCD009E24F9 /* WeiboHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WeiboHelper.m; path = Login/WeiboHelper.m; sourceTree = "<group>"; };
 		E2969CC519B051E4009E24F9 /* LoginDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginDelegate.h; sourceTree = "<group>"; };
+		E2969CCC19B076D4009E24F9 /* splash.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = splash.png; sourceTree = "<group>"; };
+		E2969CCE19B076FE009E24F9 /* Default@2x-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x-568h@2x.png"; sourceTree = "<group>"; };
+		E2969CD219B089C8009E24F9 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		E2969CD819B45D2C009E24F9 /* AboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutViewController.h; sourceTree = "<group>"; };
+		E2969CD919B45D2C009E24F9 /* AboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutViewController.m; sourceTree = "<group>"; };
+		E2969CDA19B45D2C009E24F9 /* AboutViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AboutViewController.xib; sourceTree = "<group>"; };
+		E2969CDD19B45E11009E24F9 /* Icon03.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Icon03.jpg; sourceTree = "<group>"; };
 		E2A22F7A19A5C903008C0AB6 /* btn_emotion_HL.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btn_emotion_HL.png; sourceTree = "<group>"; };
 		E2A22F7B19A5C903008C0AB6 /* btn_emotion.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btn_emotion.png; sourceTree = "<group>"; };
 		E2A22F7E19A5CA0E008C0AB6 /* FacialLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FacialLayout.h; sourceTree = "<group>"; };
@@ -737,6 +743,7 @@
 		E28B26991988C7DC004DCF9D /* resources */ = {
 			isa = PBXGroup;
 			children = (
+				E2969CDD19B45E11009E24F9 /* Icon03.jpg */,
 				E23E1E5519AF34C100B5B1F2 /* weibo@2x.png */,
 				E284645819AED71A00F7953E /* qq@2x.png */,
 				E284643F19AC918100F7953E /* My_Body_Redpoint@2x.png */,
@@ -811,8 +818,8 @@
 				E2E7C681199C848500A2E39A /* separator@2x.png */,
 				E2969CB819B02978009E24F9 /* Icon.png */,
 				E2969CB919B02978009E24F9 /* Icon@2x.png */,
-				E2969CB619B02684009E24F9 /* Default@2x.png */,
-				E2969CBC19B02ADD009E24F9 /* splash_001-568h.png */,
+				E2969CCC19B076D4009E24F9 /* splash.png */,
+				E2969CD219B089C8009E24F9 /* Default@2x.png */,
 			);
 			path = resources;
 			sourceTree = "<group>";
@@ -820,8 +827,6 @@
 		E2969CC119B04CA0009E24F9 /* Login */ = {
 			isa = PBXGroup;
 			children = (
-				E23E1E5219AF230100B5B1F2 /* WeiboProvider.h */,
-				E23E1E5319AF230100B5B1F2 /* WeiboProvider.m */,
 				E2BE873D1980A31800B47378 /* QQHelper.h */,
 				E2BE873E1980A31800B47378 /* QQHelper.m */,
 				E2969CBE19B04C51009E24F9 /* LoginManager.h */,
@@ -1090,6 +1095,9 @@
 				E21C5B5A19A1F3600008811B /* ProfileEditViewController.xib */,
 				E21C5B6119A2EAA60008811B /* BXChatListViewController.h */,
 				E21C5B6219A2EAA60008811B /* BXChatListViewController.m */,
+				E2969CD819B45D2C009E24F9 /* AboutViewController.h */,
+				E2969CD919B45D2C009E24F9 /* AboutViewController.m */,
+				E2969CDA19B45D2C009E24F9 /* AboutViewController.xib */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -1275,6 +1283,7 @@
 		E2BE86CD197E558D00B47378 = {
 			isa = PBXGroup;
 			children = (
+				E2969CCE19B076FE009E24F9 /* Default@2x-568h@2x.png */,
 				E284645019AECD4D00F7953E /* umFeedback.bundle */,
 				E2BE873B197FE49400B47378 /* TencentOpenApi_IOS_Bundle.bundle */,
 				E2BE86DF197E558D00B47378 /* daqin */,
@@ -1483,7 +1492,6 @@
 				E2A22FD519A5CF0E008C0AB6 /* emoji_6.png in Resources */,
 				E2BE86F5197E558D00B47378 /* Images.xcassets in Resources */,
 				E21C5B4F19A1CA0B0008811B /* back.png in Resources */,
-				E2969CBD19B02ADD009E24F9 /* splash_001-568h.png in Resources */,
 				E2A44AF21998B0FA004F4476 /* more_plusHL@2x.png in Resources */,
 				E2A22FFC19A5EC3B008C0AB6 /* amp5.png in Resources */,
 				E2A22FD919A5CF0E008C0AB6 /* emoji_del.png in Resources */,
@@ -1509,7 +1517,6 @@
 				E21C5B8719A485F00008811B /* message_bg_sending_pic@2x.png in Resources */,
 				E2A44A0919908F1E004F4476 /* Post_Body_Btn_Add_Pic@2x.png in Resources */,
 				E2A22FF019A5EC12008C0AB6 /* voice_rcd_hint.png in Resources */,
-				E2969CB719B02684009E24F9 /* Default@2x.png in Resources */,
 				E2A22FC719A5CF0E008C0AB6 /* emoji_26.png in Resources */,
 				E2A22FC319A5CF0E008C0AB6 /* emoji_22.png in Resources */,
 				E2A22FC619A5CF0E008C0AB6 /* emoji_25.png in Resources */,
@@ -1522,6 +1529,7 @@
 				E2A44A0819908F1E004F4476 /* Post_Body_Btn_Add_Pic_On@2x.png in Resources */,
 				E2A22FF919A5EC3B008C0AB6 /* amp2.png in Resources */,
 				E2A22FBA19A5CF0E008C0AB6 /* emoji_14.png in Resources */,
+				E2969CD319B089C8009E24F9 /* Default@2x.png in Resources */,
 				E2A44AF41998B11D004F4476 /* chatting_setmode_voice_btn_normal.png in Resources */,
 				E2E7C680199C79D100A2E39A /* location.png in Resources */,
 				E21C5B45199DB6780008811B /* scenery3.jpg in Resources */,
@@ -1535,6 +1543,7 @@
 				E284645119AECD4D00F7953E /* umFeedback.bundle in Resources */,
 				E2A22FC019A5CF0E008C0AB6 /* emoji_2.png in Resources */,
 				E2A22FFD19A5EC3B008C0AB6 /* amp6.png in Resources */,
+				E2969CCF19B076FE009E24F9 /* Default@2x-568h@2x.png in Resources */,
 				E28B26A31989DF32004DCF9D /* more_plus@2x.png in Resources */,
 				E2A44B09199A0AF8004F4476 /* message_bg_sending@2x.png in Resources */,
 				E2A22FC519A5CF0E008C0AB6 /* emoji_24.png in Resources */,
@@ -1566,13 +1575,16 @@
 				E2A44A4C19985C24004F4476 /* LoginViewController.xib in Resources */,
 				E2A22FC419A5CF0E008C0AB6 /* emoji_23.png in Resources */,
 				E2A44A0419908F1E004F4476 /* btn_small_gray_on@2x.png in Resources */,
+				E2969CDC19B45D2C009E24F9 /* AboutViewController.xib in Resources */,
 				E2BE86ED197E558D00B47378 /* Main.storyboard in Resources */,
 				E2A44A121990A651004F4476 /* btn_shutter@2x.png in Resources */,
+				E2969CDE19B45E11009E24F9 /* Icon03.jpg in Resources */,
 				E21C5B8619A485F00008811B /* message_bg_receiving_pic@2x.png in Resources */,
 				E2A44AAF199875B7004F4476 /* MJPhotoBrowser.bundle in Resources */,
 				E2A22FB519A5CF0E008C0AB6 /* emoji_1.png in Resources */,
 				E21C5B4B199F20030008811B /* detail_01@2x.png in Resources */,
 				E2A22FB619A5CF0E008C0AB6 /* emoji_10.png in Resources */,
+				E2969CCD19B076D4009E24F9 /* splash.png in Resources */,
 				E2A22FD319A5CF0E008C0AB6 /* emoji_4.png in Resources */,
 				E2A44A4819985C24004F4476 /* DateSelectViewController.xib in Resources */,
 				E2E7C67C199C58EF00A2E39A /* 02@2x.png in Resources */,
@@ -1666,6 +1678,7 @@
 				E2A449CD198F8EE9004F4476 /* BCUpScrollView.m in Sources */,
 				E2A44A9C1998743F004F4476 /* AudioRecorder.m in Sources */,
 				E2A44AB2199875B7004F4476 /* MJPhotoProgressView.m in Sources */,
+				E2969CDB19B45D2C009E24F9 /* AboutViewController.m in Sources */,
 				E284644319ADBA3800F7953E /* ProfileView.m in Sources */,
 				E2A44A7719986B20004F4476 /* Message.m in Sources */,
 				E2A44A7819986B20004F4476 /* StateMessage.m in Sources */,
@@ -1686,7 +1699,6 @@
 				E2A449E51990726F004F4476 /* CQMFloatingNavigationBar.m in Sources */,
 				E2A44AB4199875B7004F4476 /* MJPhotoView.m in Sources */,
 				E2A44A3019985C10004F4476 /* UserProvider.m in Sources */,
-				E23E1E5419AF230100B5B1F2 /* WeiboProvider.m in Sources */,
 				E2A44A8B19986FA8004F4476 /* MessageCell.m in Sources */,
 				E2A44A5A19985C31004F4476 /* InputCell.m in Sources */,
 				E2969CC019B04C51009E24F9 /* LoginManager.m in Sources */,
@@ -1821,7 +1833,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				ONLY_ACTIVE_ARCH = NO;
 				PROVISIONING_PROFILE = "7e9e45ce-3104-48e4-8661-474cf83ca139";
 				SDKROOT = iphoneos;
@@ -1855,7 +1867,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				ONLY_ACTIVE_ARCH = NO;
 				PROVISIONING_PROFILE = "7e9e45ce-3104-48e4-8661-474cf83ca139";
 				SDKROOT = iphoneos;
@@ -1887,7 +1899,7 @@
 					"$(PROJECT_DIR)/weibo_ios_sdk-master/libWeiboSDK",
 				);
 				ONLY_ACTIVE_ARCH = NO;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = daqin;
 				PROVISIONING_PROFILE = "7e9e45ce-3104-48e4-8661-474cf83ca139";
 				VALID_ARCHS = "i386 armv7 armv7s";
 				WRAPPER_EXTENSION = app;
@@ -1917,7 +1929,7 @@
 					"$(PROJECT_DIR)/weibo_ios_sdk-master/libWeiboSDK",
 				);
 				ONLY_ACTIVE_ARCH = NO;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = daqin;
 				PROVISIONING_PROFILE = "fb796f4c-f26a-4d60-aba7-5fad84d9c932";
 				VALID_ARCHS = "i386 armv7 armv7s";
 				WRAPPER_EXTENSION = app;
