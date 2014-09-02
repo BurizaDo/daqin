@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "E2BE86D5197E558D00B47378"
-               BuildableName = "&#x884c;&#x8272;.app"
+               BuildableName = "daqin.app"
                BlueprintName = "daqin"
                ReferencedContainer = "container:daqin.xcodeproj">
             </BuildableReference>
@@ -43,7 +43,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "E2BE86D5197E558D00B47378"
-            BuildableName = "&#x884c;&#x8272;.app"
+            BuildableName = "daqin.app"
             BlueprintName = "daqin"
             ReferencedContainer = "container:daqin.xcodeproj">
          </BuildableReference>
@@ -62,7 +62,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "E2BE86D5197E558D00B47378"
-            BuildableName = "&#x884c;&#x8272;.app"
+            BuildableName = "daqin.app"
             BlueprintName = "daqin"
             ReferencedContainer = "container:daqin.xcodeproj">
          </BuildableReference>
@@ -80,7 +80,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "E2BE86D5197E558D00B47378"
-            BuildableName = "&#x884c;&#x8272;.app"
+            BuildableName = "daqin.app"
             BlueprintName = "daqin"
             ReferencedContainer = "container:daqin.xcodeproj">
          </BuildableReference>

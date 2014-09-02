@@ -34,21 +34,23 @@
 
 - (void)loadData:(BOOL)stopAnimation from:(int)from{
     if(_isMyListing){
-        [ListingProvider getUserListing:[GlobalDataManager sharedInstance].user.userId from:from size:30 onSuccess:^(NSArray *areas) {
-            if(from == 0){
-                _routes = [NSMutableArray arrayWithArray:areas];
-            }else{
-                [_routes addObjectsFromArray:areas];
-            }
-            [self.tableView reloadData];
-            if(stopAnimation){
-                [self.tableView.pullToRefreshView stopAnimating];
-                [self.tableView.infiniteScrollingView stopAnimating];
-            }
-            
-        } onFailure:^(Error *error) {
-            
-        }];
+        if([GlobalDataManager sharedInstance].user){
+            [ListingProvider getUserListing:[GlobalDataManager sharedInstance].user.userId from:from size:30 onSuccess:^(NSArray *areas) {
+                if(from == 0){
+                    _routes = [NSMutableArray arrayWithArray:areas];
+                }else{
+                    [_routes addObjectsFromArray:areas];
+                }
+                [self.tableView reloadData];
+                if(stopAnimation){
+                    [self.tableView.pullToRefreshView stopAnimating];
+                    [self.tableView.infiniteScrollingView stopAnimating];
+                }
+                
+            } onFailure:^(Error *error) {
+                
+            }];
+        }
     }else{
         [ListingProvider getAllListingFrom:from size:30 onSuccess:^(NSArray *areas) {
             if(from == 0){
@@ -76,6 +78,7 @@
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     if(_isMyListing){
         self.navigationItem.leftBarButtonItem = [ViewUtil createBackItem:self action:@selector(backAction)];
+        self.navigationItem.title = @"我的行程";
     }
 }
 
@@ -185,7 +188,7 @@
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
 {
     // Return NO if you do not want the specified item to be editable.
-    return YES;
+    return _isMyListing;
 }
 
 
@@ -195,6 +198,11 @@
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         // Delete the row from the data source
+        [ListingProvider deleteUserMessage:[GlobalDataManager sharedInstance].user.userId msgId:((Route*)_routes[indexPath.row]).routeId onSuccess:^{
+            
+        } onFailure:^(Error *error) {
+            
+        }];
         [_routes removeObjectAtIndex:indexPath.row];
         [tableView beginUpdates];
         [tableView deleteRowsAtIndexPaths:@[indexPath]

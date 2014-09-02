@@ -44,10 +44,10 @@
 - (void)loginOut{
     NSMutableArray* controllers = [NSMutableArray arrayWithArray:self.viewControllers];
     UINavigationController* post = [self generateLoginNavControllerImage:@"03" selected:@"select_03"];
-    UINavigationController* my = [self generateLoginNavControllerImage:@"04" selected:@"select_04"];
-    
+//    UINavigationController* my = [self generateLoginNavControllerImage:@"04" selected:@"select_04"];
+    [GlobalDataManager sharedInstance].user = nil;
     [controllers replaceObjectAtIndex:2 withObject:post];
-    [controllers replaceObjectAtIndex:3 withObject:my];
+//    [controllers replaceObjectAtIndex:3 withObject:my];
     self.viewControllers = controllers;
 }
 
@@ -56,13 +56,13 @@
     UINavigationController* postNC = [[UINavigationController alloc] initWithRootViewController:postVC];
     postNC.tabBarItem = [self createTabBarItemImage:@"03" selected:@"select_03"];
 
-    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    UIViewController *myVC = (UIViewController *) [storyboard instantiateViewControllerWithIdentifier:@"ProfileVC"];
-    UINavigationController* myNC = [[UINavigationController alloc] initWithRootViewController:myVC];
-    myNC.tabBarItem = [self createTabBarItemImage:@"04" selected:@"select_04"];
+//    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+//    UIViewController *myVC = (UIViewController *) [storyboard instantiateViewControllerWithIdentifier:@"ProfileVC"];
+//    UINavigationController* myNC = [[UINavigationController alloc] initWithRootViewController:myVC];
+//    myNC.tabBarItem = [self createTabBarItemImage:@"04" selected:@"select_04"];
 
     NSMutableArray* controllers = [NSMutableArray arrayWithArray:self.viewControllers];
-    [controllers replaceObjectAtIndex:3 withObject:myNC];
+//    [controllers replaceObjectAtIndex:3 withObject:myNC];
     [controllers replaceObjectAtIndex:2 withObject:postNC];
     self.viewControllers = controllers;
 }
@@ -97,10 +97,10 @@
     NSMutableArray* controllers = [NSMutableArray arrayWithArray:self.viewControllers];
     if(!token){
         UINavigationController* post = [self generateLoginNavControllerImage:@"03" selected:@"select_03"];
-        UINavigationController* my = [self generateLoginNavControllerImage:@"04" selected:@"select_04"];
+//        UINavigationController* my = [self generateLoginNavControllerImage:@"04" selected:@"select_04"];
         
         [controllers replaceObjectAtIndex:2 withObject:post];
-        [controllers replaceObjectAtIndex:3 withObject:my];
+//        [controllers replaceObjectAtIndex:3 withObject:my];
         self.viewControllers = controllers;
     }
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loginSucceed) name:@"loginSucceed" object:nil];

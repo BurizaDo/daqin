@@ -19,4 +19,8 @@
                 onSuccess:(ResponseArray)resultBlock
                 onFailure:(ResponseError)failureBlock;
 
++ (void)deleteUserMessage:(NSString*)userId
+                    msgId:(NSString*)messageId
+                onSuccess:(ResponseBlock)resultBlock
+                onFailure:(ResponseError)failureBlock;
 @end

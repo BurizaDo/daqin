@@ -10,6 +10,7 @@
 #import "User.h"
 @interface Route : NSObject
 @property (nonatomic, strong) User* user;
+@property (nonatomic, copy) NSString* routeId;
 @property (nonatomic, copy) NSString* startTime;
 @property (nonatomic, copy) NSString* endTime;
 @property (nonatomic, copy) NSString* description;

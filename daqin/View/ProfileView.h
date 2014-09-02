@@ -10,6 +10,7 @@
 
 @interface ProfileView : UIView
 @property (nonatomic, weak) IBOutlet UIImageView* avatar;
+@property (weak, nonatomic) IBOutlet UIImageView *mask;
 @property (nonatomic, weak) IBOutlet UILabel* name;
 @property (nonatomic, weak) IBOutlet UILabel* age;
 @property (nonatomic, weak) IBOutlet UILabel* signature;

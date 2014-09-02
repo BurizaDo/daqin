@@ -49,6 +49,7 @@
         NSMutableArray* routes = [[NSMutableArray alloc] init];
         for(NSDictionary* dic in ary){
             Route* route = [[Route alloc] init];
+            route.routeId = [dic objectForKey:@"id"];
             route.destination = [dic objectForKey:@"destination"];
             route.description = [dic objectForKey:@"message"];
             route.user = [User parseFromDictionary:[dic objectForKey:@"user"]];
@@ -64,6 +65,24 @@
     }];
     
 }
+
++ (void)deleteUserMessage:(NSString*)userId
+                    msgId:(NSString*)messageId
+                onSuccess:(ResponseBlock)resultBlock
+                onFailure:(ResponseError)failureBlock{
+    NSDictionary* param = @{@"userId" : userId,
+                            @"messageId":messageId};
+    
+    [[HttpClient sharedClient] postAPI:@"deleteMessage" params:param success:^(id obj) {
+        resultBlock();
+    } failure:^(Error* error) {
+        if(failureBlock){
+            failureBlock(error);
+        }
+    }];
+    
+}
+
 
 
 @end

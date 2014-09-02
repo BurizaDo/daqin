@@ -11,4 +11,5 @@
 @interface LoginViewController : UIViewController
 @property (weak, nonatomic) IBOutlet UIButton *weiboLoginBtn;
 @property (nonatomic, strong) IBOutlet UIButton* loginBtn;
+@property (nonatomic, assign) BOOL hasBack;
 @end

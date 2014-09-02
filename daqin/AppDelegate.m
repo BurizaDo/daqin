@@ -10,6 +10,7 @@
 #import "HttpClient.h"
 #define HOST @"http://121.40.155.102/Rome/"
 //#define HOST @"http://192.168.1.149:8888/Rome/"
+//#define HOST @"http://localhost:8888/Rome/"
 #import "ChatSession.h"
 #import "EGOCache.h"
 #import "UserProvider.h"
@@ -56,7 +57,7 @@
     
     [WeiboSDK enableDebugMode:YES];
     [WeiboSDK registerApp:@"653706130"];
-    [MobClick startWithAppkey:@"53faac1cfd98c506e50003af" reportPolicy:BATCH channelId:@"Test"];
+    [MobClick startWithAppkey:@"53faac1cfd98c506e50003af" reportPolicy:BATCH channelId:@"AppStore"];
     
     return YES;
 }

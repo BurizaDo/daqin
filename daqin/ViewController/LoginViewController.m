@@ -15,6 +15,7 @@
 #import "ChatUser.h"
 #import "GlobalDataManager.h"
 #import "ChatSession.h"
+#import "ViewUtil.h"
 
 @interface LoginViewController ()
 
@@ -63,6 +64,10 @@
     
 }
 
+- (void)handleLoginSucceed{
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -71,6 +76,14 @@
     [self.loginBtn addTarget:self action:@selector(loginClicked) forControlEvents:UIControlEventTouchUpInside];
     [self.weiboLoginBtn addTarget:self action:@selector(weiboLogin) forControlEvents:UIControlEventTouchUpInside];
     // Do any additional setup after loading the view from its nib.
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleLoginSucceed) name:@"loginSucceed" object:nil];
+    if(_hasBack){
+        self.navigationItem.leftBarButtonItem = [ViewUtil createBackItem:self action:@selector(handleBack)];
+    }
+}
+
+-(void)handleBack{
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)didReceiveMemoryWarning

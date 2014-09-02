@@ -48,7 +48,23 @@
     return self;
 }
 
+- (void) clearHeaderView{
+    _headerView.avatar.hidden = YES;
+    _headerView.name.hidden = YES;
+    _headerView.age.hidden = YES;
+    _headerView.mask.hidden = YES;
+}
+
 - (void)setup{
+    if(!_user){
+        [self clearHeaderView];
+        return;
+    }
+    _headerView.mask.hidden = NO;
+    _headerView.name.hidden = NO;
+    _headerView.age.hidden = NO;
+    _headerView.avatar.hidden = NO;
+
     if([_user.avatar length] > 0){
         [_headerView.avatar sd_setImageWithURL:[NSURL URLWithString:_user.avatar]];
     }
@@ -81,6 +97,22 @@
     _user = user;
 }
 
+- (void)handleLoginSucceed{
+    _user = [GlobalDataManager sharedInstance].user;
+    [self setup];
+    [self.tableView reloadData];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"个人资料" style:UIBarButtonItemStylePlain target:self action:@selector(edit)];
+    
+}
+
+- (void)handleLogout{
+    _user = nil;
+    [self clearHeaderView];
+    [self.tableView reloadData];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"登录" style:UIBarButtonItemStylePlain target:self action:@selector(edit)];
+    
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -92,15 +124,24 @@
     [self setup];
 
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(setup) name:@"profileChanged" object:nil];
- 
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"个人资料" style:UIBarButtonItemStylePlain target:self action:@selector(edit)];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleLogout) name:@"didlogout" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleLoginSucceed) name:@"loginSucceed" object:nil];
+
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:_user ? @"个人资料" : @"登录" style:UIBarButtonItemStylePlain target:self action:@selector(edit)];
 }
 
 - (void)edit{
-    ProfileEditViewController* edit = [[ProfileEditViewController alloc] initWithNibName:@"ProfileEditViewController" bundle:nil];
-    edit.title = @"个人资料";
-    edit.user = _user;
-    [self.navigationController pushViewController:edit animated:YES];
+    if(_user){
+        ProfileEditViewController* edit = [[ProfileEditViewController alloc] initWithNibName:@"ProfileEditViewController" bundle:nil];
+        edit.title = @"个人资料";
+        edit.user = _user;
+        [self.navigationController pushViewController:edit animated:YES];
+    }else{
+        LoginViewController* lvc = [[LoginViewController alloc] initWithNibName:@"LoginViewController" bundle:nil];
+        lvc.title = @"登录";
+        lvc.hasBack = YES;
+        [self.navigationController pushViewController:lvc animated:YES];
+    }
 }
 
 - (void)didReceiveMemoryWarning
@@ -110,7 +151,7 @@
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    return 3;
+    return _user ? 3 : 2;
 }
 
 
