@@ -228,7 +228,7 @@
 }
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
-    
+    if(buttonIndex == 2) return;
     UIImagePickerController *imagePickerController = [[UIImagePickerController alloc] init];
     imagePickerController.delegate = self;
     UIImagePickerControllerSourceType source = (buttonIndex == 0 ? UIImagePickerControllerSourceTypeCamera

@@ -143,7 +143,7 @@
                   symbolName = "__49-[MessageViewController didSendImage:fromSender:]_block_invoke"
                   moduleName = "daqin"
                   urlString = "file:///Users/BurizaDo/Code/daqin/daqin/ViewController/MessageViewController.m"
-                  timestampString = "431340369.662309"
+                  timestampString = "431343054.26526"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "420"
@@ -157,7 +157,7 @@
                   symbolName = "__49-[MessageViewController didSendImage:fromSender:]_block_invoke"
                   moduleName = "daqin"
                   urlString = "file:///Users/BurizaDo/Code/daqin/daqin/ViewController/MessageViewController.m"
-                  timestampString = "431340369.662606"
+                  timestampString = "431343054.265581"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "420"
@@ -171,7 +171,7 @@
                   symbolName = "__49-[MessageViewController didSendImage:fromSender:]_block_invoke301"
                   moduleName = "daqin"
                   urlString = "file:///Users/BurizaDo/Code/daqin/daqin/ViewController/MessageViewController.m"
-                  timestampString = "431340369.662759"
+                  timestampString = "431343054.265848"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "420"
@@ -523,7 +523,7 @@
                   symbolName = "__28-[LoginManager getUserInfo:]_block_invoke"
                   moduleName = "daqin"
                   urlString = "file:///Users/BurizaDo/Code/daqin/daqin/Util/LoginManager.m"
-                  timestampString = "431340369.67546"
+                  timestampString = "431343054.285774"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "66"
@@ -537,7 +537,7 @@
                   symbolName = "__28-[LoginManager getUserInfo:]_block_invoke"
                   moduleName = "daqin"
                   urlString = "file:///Users/BurizaDo/Code/daqin/daqin/Util/LoginManager.m"
-                  timestampString = "431340369.675745"
+                  timestampString = "431343054.286076"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "66"
@@ -585,7 +585,7 @@
                   symbolName = "-[LoginManager getUserInfo:]"
                   moduleName = "daqin"
                   urlString = "file:///Users/BurizaDo/Code/daqin/daqin/Util/LoginManager.m"
-                  timestampString = "431340369.677363"
+                  timestampString = "431343054.359599"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "59"
@@ -599,7 +599,7 @@
                   symbolName = "__28-[LoginManager getUserInfo:]_block_invoke"
                   moduleName = "daqin"
                   urlString = "file:///Users/BurizaDo/Code/daqin/daqin/Util/LoginManager.m"
-                  timestampString = "431340369.677561"
+                  timestampString = "431343054.359914"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "59"
@@ -823,7 +823,7 @@
                   symbolName = "__20+[Util checkUpdate:]_block_invoke"
                   moduleName = "daqin"
                   urlString = "file:///Users/BurizaDo/Code/daqin/daqin/Util/Util.m"
-                  timestampString = "431340369.685613"
+                  timestampString = "431343054.385976"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "102"
@@ -837,7 +837,7 @@
                   symbolName = "__20+[Util checkUpdate:]_block_invoke"
                   moduleName = "daqin"
                   urlString = "file:///Users/BurizaDo/Code/daqin/daqin/Util/Util.m"
-                  timestampString = "431340369.685789"
+                  timestampString = "431343054.386233"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "102"
@@ -845,6 +845,70 @@
                   offsetFromSymbolStart = "1428">
                </Location>
             </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "daqin/ViewController/ListingViewController.m"
+            timestampString = "431342115.475598"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "37"
+            endingLineNumber = "37"
+            landmarkName = "-loadData:from:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "daqin/Data/ListingProvider.m"
+            timestampString = "431342140.382411"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "44"
+            endingLineNumber = "44"
+            landmarkName = "+getUserListing:from:size:onSuccess:onFailure:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "daqin/Data/ListingProvider.m"
+            timestampString = "431342168.683429"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "48"
+            endingLineNumber = "48"
+            landmarkName = "+getUserListing:from:size:onSuccess:onFailure:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "daqin/ViewController/ProfileEditViewController.m"
+            timestampString = "431342985.225075"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "232"
+            endingLineNumber = "232"
+            landmarkName = "-actionSheet:clickedButtonAtIndex:"
+            landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
