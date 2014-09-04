@@ -71,7 +71,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-//    self.title = @"登录";
+
     self.navigationItem.title = @"登录";
     [self.loginBtn addTarget:self action:@selector(loginClicked) forControlEvents:UIControlEventTouchUpInside];
     [self.weiboLoginBtn addTarget:self action:@selector(weiboLogin) forControlEvents:UIControlEventTouchUpInside];
@@ -80,6 +80,15 @@
     if(_hasBack){
         self.navigationItem.leftBarButtonItem = [ViewUtil createBackItem:self action:@selector(handleBack)];
     }
+    
+}
+
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    CGRect rc = self.view.bounds;
+    _weiboLoginBtn.frame = CGRectMake(_weiboLoginBtn.frame.origin.x, rc.size.height - _weiboLoginBtn.frame.size.height - 10, _weiboLoginBtn.frame.size.width, _weiboLoginBtn.frame.size.height);
+    _loginBtn.frame = CGRectMake(_loginBtn.frame.origin.x, _weiboLoginBtn.frame.origin.y - _loginBtn.frame.size.height - 10, _loginBtn.frame.size.width, _loginBtn.frame.size.height);
+
 }
 
 -(void)handleBack{

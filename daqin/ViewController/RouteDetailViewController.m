@@ -16,6 +16,7 @@
 #import "ViewUtil.h"
 #import "GlobalDataManager.h"
 #import "SVProgressHUD/SVProgressHUD.h"
+#import "LoginViewController.h"
 
 @interface RouteDetailViewController () <MWPhotoBrowserDelegate>
 @property (nonatomic, weak) IBOutlet UILabel* seperator2;
@@ -160,7 +161,10 @@
 
 - (void)chatClicked{
     if([GlobalDataManager sharedInstance].user == nil){
-        [SVProgressHUD showErrorWithStatus:@"请先登录"];
+        LoginViewController* lvc = [[LoginViewController alloc] initWithNibName:@"LoginViewController" bundle:nil];
+        lvc.title = @"登录";
+        lvc.hasBack = YES;
+        [self.navigationController pushViewController:lvc animated:YES];
         return;
     }
     MessageViewController* messageVC = [MessageViewController new];

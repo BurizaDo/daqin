@@ -7,9 +7,11 @@
 //
 
 #import "AboutViewController.h"
+#import "ViewUtil.h"
 
 @interface AboutViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *versionLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *logo;
 
 @end
 
@@ -32,7 +34,14 @@
     NSString *version = [infoDictionary objectForKey:@"CFBundleShortVersionString"];
     NSString* v = @"当前版本：";
     _versionLabel.text = [v stringByAppendingString:version];
+    _logo.layer.cornerRadius = 30.f;
+    _logo.layer.masksToBounds = YES;
+    self.navigationItem.leftBarButtonItem = [ViewUtil createBackItem:self action:@selector(handleBack)];
+    self.title = @"关于";
+}
 
+-(void)handleBack{
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)didReceiveMemoryWarning

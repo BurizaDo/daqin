@@ -14,7 +14,7 @@
 #import "MessageProvider.h"
 #import "ChatSession.h"
 #import "ChatUser.h"
-//#import "BlackListUtil.h"
+#import "GlobalDataManager.h"
 
 @interface BXChatListViewController ()
 @property (nonatomic, strong) NSMutableArray        *messageInfoes;
@@ -126,8 +126,14 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    [self reloadData];
     [super viewWillAppear:animated];
+    if(![GlobalDataManager sharedInstance].user) {
+        [_messageInfoes removeAllObjects];
+        [self.tableView reloadData];
+        return;
+    }
+    [self reloadData];
+
     [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:YES];
 }
 
