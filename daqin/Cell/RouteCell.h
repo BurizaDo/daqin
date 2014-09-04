@@ -16,5 +16,6 @@
 @property (nonatomic, weak) IBOutlet UILabel* destination;
 @property (nonatomic, weak) IBOutlet UILabel* name;
 @property (nonatomic, weak) IBOutlet UILabel* signature;
+@property (weak, nonatomic) IBOutlet UIImageView *plane;
 
 @end

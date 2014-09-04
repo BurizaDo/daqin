@@ -48,8 +48,16 @@
                 }
                 
             } onFailure:^(Error *error) {
-                
+                if(stopAnimation){
+                    [self.tableView.pullToRefreshView stopAnimating];
+                    [self.tableView.infiniteScrollingView stopAnimating];
+                }
             }];
+        }else{
+            if(stopAnimation){
+                [self.tableView.pullToRefreshView stopAnimating];
+                [self.tableView.infiniteScrollingView stopAnimating];
+            }
         }
     }else{
         [ListingProvider getAllListingFrom:from size:30 onSuccess:^(NSArray *areas) {
@@ -66,6 +74,10 @@
             }
 
         } onFailure:^(Error *error) {
+            if(stopAnimation){
+                [self.tableView.pullToRefreshView stopAnimating];
+                [self.tableView.infiniteScrollingView stopAnimating];
+            }
             
         }];
     }
@@ -152,21 +164,29 @@
     }else{
         cell.age.backgroundColor = colorF;
     }
+    
+    CGSize maximumLabelSize = CGSizeMake(100,9999);
+    CGRect expectedLabelRect = [cell.destination.text boundingRectWithSize:maximumLabelSize options:NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading attributes:[NSDictionary dictionaryWithObject:cell.destination.font forKey:NSFontAttributeName] context:nil];
+    cell.destination.frame = CGRectMake(cell.frame.size.width - expectedLabelRect.size.width - 10,
+                                        cell.destination.frame.origin.y,
+                                        expectedLabelRect.size.width,
+                                        cell.destination.frame.size.height);
+    cell.plane.frame = CGRectMake(cell.destination.frame.origin.x - cell.plane.frame.size.width - 3,
+                                  cell.plane.frame.origin.y,
+                                  cell.plane.frame.size.width,
+                                  cell.plane.frame.size.height);
 
 
-    CGSize maximumLabelSize = CGSizeMake(296,9999);
     CGSize expectedLabelSize = [cell.name.text sizeWithFont:cell.name.font
                                       constrainedToSize:maximumLabelSize
                                           lineBreakMode:cell.name.lineBreakMode];
-    cell.name.frame = CGRectMake(cell.name.frame.origin.x, cell.name.frame.origin.y, expectedLabelSize.width, expectedLabelSize.height);
+    cell.name.frame = CGRectMake(cell.name.frame.origin.x, cell.name.frame.origin.y, expectedLabelSize.width, cell.name.frame.size.height);
     
-    cell.age.frame = CGRectMake(cell.name.frame.origin.x + cell.name.frame.size.width + 8, cell.age.frame.origin.y, cell.age.frame.size.width, cell.age.frame.size.height);
+    cell.age.frame = CGRectMake(cell.name.frame.origin.x + cell.name.frame.size.width + 5, cell.age.frame.origin.y, cell.age.frame.size.width, cell.age.frame.size.height);
     
     if(route.user.avatar.length > 0){
         [cell.avatar.layer setCornerRadius:(CGRectGetHeight(cell.avatar.bounds))/2];
         cell.avatar.clipsToBounds = YES;
-//        cell.avatar.layer.borderWidth = 2.0;
-//        cell.avatar.layer.borderColor = [UIColor whiteColor].CGColor;
         [cell.avatar sd_setImageWithURL:[NSURL URLWithString:route.user.avatar]];
     }
     if(indexPath.row % 2 != 0){

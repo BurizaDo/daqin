@@ -55,7 +55,7 @@
         }];
     }
     
-    [WeiboSDK enableDebugMode:YES];
+//    [WeiboSDK enableDebugMode:YES];
     [WeiboSDK registerApp:@"653706130"];
     [MobClick startWithAppkey:@"53faac1cfd98c506e50003af" reportPolicy:BATCH channelId:@"AppStore"];
     
@@ -81,6 +81,7 @@
 
 - (void)applicationDidBecomeActive:(UIApplication *)application
 {
+    [UIApplication sharedApplication].applicationIconBadgeNumber = 0;
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
 }
 

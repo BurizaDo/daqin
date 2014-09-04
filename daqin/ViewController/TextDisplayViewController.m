@@ -41,22 +41,22 @@
 {
     [super viewDidLoad];
     
-    CGRect rect = CGRectInset(self.view.bounds, 20, 20);
+    CGRect rect = self.view.bounds;
     self.scrollView = [[UIScrollView alloc] initWithFrame:rect];
     self.scrollView.userInteractionEnabled = YES;
     self.scrollView.backgroundColor = [UIColor clearColor];
     [self.view addSubview:self.scrollView];
-    
+
     UITapGestureRecognizer* tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTapGesture)];
     [self.scrollView addGestureRecognizer:tapGestureRecognizer];
-    
+
     self.displayLabel = [[UILabel alloc] initWithFrame:self.scrollView.bounds];
     self.displayLabel.numberOfLines = 0;
     self.displayLabel.font = [UIFont systemFontOfSize:26.0f];
     self.displayLabel.textColor = [UIColor blackColor];
     self.displayLabel.textAlignment = NSTextAlignmentCenter;
     self.displayLabel.userInteractionEnabled = YES;
-    self.displayLabel.backgroundColor = [UIColor clearColor];
+    self.displayLabel.backgroundColor = [UIColor whiteColor];
     [self.scrollView addSubview:self.displayLabel];
     
     self.displayLabel.text = [self.message textValue];
@@ -84,7 +84,7 @@
 
 - (void)handleTapGesture
 {
-    [self.navigationController popToViewController:self animated:YES];
+    [self.navigationController popViewControllerAnimated:NO];
 }
 
 @end
