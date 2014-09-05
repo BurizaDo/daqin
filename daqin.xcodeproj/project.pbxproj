@@ -61,7 +61,6 @@
 		E2969CD319B089C8009E24F9 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E2969CD219B089C8009E24F9 /* Default@2x.png */; };
 		E2969CDB19B45D2C009E24F9 /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E2969CD919B45D2C009E24F9 /* AboutViewController.m */; };
 		E2969CDC19B45D2C009E24F9 /* AboutViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E2969CDA19B45D2C009E24F9 /* AboutViewController.xib */; };
-		E2969CDE19B45E11009E24F9 /* Icon03.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E2969CDD19B45E11009E24F9 /* Icon03.jpg */; };
 		E2A22F7C19A5C903008C0AB6 /* btn_emotion_HL.png in Resources */ = {isa = PBXBuildFile; fileRef = E2A22F7A19A5C903008C0AB6 /* btn_emotion_HL.png */; };
 		E2A22F7D19A5C903008C0AB6 /* btn_emotion.png in Resources */ = {isa = PBXBuildFile; fileRef = E2A22F7B19A5C903008C0AB6 /* btn_emotion.png */; };
 		E2A22F8219A5CA0E008C0AB6 /* FacialLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = E2A22F7F19A5CA0E008C0AB6 /* FacialLayout.m */; };
@@ -234,6 +233,10 @@
 		E2A44B011998C6E7004F4476 /* GlobalDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E2A44B001998C6E7004F4476 /* GlobalDataManager.m */; };
 		E2A44B08199A0AF8004F4476 /* message_bg_receiving@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E2A44B06199A0AF8004F4476 /* message_bg_receiving@2x.png */; };
 		E2A44B09199A0AF8004F4476 /* message_bg_sending@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E2A44B07199A0AF8004F4476 /* message_bg_sending@2x.png */; };
+		E2B165CB19B85575004269A6 /* Icon03.png in Resources */ = {isa = PBXBuildFile; fileRef = E2B165CA19B85575004269A6 /* Icon03.png */; };
+		E2B165CD19B85974004269A6 /* xingse_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = E2B165CC19B85974004269A6 /* xingse_logo.png */; };
+		E2B165CF19B8677D004269A6 /* slogan.png in Resources */ = {isa = PBXBuildFile; fileRef = E2B165CE19B8677D004269A6 /* slogan.png */; };
+		E2B32E4D19B96B2F00D199A9 /* Icon_120x120.png in Resources */ = {isa = PBXBuildFile; fileRef = E2B32E4C19B96B2F00D199A9 /* Icon_120x120.png */; };
 		E2BE86DA197E558D00B47378 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E2BE86D9197E558D00B47378 /* Foundation.framework */; };
 		E2BE86DC197E558D00B47378 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E2BE86DB197E558D00B47378 /* CoreGraphics.framework */; };
 		E2BE86DE197E558D00B47378 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E2BE86DD197E558D00B47378 /* UIKit.framework */; };
@@ -352,7 +355,6 @@
 		E2969CD819B45D2C009E24F9 /* AboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutViewController.h; sourceTree = "<group>"; };
 		E2969CD919B45D2C009E24F9 /* AboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutViewController.m; sourceTree = "<group>"; };
 		E2969CDA19B45D2C009E24F9 /* AboutViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AboutViewController.xib; sourceTree = "<group>"; };
-		E2969CDD19B45E11009E24F9 /* Icon03.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Icon03.jpg; sourceTree = "<group>"; };
 		E2A22F7A19A5C903008C0AB6 /* btn_emotion_HL.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btn_emotion_HL.png; sourceTree = "<group>"; };
 		E2A22F7B19A5C903008C0AB6 /* btn_emotion.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btn_emotion.png; sourceTree = "<group>"; };
 		E2A22F7E19A5CA0E008C0AB6 /* FacialLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FacialLayout.h; sourceTree = "<group>"; };
@@ -612,6 +614,10 @@
 		E2A44B001998C6E7004F4476 /* GlobalDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GlobalDataManager.m; sourceTree = "<group>"; };
 		E2A44B06199A0AF8004F4476 /* message_bg_receiving@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "message_bg_receiving@2x.png"; sourceTree = "<group>"; };
 		E2A44B07199A0AF8004F4476 /* message_bg_sending@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "message_bg_sending@2x.png"; sourceTree = "<group>"; };
+		E2B165CA19B85575004269A6 /* Icon03.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon03.png; sourceTree = "<group>"; };
+		E2B165CC19B85974004269A6 /* xingse_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = xingse_logo.png; sourceTree = "<group>"; };
+		E2B165CE19B8677D004269A6 /* slogan.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = slogan.png; sourceTree = "<group>"; };
+		E2B32E4C19B96B2F00D199A9 /* Icon_120x120.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon_120x120.png; sourceTree = "<group>"; };
 		E2BE86D6197E558D00B47378 /* daqin.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = daqin.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E2BE86D9197E558D00B47378 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		E2BE86DB197E558D00B47378 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -743,7 +749,9 @@
 		E28B26991988C7DC004DCF9D /* resources */ = {
 			isa = PBXGroup;
 			children = (
-				E2969CDD19B45E11009E24F9 /* Icon03.jpg */,
+				E2B165CE19B8677D004269A6 /* slogan.png */,
+				E2B165CC19B85974004269A6 /* xingse_logo.png */,
+				E2B165CA19B85575004269A6 /* Icon03.png */,
 				E23E1E5519AF34C100B5B1F2 /* weibo@2x.png */,
 				E284645819AED71A00F7953E /* qq@2x.png */,
 				E284643F19AC918100F7953E /* My_Body_Redpoint@2x.png */,
@@ -818,6 +826,7 @@
 				E2E7C681199C848500A2E39A /* separator@2x.png */,
 				E2969CB819B02978009E24F9 /* Icon.png */,
 				E2969CB919B02978009E24F9 /* Icon@2x.png */,
+				E2B32E4C19B96B2F00D199A9 /* Icon_120x120.png */,
 				E2969CCC19B076D4009E24F9 /* splash.png */,
 				E2969CD219B089C8009E24F9 /* Default@2x.png */,
 			);
@@ -1472,10 +1481,12 @@
 				E2A22FDB19A5D01C008C0AB6 /* btn_send.png in Resources */,
 				E2A22FFB19A5EC3B008C0AB6 /* amp4.png in Resources */,
 				E2A22FD419A5CF0E008C0AB6 /* emoji_5.png in Resources */,
+				E2B32E4D19B96B2F00D199A9 /* Icon_120x120.png in Resources */,
 				E21C5B7919A34B5A0008811B /* icon_avatar@2x.png in Resources */,
 				E2A2300019A72D00008C0AB6 /* goal.png in Resources */,
 				E2E7C67B199C58EF00A2E39A /* 01@2x.png in Resources */,
 				E2A44A151990A698004F4476 /* btn_gallery_on@2x.png in Resources */,
+				E2B165CD19B85974004269A6 /* xingse_logo.png in Resources */,
 				E21C5B8119A3535C0008811B /* select_04@2x.png in Resources */,
 				E2A44A0619908F1E004F4476 /* btn_small_green_on@2x.png in Resources */,
 				E2A22FC219A5CF0E008C0AB6 /* emoji_21.png in Resources */,
@@ -1517,6 +1528,7 @@
 				E21C5B8719A485F00008811B /* message_bg_sending_pic@2x.png in Resources */,
 				E2A44A0919908F1E004F4476 /* Post_Body_Btn_Add_Pic@2x.png in Resources */,
 				E2A22FF019A5EC12008C0AB6 /* voice_rcd_hint.png in Resources */,
+				E2B165CF19B8677D004269A6 /* slogan.png in Resources */,
 				E2A22FC719A5CF0E008C0AB6 /* emoji_26.png in Resources */,
 				E2A22FC319A5CF0E008C0AB6 /* emoji_22.png in Resources */,
 				E2A22FC619A5CF0E008C0AB6 /* emoji_25.png in Resources */,
@@ -1530,6 +1542,7 @@
 				E2A22FF919A5EC3B008C0AB6 /* amp2.png in Resources */,
 				E2A22FBA19A5CF0E008C0AB6 /* emoji_14.png in Resources */,
 				E2969CD319B089C8009E24F9 /* Default@2x.png in Resources */,
+				E2B165CB19B85575004269A6 /* Icon03.png in Resources */,
 				E2A44AF41998B11D004F4476 /* chatting_setmode_voice_btn_normal.png in Resources */,
 				E2E7C680199C79D100A2E39A /* location.png in Resources */,
 				E21C5B45199DB6780008811B /* scenery3.jpg in Resources */,
@@ -1578,7 +1591,6 @@
 				E2969CDC19B45D2C009E24F9 /* AboutViewController.xib in Resources */,
 				E2BE86ED197E558D00B47378 /* Main.storyboard in Resources */,
 				E2A44A121990A651004F4476 /* btn_shutter@2x.png in Resources */,
-				E2969CDE19B45E11009E24F9 /* Icon03.jpg in Resources */,
 				E21C5B8619A485F00008811B /* message_bg_receiving_pic@2x.png in Resources */,
 				E2A44AAF199875B7004F4476 /* MJPhotoBrowser.bundle in Resources */,
 				E2A22FB519A5CF0E008C0AB6 /* emoji_1.png in Resources */,
@@ -1880,7 +1892,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 4CD63D1B3F5641F39466F0CB /* Pods.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Mengyi Xu (C49E4XGTX8)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Mengyi Xu (C49E4XGTX8)";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1910,7 +1921,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 4CD63D1B3F5641F39466F0CB /* Pods.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Mengyi Xu (3TLC5268L3)";
 				FRAMEWORK_SEARCH_PATHS = (

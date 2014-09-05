@@ -20,6 +20,7 @@
 #define kTextImageYMargin       10.0f
 #define kImageTopMargin         10.0f
 #define kTextFontSize           16.0f
+#define kTextAvatarMargin       5.0f
 
 #define EMOTION_SIZE            18
 
@@ -81,7 +82,7 @@
     else{
         image = [UIImage imageNamed:@"message_bg_sending"];
     }
-    self.bgImageView.image = [image resizableImageWithCapInsets:UIEdgeInsetsMake(30, 20, 10, 20)];
+    self.bgImageView.image = [image resizableImageWithCapInsets:UIEdgeInsetsMake(15, 20, 15, 20)];
     
     CGFloat maxTextWidth = kMaxMessageWidth-kArrowWidth-kTextLeftSideMargin-kTextRightSideMargin;
     
@@ -94,7 +95,7 @@
     CGRect loadingRect;
     
     if (self.messageDirection == MessageDirectionLeft) {
-        self.bgImageView.frame = CGRectMake(kAvatarAll, yOffset+kImageTopMargin, kArrowWidth+kTextLeftSideMargin+kTextRightSideMargin+size.width, size.height+kTextImageYMargin*2);
+        self.bgImageView.frame = CGRectMake(kAvatarAll + kTextAvatarMargin, yOffset+kImageTopMargin, kArrowWidth+kTextLeftSideMargin+kTextRightSideMargin+size.width, size.height+kTextImageYMargin*2);
         self.titleLabel.frame = CGRectMake(kAvatarAll+kArrowWidth+kTextLeftSideMargin, yOffset+kTextImageYMargin+kImageTopMargin, size.width, size.height);
         
         loadingRect = CGRectMake(self.bgImageView.frame.origin.x+self.bgImageView.frame.size.width, self.bgImageView.frame.origin.y, 16, 16);
@@ -102,7 +103,7 @@
     else{
         
         CGFloat fullWidth = self.frame.size.width;
-        CGFloat xOffset = fullWidth-(kArrowWidth+kTextLeftSideMargin+kTextRightSideMargin+size.width)-kAvatarAll;
+        CGFloat xOffset = fullWidth-(kArrowWidth+kTextLeftSideMargin+kTextRightSideMargin+size.width)-kAvatarAll - kTextAvatarMargin;
         self.bgImageView.frame = CGRectMake(xOffset, yOffset+kImageTopMargin, kArrowWidth+kTextLeftSideMargin+kTextRightSideMargin+size.width, size.height+kTextImageYMargin*2);
         
         xOffset = fullWidth-(size.width)-kAvatarAll-kArrowWidth-kTextLeftSideMargin;

@@ -191,9 +191,12 @@
 }
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
-    MessageInfo* messageInfo = [_messageInfoes objectAtIndex:indexPath.row];
-    [MessageProvider removeChatPeerWithReceiverId:messageInfo.receiveId];
-//    [MessageProvider addPrivateMessageItem];
+    id obj = [_messageInfoes objectAtIndex:indexPath.row];
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        MessageInfo* messageInfo = obj;
+        [MessageProvider removeChatPeerWithReceiverId:messageInfo.receiveId];        
+    });
+
 
     [_messageInfoes removeObjectAtIndex:indexPath.row];
     [tableView beginUpdates];

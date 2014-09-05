@@ -65,11 +65,20 @@ static WeiboHelper *_sharedInstance = nil;
 }
 
 - (void)request:(WBHttpRequest *)request didFinishLoadingWithResult:(NSString *)result{
-    
+
 }
 
 - (void)request:(WBHttpRequest *)request didFinishLoadingWithDataResult:(NSData *)data{
-    
+    NSDictionary* dic = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
+    if(![dic objectForKey:@"error_code"]){
+        User* user = [[User alloc] init];
+        user.userId = (NSString*)[[EGOCache globalCache] objectForKey:@"userToken"];
+        user.name = [dic objectForKey:@"name"];
+        user.avatar = [dic objectForKey:@"avatar_large"];
+        user.gender = [[dic objectForKey:@"gender"] isEqualToString:@"m"] ? @"男" : @"女";
+        [_delegate handleUserResponse:user];
+
+    }
 }
 
 @end

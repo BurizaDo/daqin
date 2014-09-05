@@ -151,7 +151,7 @@
     InputToolBar* inputView = [[InputToolBar alloc] initWithFrame:inputFrame superView:self.view];
     [self.view addSubview:inputView];
     self.messageInputView = inputView;
-
+    messageTableView.backgroundColor = [UIColor colorWithRed:0xef/255.0 green:0xef/255.0 blue:0xef/255.0 alpha:1];
     [self setTableViewInsetsWithBottomValue:kInputViewHeight];
 }
 

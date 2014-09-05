@@ -17,6 +17,7 @@
 #define kImageTopMargin         10.0f
 #define kTextFontSize           12.0f
 #define kVoiceLabelSize           80.0f
+#define kTextAvatarMargin       5.0f
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier target:(id)target
 {
@@ -90,7 +91,7 @@
     CGRect loadingRect;
     
     if (self.messageDirection == MessageDirectionLeft) {
-        self.bgImageView.frame = CGRectMake(kAvatarAll, yOffset+kImageTopMargin, kArrowWidth+kTextLeftSideMargin+kTextRightSideMargin+actualVoiceLabelWidth, size.height+kTextImageYMargin*2);
+        self.bgImageView.frame = CGRectMake(kAvatarAll + kTextAvatarMargin, yOffset+kImageTopMargin, kArrowWidth+kTextLeftSideMargin+kTextRightSideMargin+actualVoiceLabelWidth, size.height+kTextImageYMargin*2);
         
         UIImage* voice = [UIImage imageNamed:@"voice_others_0032.png"];
         self.voiceImageView.image = voice;
@@ -107,7 +108,7 @@
     }
     else{
         CGFloat fullWidth = self.frame.size.width;
-        CGFloat xOffset = fullWidth-(kArrowWidth+kTextLeftSideMargin+kTextRightSideMargin+actualVoiceLabelWidth)-kAvatarAll;
+        CGFloat xOffset = fullWidth-(kArrowWidth+kTextLeftSideMargin+kTextRightSideMargin+actualVoiceLabelWidth)-kAvatarAll - kTextAvatarMargin;
         self.bgImageView.frame = CGRectMake(xOffset, yOffset+kImageTopMargin, kArrowWidth+kTextLeftSideMargin+kTextRightSideMargin+actualVoiceLabelWidth, size.height+kTextImageYMargin*2);
         
         UIImage* voice = [UIImage imageNamed:@"voice_my_0032.png"];
