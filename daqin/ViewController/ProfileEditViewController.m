@@ -169,6 +169,8 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     [self setup];
+    UITapGestureRecognizer* gesture = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(hideKeyboard)];
+    [_scrollView addGestureRecognizer:gesture];
 }
 
 - (void)viewWillAppear:(BOOL)animated{

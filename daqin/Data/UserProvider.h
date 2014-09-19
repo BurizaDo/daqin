@@ -19,4 +19,14 @@
          onSuccess:(void(^)())resultBlock
          onFailure:(ResponseError)failureBlock;
 
++ (void)registerUser:(NSString*)account
+            password:(NSString*)pwd
+           onSuccess:(ResponseObject)successBlock
+           onFailure:(ResponseError)failureBlock;
+
++ (void)login:(NSString*)account
+            password:(NSString*)pwd
+           onSuccess:(ResponseObject)successBlock
+           onFailure:(ResponseError)failureBlock;
+
 @end

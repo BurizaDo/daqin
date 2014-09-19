@@ -51,20 +51,23 @@
     self.viewControllers = controllers;
 }
 
-- (void)loginSucceed{
+- (void)switchViewController{
     PostViewController* postVC = [[PostViewController alloc] init];
     UINavigationController* postNC = [[UINavigationController alloc] initWithRootViewController:postVC];
     postNC.tabBarItem = [self createTabBarItemImage:@"03" selected:@"select_03"];
-
-//    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-//    UIViewController *myVC = (UIViewController *) [storyboard instantiateViewControllerWithIdentifier:@"ProfileVC"];
-//    UINavigationController* myNC = [[UINavigationController alloc] initWithRootViewController:myVC];
-//    myNC.tabBarItem = [self createTabBarItemImage:@"04" selected:@"select_04"];
-
+    
     NSMutableArray* controllers = [NSMutableArray arrayWithArray:self.viewControllers];
-//    [controllers replaceObjectAtIndex:3 withObject:myNC];
     [controllers replaceObjectAtIndex:2 withObject:postNC];
     self.viewControllers = controllers;
+}
+
+- (void)registerSucceed{
+    [self switchViewController];
+    self.selectedIndex = 3;
+}
+
+- (void)loginSucceed{
+    [self switchViewController];
 }
 
 - (UINavigationController*)generateLoginNavControllerImage:(NSString*)imageName selected:(NSString*)sel{
@@ -103,6 +106,7 @@
 //        [controllers replaceObjectAtIndex:3 withObject:my];
         self.viewControllers = controllers;
     }
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(registerSucceed) name:@"registerSucceed" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loginSucceed) name:@"loginSucceed" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loginOut) name:@"didlogout" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(postSucceed) name:kPostSucceed object:nil];

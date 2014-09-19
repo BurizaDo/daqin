@@ -237,6 +237,8 @@
 		E2B165CD19B85974004269A6 /* xingse_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = E2B165CC19B85974004269A6 /* xingse_logo.png */; };
 		E2B165CF19B8677D004269A6 /* slogan.png in Resources */ = {isa = PBXBuildFile; fileRef = E2B165CE19B8677D004269A6 /* slogan.png */; };
 		E2B32E4D19B96B2F00D199A9 /* Icon_120x120.png in Resources */ = {isa = PBXBuildFile; fileRef = E2B32E4C19B96B2F00D199A9 /* Icon_120x120.png */; };
+		E2B32E5119C690B300D199A9 /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E2B32E4F19C690B300D199A9 /* RegisterViewController.m */; };
+		E2B32E5219C690B300D199A9 /* RegisterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E2B32E5019C690B300D199A9 /* RegisterViewController.xib */; };
 		E2BE86DA197E558D00B47378 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E2BE86D9197E558D00B47378 /* Foundation.framework */; };
 		E2BE86DC197E558D00B47378 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E2BE86DB197E558D00B47378 /* CoreGraphics.framework */; };
 		E2BE86DE197E558D00B47378 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E2BE86DD197E558D00B47378 /* UIKit.framework */; };
@@ -618,6 +620,9 @@
 		E2B165CC19B85974004269A6 /* xingse_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = xingse_logo.png; sourceTree = "<group>"; };
 		E2B165CE19B8677D004269A6 /* slogan.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = slogan.png; sourceTree = "<group>"; };
 		E2B32E4C19B96B2F00D199A9 /* Icon_120x120.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon_120x120.png; sourceTree = "<group>"; };
+		E2B32E4E19C690B300D199A9 /* RegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterViewController.h; sourceTree = "<group>"; };
+		E2B32E4F19C690B300D199A9 /* RegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterViewController.m; sourceTree = "<group>"; };
+		E2B32E5019C690B300D199A9 /* RegisterViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RegisterViewController.xib; sourceTree = "<group>"; };
 		E2BE86D6197E558D00B47378 /* daqin.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = daqin.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E2BE86D9197E558D00B47378 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		E2BE86DB197E558D00B47378 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -1088,6 +1093,9 @@
 				E2A44A3919985C24004F4476 /* LoginViewController.h */,
 				E2A44A3A19985C24004F4476 /* LoginViewController.m */,
 				E2A44A3B19985C24004F4476 /* LoginViewController.xib */,
+				E2B32E4E19C690B300D199A9 /* RegisterViewController.h */,
+				E2B32E4F19C690B300D199A9 /* RegisterViewController.m */,
+				E2B32E5019C690B300D199A9 /* RegisterViewController.xib */,
 				E2A44A3C19985C24004F4476 /* MyViewController.h */,
 				E2A44A3D19985C24004F4476 /* MyViewController.m */,
 				E2A44A3E19985C24004F4476 /* PostViewController.h */,
@@ -1489,6 +1497,7 @@
 				E2B165CD19B85974004269A6 /* xingse_logo.png in Resources */,
 				E21C5B8119A3535C0008811B /* select_04@2x.png in Resources */,
 				E2A44A0619908F1E004F4476 /* btn_small_green_on@2x.png in Resources */,
+				E2B32E5219C690B300D199A9 /* RegisterViewController.xib in Resources */,
 				E2A22FC219A5CF0E008C0AB6 /* emoji_21.png in Resources */,
 				E284645919AED71A00F7953E /* qq@2x.png in Resources */,
 				E21C5B7319A2F2210008811B /* MessageInfoCell.xib in Resources */,
@@ -1688,6 +1697,7 @@
 				E2A449F91990856C004F4476 /* UIImage+Resize.m in Sources */,
 				E2A449BD198F2CF7004F4476 /* NSData+Utils.m in Sources */,
 				E2A449CD198F8EE9004F4476 /* BCUpScrollView.m in Sources */,
+				E2B32E5119C690B300D199A9 /* RegisterViewController.m in Sources */,
 				E2A44A9C1998743F004F4476 /* AudioRecorder.m in Sources */,
 				E2A44AB2199875B7004F4476 /* MJPhotoProgressView.m in Sources */,
 				E2969CDB19B45D2C009E24F9 /* AboutViewController.m in Sources */,

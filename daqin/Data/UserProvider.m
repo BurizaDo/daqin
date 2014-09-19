@@ -32,7 +32,6 @@
 + (void)updateUser:(User*)user
          onSuccess:(void(^)())resultBlock
          onFailure:(ResponseError)failureBlock{
-    NSLog(@"%@%@%@%@%@%@", user.userId, user.name, user.age, user.signature, user.avatar, user.images);
     NSDictionary* param = @{@"userId":user.userId,
                             @"name":user.name,
                             @"age":user.age,
@@ -45,6 +44,35 @@
     } failure:^(Error *errMsg) {
         if(failureBlock){
             failureBlock(errMsg);
+        }
+    }];
+    
+}
+
++ (void)registerUser:(NSString*)account
+            password:(NSString*)pwd
+           onSuccess:(ResponseObject)successBlock
+           onFailure:(ResponseError)failureBlock{
+    NSDictionary* param = @{@"name":account, @"password":pwd};
+    [[HttpClient sharedClient] postAPI:@"register" params:param success:^(id object) {
+        successBlock(object);
+    } failure:^(Error *error) {
+        if(failureBlock){
+            failureBlock(error);
+        }
+    }];
+}
+
++ (void)login:(NSString*)account
+     password:(NSString*)pwd
+    onSuccess:(ResponseObject)successBlock
+    onFailure:(ResponseError)failureBlock{
+    NSDictionary* param = @{@"name":account, @"password":pwd};
+    [[HttpClient sharedClient] postAPI:@"login" params:param success:^(id object) {
+        successBlock(object);
+    } failure:^(Error *error) {
+        if(failureBlock){
+            failureBlock(error);
         }
     }];
     

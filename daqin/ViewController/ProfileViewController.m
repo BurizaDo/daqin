@@ -97,6 +97,18 @@
     _user = user;
 }
 
+- (void)handleRegisterSucceed{
+    [self handleLoginSucceed];
+    int delayInSeconds = 1;
+    dispatch_time_t time = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
+
+    dispatch_after(time, dispatch_get_main_queue(), ^{
+        [self edit];
+        [SVProgressHUD showSuccessWithStatus:@"请完善个人资料"];
+    });
+    
+}
+
 - (void)handleLoginSucceed{
     _user = [GlobalDataManager sharedInstance].user;
     [self setup];
@@ -126,6 +138,8 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(setup) name:@"profileChanged" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleLogout) name:@"didlogout" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleLoginSucceed) name:@"loginSucceed" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleRegisterSucceed) name:@"registerSucceed" object:nil];
+
 
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:_user ? @"个人资料" : @"登录" style:UIBarButtonItemStylePlain target:self action:@selector(edit)];
 }
