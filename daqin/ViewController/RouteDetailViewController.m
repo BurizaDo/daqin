@@ -17,6 +17,7 @@
 #import "GlobalDataManager.h"
 #import "SVProgressHUD/SVProgressHUD.h"
 #import "LoginViewController.h"
+#import "ReportViewController.h"
 
 @interface RouteDetailViewController () <MWPhotoBrowserDelegate>
 @property (nonatomic, weak) IBOutlet UILabel* seperator2;
@@ -138,25 +139,13 @@
     }
     
     [_chatButton addTarget:self action:@selector(chatClicked) forControlEvents:UIControlEventTouchUpInside];
-    
-//    UIImage* scenery = [UIImage imageNamed:@"scenery1.jpg"];
-//    CGSize imageSize = scenery.size;
-    
-//    UIImage *scaledImage =
-//    [UIImage imageWithCGImage:[scenery CGImage]
-//                        scale:(scenery.scale * (imageSize.width/320))
-//                  orientation:(scenery.imageOrientation)];
-    
-//    CGSize s = scaledImage.size;
-//    float upHeight = 16 * imageSize.height / 39;
-//    CGRect up = CGRectMake(0, 0, 640, 128);
-//    UIImage* splitUp = [self splitImage:scenery frame:up];
-//    CGRect r = self.navigationController.navigationBar.frame;
-//    [self.navigationController.navigationBar setBackgroundImage:scenery forBarMetrics:UIBarMetricsDefault];
+ 
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"举报" style:(UIBarButtonItemStyleBordered) target:self action:@selector(report)];
+}
 
-//    CGRect down = CGRectMake(0, 128, 640, 184);
-//    UIImage* splitDown = [self splitImage:scenery frame:down];
-//    _topBackground.image = scenery;
+- (void)report{
+    ReportViewController* rvc = [[ReportViewController alloc] init];
+    [self.navigationController pushViewController:rvc animated:YES];
 }
 
 - (void)chatClicked{
