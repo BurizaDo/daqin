@@ -18,10 +18,14 @@
 #import "SVProgressHUD/SVProgressHUD.h"
 #import "LoginViewController.h"
 #import "ReportViewController.h"
+#import "ListingProvider.h"
 
 @interface RouteDetailViewController () <MWPhotoBrowserDelegate>
 @property (nonatomic, weak) IBOutlet UILabel* seperator2;
-@property (nonatomic, weak) IBOutlet UILabel* seperator3;
+@property (strong, nonatomic) IBOutlet UIView *commandView;
+@property (weak, nonatomic) IBOutlet UIButton *beentoBtn;
+@property (weak, nonatomic) IBOutlet UIButton *message;
+@property (assign, nonatomic) BOOL hasBeenTo;
 @end
 
 @implementation RouteDetailViewController
@@ -141,6 +145,44 @@
     [_chatButton addTarget:self action:@selector(chatClicked) forControlEvents:UIControlEventTouchUpInside];
  
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"举报" style:(UIBarButtonItemStyleBordered) target:self action:@selector(report)];
+    
+    [self handleMarkSucceed];
+    
+    User* user = [GlobalDataManager sharedInstance].user;
+    if(user){
+        [ListingProvider hasBeenTo:user.userId messageId:_route.routeId onSuccess:^(id object) {
+            _hasBeenTo = [((NSNumber*)object) boolValue];
+        } onFailure:^(Error *error) {
+            
+        }];
+    }
+    
+    [_beentoBtn addTarget:self action:@selector(doMark) forControlEvents:UIControlEventTouchUpInside];
+}
+
+- (void)handleMarkSucceed{
+    [ListingProvider getMarkedCount:_route.routeId onSuccess:^(id object) {
+        NSString* count = [NSString stringWithFormat:@"(%@)", object];
+        [_beentoBtn setTitle:[@"去过" stringByAppendingString:count] forState:UIControlStateNormal];
+    } onFailure:^(Error *error) {
+        
+    }];
+
+}
+
+- (void)doMark{
+    User* user = [GlobalDataManager sharedInstance].user;
+    if(!user){
+        LoginViewController* vc = [[LoginViewController alloc] init];
+        [self.navigationController pushViewController:vc animated:YES];
+    }else{
+        [ListingProvider markAsBeento:user.userId messageId:_route.routeId hasBeento:!_hasBeenTo onSuccess:^{
+            _hasBeenTo = !_hasBeenTo;
+            [self handleMarkSucceed];
+        } onFailure:^(Error *error) {
+            
+        }];
+    }
 }
 
 - (void)report{
@@ -186,26 +228,30 @@
     CGRect descRect = _description.frame;
     _seperator2.frame = CGRectMake(15, descRect.origin.y + descRect.size.height + 15, _seperator2.frame.size.width, _seperator2.frame.size.height);
     
-    _imagesView.frame = CGRectMake(0, _seperator2.frame.origin.y + _seperator2.frame.size.height + 15, 320, 100);
-    
     BOOL isImage = _route.user.images.length > 0;
+
+
+    CGRect superRect = [_scrollView superview].frame;
+
     if(isImage){
-        _seperator3.frame = CGRectMake(15, _imagesView.frame.origin.y + _imagesView.frame.size.height + 15, _seperator3.frame.size.width, _seperator3.frame.size.height);
-        _chatButton.frame = CGRectMake(_chatButton.frame.origin.x, _seperator3.frame.origin.y + _seperator3.frame.size.height + 15, _chatButton.frame.size.width, _chatButton.frame.size.height);
+        _imagesView.frame = CGRectMake(0, _seperator2.frame.origin.y + _seperator2.frame.size.height + 15, 320, 100);
+        float y = _imagesView.frame.origin.y + _imagesView.frame.size.height + _commandView.frame.size.height + 15;
+        _scrollView.contentSize = CGSizeMake(superRect.size.width, y);
     }else{
-        _seperator3.hidden = YES;
         _imagesView.hidden = YES;
-        _chatButton.frame = CGRectMake(_chatButton.frame.origin.x, _seperator2.frame.origin.y + _seperator2.frame.size.height + 15, _chatButton.frame.size.width, _chatButton.frame.size.height);
         
     }
+    
+    [self.view addSubview:_commandView];
+    _commandView.frame = CGRectMake((self.view.frame.size.width - _commandView.frame.size.width)/2,
+                                    self.view.frame.size.height - _commandView.frame.size.height - 5,
+                                    _commandView.frame.size.width,
+                                    _commandView.frame.size.height);
+    _chatButton.frame = CGRectMake(177, 12, 114, 30);
 }
 
 - (void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
-    float y = _chatButton.frame.origin.y + _chatButton.frame.size.height + 15;
-    CGRect superRect = [_scrollView superview].frame;
-    _scrollView.contentSize = CGSizeMake(superRect.size.width, y);
-    _scrollView.frame = CGRectMake(0, 0, superRect.size.width, superRect.size.height);
 }
 
 - (void)didReceiveMemoryWarning

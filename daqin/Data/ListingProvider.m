@@ -22,6 +22,7 @@
         NSMutableArray* routes = [[NSMutableArray alloc] init];
         for(NSDictionary* dic in ary){
             Route* route = [[Route alloc] init];
+            route.routeId = [dic objectForKey:@"id"];
             route.destination = [dic objectForKey:@"destination"];
             route.description = [dic objectForKey:@"message"];
             route.user = [User parseFromDictionary:[dic objectForKey:@"user"]];
@@ -83,6 +84,44 @@
     
 }
 
++ (void)getMarkedCount:(NSString*)messageId
+             onSuccess:(ResponseObject)resultBlock
+             onFailure:(ResponseError)failureBlock{
+    NSDictionary* param = @{@"messageId":messageId};
+    [[HttpClient sharedClient] getAPI:@"getMarkedCount" params:param success:^(id object) {
+        resultBlock(object);
+    } failure:^(Error *error) {
+        failureBlock(error);
+    }];
+}
+
++ (void)markAsBeento:(NSString*)userId
+           messageId:(NSString*)msgId
+           hasBeento:(BOOL)beenTo
+           onSuccess:(ResponseBlock)resultBlock
+           onFailure:(ResponseError)failureBlock{
+    NSNumber* bt = [NSNumber numberWithBool:beenTo];
+    NSDictionary* param = @{@"messageId":msgId, @"userId":userId, @"hasBeenTo":bt};
+    [[HttpClient sharedClient] getAPI:@"markAsBeenTo" params:param success:^(id object) {
+        resultBlock(object);
+    } failure:^(Error *error) {
+        failureBlock(error);
+    }];
+}
+
++ (void)hasBeenTo:(NSString*)userId
+        messageId:(NSString*)msgId
+        onSuccess:(ResponseObject)resultBlock
+        onFailure:(ResponseError)failureBlock{
+    NSDictionary* param = @{@"userId":userId, @"messageId":msgId};
+    [[HttpClient sharedClient] getAPI:@"hasBeenTo" params:param success:^(id object) {
+        resultBlock(object);
+    } failure:^(Error *error) {
+        if(failureBlock){
+            failureBlock(error);
+        }
+    }];
+}
 
 
 @end

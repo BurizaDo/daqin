@@ -8,18 +8,20 @@
             <connections>
                 <outlet property="age" destination="v4w-bm-iX9" id="wfS-gr-dit"/>
                 <outlet property="avatar" destination="S1Z-TM-MPb" id="S5Z-H4-DnM"/>
+                <outlet property="beentoBtn" destination="2DH-ad-oME" id="Ckt-c1-sYv"/>
                 <outlet property="chatButton" destination="b5P-sN-YIR" id="Ljo-Eb-QyL"/>
+                <outlet property="commandView" destination="KzN-ZR-kdd" id="JrD-19-JDH"/>
                 <outlet property="description" destination="XXE-7H-3n3" id="ctu-gc-07L"/>
                 <outlet property="destination" destination="LBn-8X-3N2" id="v38-0A-Njm"/>
                 <outlet property="imagesView" destination="09w-NS-S7b" id="iyT-Np-EIG"/>
                 <outlet property="iv_desc" destination="FOp-wh-IrJ" id="gZi-FR-5ig"/>
                 <outlet property="iv_dest" destination="b91-km-4Iu" id="BC0-XP-h4u"/>
                 <outlet property="iv_time" destination="9VE-kF-Jwb" id="X6p-mX-nZd"/>
+                <outlet property="message" destination="uhR-Jp-qeu" id="BUl-xP-GFO"/>
                 <outlet property="name" destination="zMm-J6-L17" id="ggG-qZ-SlN"/>
                 <outlet property="schedule" destination="aEp-Rv-HoF" id="Gm2-8g-s41"/>
                 <outlet property="scrollView" destination="PkK-yu-0bS" id="hiC-Dr-5o4"/>
                 <outlet property="seperator2" destination="7dZ-lE-bhf" id="Qte-Vw-b0R"/>
-                <outlet property="seperator3" destination="MYk-3q-Zm2" id="gGQ-ho-8eG"/>
                 <outlet property="signature" destination="BDZ-2A-4k6" id="FXX-PX-QTX"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -68,15 +70,6 @@
                             <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="b5P-sN-YIR" userLabel="私聊">
-                            <rect key="frame" x="15" y="503" width="290" height="45"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <fontDescription key="fontDescription" name="STHeitiSC-Light" family="Heiti SC" pointSize="21"/>
-                            <inset key="titleEdgeInsets" minX="-290" minY="0.0" maxX="0.0" maxY="0.0"/>
-                            <state key="normal" title="私   聊" image="button.png">
-                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            </state>
-                        </button>
                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="要去：" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="0Kp-Ja-4Ft">
                             <rect key="frame" x="63" y="194" width="45" height="15"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -145,13 +138,6 @@
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="MYk-3q-Zm2">
-                            <rect key="frame" x="15" y="447" width="290" height="1"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <color key="backgroundColor" red="0.78431372549019607" green="0.78431372549019607" blue="0.78431372549019607" alpha="1" colorSpace="calibratedRGB"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                            <nil key="highlightedColor"/>
-                        </label>
                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="PhM-wo-hhG">
                             <rect key="frame" x="46" y="209" width="1" height="14"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -166,20 +152,6 @@
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="2DH-ad-oME">
-                            <rect key="frame" x="38" y="463" width="100" height="30"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <state key="normal" title="去过">
-                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                            </state>
-                        </button>
-                        <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="uhR-Jp-qeu">
-                            <rect key="frame" x="162" y="463" width="100" height="30"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <state key="normal" title="留言">
-                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                            </state>
-                        </button>
                     </subviews>
                     <color key="backgroundColor" red="0.95294117647058818" green="0.95686274509803915" blue="0.96470588235294119" alpha="1" colorSpace="calibratedRGB"/>
                 </scrollView>
@@ -188,9 +160,42 @@
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
         </view>
+        <view contentMode="scaleToFill" id="KzN-ZR-kdd">
+            <rect key="frame" x="0.0" y="0.0" width="300" height="53"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="2DH-ad-oME">
+                    <rect key="frame" x="11" y="12" width="75" height="30"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <state key="normal" title="去过">
+                        <color key="titleColor" red="0.12549019610000001" green="0.59607843140000005" blue="0.83921568629999999" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="uhR-Jp-qeu">
+                    <rect key="frame" x="94" y="12" width="75" height="30"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <state key="normal" title="留言">
+                        <color key="titleColor" red="0.12549019610000001" green="0.59607843140000005" blue="0.83921568629999999" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="b5P-sN-YIR" userLabel="私聊">
+                    <rect key="frame" x="177" y="12" width="114" height="30"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <color key="backgroundColor" red="0.12549019610000001" green="0.59607843140000005" blue="0.83921568629999999" alpha="1" colorSpace="calibratedRGB"/>
+                    <fontDescription key="fontDescription" name="STHeitiSC-Light" family="Heiti SC" pointSize="21"/>
+                    <state key="normal" title="私   聊">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                </button>
+            </subviews>
+            <color key="backgroundColor" red="0.12941176470588234" green="0.12941176470588234" blue="0.12941176470588234" alpha="0.81000000000000005" colorSpace="calibratedRGB"/>
+        </view>
     </objects>
     <resources>
-        <image name="button.png" width="290" height="45"/>
         <image name="detail_avatar.png" width="206" height="206"/>
     </resources>
 </document>

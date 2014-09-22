@@ -23,4 +23,19 @@
                     msgId:(NSString*)messageId
                 onSuccess:(ResponseBlock)resultBlock
                 onFailure:(ResponseError)failureBlock;
+
++ (void)getMarkedCount:(NSString*)messageId
+             onSuccess:(ResponseObject)resultBlock
+             onFailure:(ResponseError)failureBlock;
+
++ (void)markAsBeento:(NSString*)userId
+           messageId:(NSString*)msgId
+           hasBeento:(BOOL)beenTo
+           onSuccess:(ResponseBlock)resultBlock
+           onFailure:(ResponseError)failureBlock;
+
++ (void)hasBeenTo:(NSString*)userId
+        messageId:(NSString*)msgId
+        onSuccess:(ResponseObject)resultBlock
+        onFailure:(ResponseError)failureBlock;
 @end

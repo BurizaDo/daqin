@@ -198,6 +198,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     Route* route = _routes[indexPath.row];
     RouteDetailViewController* detail = [[RouteDetailViewController alloc] initWithNibName:@"RouteDetailViewController" bundle:nil];
+    detail.hidesBottomBarWhenPushed = YES;
     detail.route = route;
 //    self.navigationController.navigationBar.translucent = NO;
     [self.navigationController pushViewController:detail animated:YES];
