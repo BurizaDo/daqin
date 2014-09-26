@@ -19,13 +19,20 @@
 #import "LoginViewController.h"
 #import "ReportViewController.h"
 #import "ListingProvider.h"
+#import "CommentsProvider.h"
+#import "Comment.h"
+#import "SimpleInputView.h"
+#import "CommentsTableViewCell.h"
+#import "CommentsViewController.h"
 
-@interface RouteDetailViewController () <MWPhotoBrowserDelegate>
+@interface RouteDetailViewController () <MWPhotoBrowserDelegate, InputDelegate>
 @property (nonatomic, weak) IBOutlet UILabel* seperator2;
 @property (strong, nonatomic) IBOutlet UIView *commandView;
 @property (weak, nonatomic) IBOutlet UIButton *beentoBtn;
 @property (weak, nonatomic) IBOutlet UIButton *message;
 @property (assign, nonatomic) BOOL hasBeenTo;
+@property (nonatomic, strong) SimpleInputView* inputView;
+@property (nonatomic, strong) UIView* commentsContainer;
 @end
 
 @implementation RouteDetailViewController
@@ -158,6 +165,98 @@
     }
     
     [_beentoBtn addTarget:self action:@selector(doMark) forControlEvents:UIControlEventTouchUpInside];
+    
+
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+											 selector:@selector(handleWillShowKeyboardNotification:)
+												 name:UIKeyboardWillShowNotification
+                                               object:nil];
+    
+    UITapGestureRecognizer* gesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideKeyboard)];
+    [_scrollView addGestureRecognizer:gesture];
+
+    [self showComments];
+}
+
+- (void)showComments{
+    [CommentsProvider getCommentsMessageId:_route.routeId from:0 size:3 onSuccess:^(NSArray *responseArray){
+        if(_commentsContainer == nil){
+            _commentsContainer = [[UIView alloc] init];
+        }
+        [[_commentsContainer subviews] makeObjectsPerformSelector:@selector(removeFromSuperview)];
+        CGFloat y = 0;
+        for(Comment* cmt in responseArray){
+            CommentsTableViewCell* cell = [[NSBundle mainBundle] loadNibNamed:@"CommentsTableViewCell" owner:nil options:nil][0];
+            [cell adaptWithComment:cmt];
+            [_commentsContainer addSubview:cell];
+            cell.frame = CGRectMake(0, y, cell.bounds.size.width, cell.bounds.size.height);
+            y += cell.frame.size.height + 1;
+        }
+        if(y > 0){
+            UIButton* cmtBtn = [[UIButton alloc] initWithFrame:CGRectMake(10, y + 5, 300, 30)];
+            [cmtBtn setTitle:@"查看更多" forState:UIControlStateNormal];
+            [cmtBtn setBackgroundColor:[UIColor colorWithRed:32/255.0 green:152/255.0 blue:214/255.0 alpha:1]];
+            [cmtBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+            [_commentsContainer addSubview:cmtBtn];
+            y += cmtBtn.frame.size.height;
+            [cmtBtn addTarget:self action:@selector(moreComments) forControlEvents:UIControlEventTouchUpInside];
+        }
+        if(y > 0){
+            CGFloat orignY = _route.user.images.length > 0 ?
+            _imagesView.frame.origin.y + _imagesView.frame.size.height + 10:
+            _seperator2.frame.origin.y + _seperator2.frame.size.height + 10;
+            _commentsContainer.frame = CGRectMake(0, orignY, 320, y);
+            _scrollView.contentSize = CGSizeMake(_scrollView.frame.size.width, _commentsContainer.frame.origin.y + _commentsContainer.frame.size.height + _commandView.frame.size.height + 20);
+            [_scrollView addSubview:_commentsContainer];
+        }else{
+            [_commentsContainer removeFromSuperview];
+        }
+
+    } onFailure:^(Error *error) {
+        
+    }];
+}
+
+- (void)moreComments{
+    CommentsViewController* vc = [[CommentsViewController alloc] initWithNibName:@"CommentsViewController" bundle:nil];
+    vc.routeId = _route.routeId;
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
+- (void)hideKeyboard{
+    if(_inputView){
+        [_inputView.textView resignFirstResponder];
+        [_inputView removeFromSuperview];
+    }
+}
+
+- (void)handleWillShowKeyboardNotification:(NSNotification *)notification
+{
+    CGRect keyboardRect = [notification.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
+	UIViewAnimationCurve curve = [notification.userInfo[UIKeyboardAnimationCurveUserInfoKey] integerValue];
+	double duration = [notification.userInfo[UIKeyboardAnimationDurationUserInfoKey] doubleValue];
+    
+    NSInteger animationCurveOption = (curve << 16);
+    
+    [UIView animateWithDuration:duration
+                          delay:0.0
+                        options:animationCurveOption
+                     animations:^
+     {
+         CGFloat keyboardY = [self.view convertRect:keyboardRect fromView:nil].origin.y;
+         
+         CGRect inputViewFrame = _inputView.frame;
+         CGFloat inputViewFrameY = keyboardY - inputViewFrame.size.height;
+         
+         _inputView.frame = CGRectMake(inputViewFrame.origin.x,
+                                                  inputViewFrameY,
+                                                  inputViewFrame.size.width,
+                                                  inputViewFrame.size.height);
+         
+//         [self setTableViewInsetsWithBottomValue:self.view.frame.size.height - self.messageInputView.frame.origin.y];
+     } completion:^(BOOL finished) {
+     }];
 }
 
 - (void)handleMarkSucceed{
@@ -236,7 +335,11 @@
     if(isImage){
         _imagesView.frame = CGRectMake(0, _seperator2.frame.origin.y + _seperator2.frame.size.height + 15, 320, 100);
         float y = _imagesView.frame.origin.y + _imagesView.frame.size.height + _commandView.frame.size.height + 15;
-        _scrollView.contentSize = CGSizeMake(superRect.size.width, y);
+        if(_commentsContainer == nil){
+            _scrollView.contentSize = CGSizeMake(superRect.size.width, y);
+        }else{
+            _scrollView.contentSize = CGSizeMake(superRect.size.width, _commentsContainer.frame.origin.y + _commentsContainer.frame.size.height + _commandView.frame.size.height + 20);
+        }
     }else{
         _imagesView.hidden = YES;
         
@@ -247,7 +350,20 @@
                                     self.view.frame.size.height - _commandView.frame.size.height - 5,
                                     _commandView.frame.size.width,
                                     _commandView.frame.size.height);
+    [_message addTarget:self action:@selector(doComment) forControlEvents:UIControlEventTouchUpInside];
     _chatButton.frame = CGRectMake(177, 12, 114, 30);
+}
+
+- (void)doComment{
+    if(!_inputView){
+        CGRect inputFrame = CGRectMake(0, self.view.frame.size.height - 40, 320, 40);
+        _inputView = [[SimpleInputView alloc] initWithFrame:inputFrame];
+        _inputView.messageDelegate = self;
+    }
+    if(_inputView.superview == nil){
+        [self.view addSubview:_inputView];
+    }
+    [_inputView.textView becomeFirstResponder];
 }
 
 - (void)viewDidAppear:(BOOL)animated{
@@ -258,6 +374,18 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+#pragma mark - InputDelegate
+- (void)onSendMessage:(NSString *)text{
+    [self hideKeyboard];
+    NSDate* current = [NSDate date];
+    NSTimeInterval time = [current timeIntervalSince1970];
+    [CommentsProvider commitCommentMessageId:_route.routeId userId:[GlobalDataManager sharedInstance].user.userId replyId:nil message:text timestamp:[NSString stringWithFormat:@"%ld", (long)time] onSuccess:^{
+        [self showComments];
+    } onFailure:^(Error *error) {
+        
+    }];
 }
 
 @end
