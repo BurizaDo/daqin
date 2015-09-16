@@ -13,15 +13,17 @@
 
 @implementation ListingProvider
 
-+ (void)getAllListingFrom:(int)from size:(int)size
-                onSuccess:(ResponseArray)resultBlock
++ (void)getAllClubsLongitude:(double)longitude
+                    latitude:(double)latitude
+                   onSuccess:(ResponseArray)resultBlock
                 onFailure:(ResponseError)failureBlock{
-    NSDictionary* param = @{@"start":[NSNumber numberWithInt:from], @"size":[NSNumber numberWithInt:size]};
-    [[HttpClient sharedClient] postAPI:@"getMessage" params:param success:^(id obj) {
+    NSDictionary* param = @{@"longitude":[NSNumber numberWithDouble:longitude], @"latitude":[NSNumber numberWithDouble:latitude]};
+    [[HttpClient sharedClient] postAPI:@"getClubs" params:param success:^(id obj) {
         NSArray* ary = obj;
         NSMutableArray* routes = [[NSMutableArray alloc] init];
         for(NSDictionary* dic in ary){
-            Route* route = [[Route alloc] init];
+            Club* club = [[Club alloc] init];
+            club.name = 
             route.routeId = [dic objectForKey:@"id"];
             route.destination = [dic objectForKey:@"destination"];
             route.description = [dic objectForKey:@"message"];

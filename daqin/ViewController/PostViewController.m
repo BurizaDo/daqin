@@ -18,7 +18,7 @@
 
 @interface PostViewController ()  <UITableViewDelegate, UITableViewDataSource,UIScrollViewDelegate, DateSelectDelegate>
 @property (nonatomic, assign) UITextField* destination;
-@property (nonatomic, assign) UITextField* description;
+@property (nonatomic, assign) UITextField* describe;
 @property (nonatomic, assign) UITextField* startTime;
 @property (nonatomic, assign) UITextField* endTime;
 @property (nonatomic, copy) NSDate* startDate;
@@ -85,7 +85,7 @@
 
 -(void)hideKeyboard{
     [self.destination resignFirstResponder];
-    [self.description resignFirstResponder];
+    [self.describe resignFirstResponder];
 }
 
 -(void)scrollViewWillBeginDragging:(UIScrollView *)scrollView{
@@ -131,7 +131,7 @@
     }else if(indexPath.row == 3){
         cell.nameLabel.text = @"备注：";
         cell.textField.placeholder = @"求拼车、结伴、喝茶";
-        _description = cell.textField;
+        _describe = cell.textField;
     }
     return cell;
 }
@@ -203,7 +203,7 @@
 
 -(void)reset{
     _destination.text = @"";
-    _description.text = @"";
+    _describe.text = @"";
     [self hideKeyboard];
 }
 
@@ -229,7 +229,7 @@
                           @"destination":_destination.text,
                           @"start_time":[NSString stringWithFormat:@"%d",(int)[_startDate timeIntervalSince1970]],
                           @"end_time":[NSString stringWithFormat:@"%d",(int)[_endDate timeIntervalSince1970]],
-                          @"message":_description.text};
+                          @"message":_describe.text};
     [[HttpClient sharedClient] getAPI:@"addMessage" params:dic success:^(id obj) {
         [[NSNotificationCenter defaultCenter] postNotificationName:kPostSucceed object:nil];
         [self reset];

@@ -7,7 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0ED06332BCF64DAFBAC022B0 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A2DB8931F7114904A76DA37D /* libPods.a */; };
+		33D878B0396BF8CC118E2726 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A2DB8931F7114904A76DA37D /* libPods.a */; };
+		E21570B81BA7F5D900FA5541 /* libSDWebImage.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E21570B71BA7F5D900FA5541 /* libSDWebImage.a */; };
+		E21570BA1BA7F8C100FA5541 /* CommentsProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = E21570B91BA7F8C100FA5541 /* CommentsProvider.m */; };
+		E21570BC1BA7F8DB00FA5541 /* Comment.m in Sources */ = {isa = PBXBuildFile; fileRef = E21570BB1BA7F8DB00FA5541 /* Comment.m */; };
+		E21570BE1BA7F90E00FA5541 /* CommentsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E21570BD1BA7F90E00FA5541 /* CommentsViewController.m */; };
+		E21570C01BA7F92800FA5541 /* CommentsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E21570BF1BA7F92800FA5541 /* CommentsViewController.xib */; };
+		E21570C21BA7F94B00FA5541 /* SimpleInputView.m in Sources */ = {isa = PBXBuildFile; fileRef = E21570C11BA7F94B00FA5541 /* SimpleInputView.m */; };
 		E21C5B3B199DA7FA0008811B /* button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E21C5B3A199DA7FA0008811B /* button@2x.png */; };
 		E21C5B3D199DB2C10008811B /* detail_avatar.png in Resources */ = {isa = PBXBuildFile; fileRef = E21C5B3C199DB2C10008811B /* detail_avatar.png */; };
 		E21C5B43199DB6780008811B /* scenery1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E21C5B3E199DB6780008811B /* scenery1.jpg */; };
@@ -285,8 +291,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		4CD63D1B3F5641F39466F0CB /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
+		569A86C8BF8715C4C53EFD54 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		A2DB8931F7114904A76DA37D /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		C85DFE0A72AA82E484EACFE5 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		E21570B71BA7F5D900FA5541 /* libSDWebImage.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libSDWebImage.a; path = "Pods/../build/Release-iphoneos/libSDWebImage.a"; sourceTree = "<group>"; };
+		E21570B91BA7F8C100FA5541 /* CommentsProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentsProvider.m; sourceTree = "<group>"; };
+		E21570BB1BA7F8DB00FA5541 /* Comment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Comment.m; sourceTree = "<group>"; };
+		E21570BD1BA7F90E00FA5541 /* CommentsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CommentsViewController.m; path = daqin/ViewController/CommentsViewController.m; sourceTree = SOURCE_ROOT; };
+		E21570BF1BA7F92800FA5541 /* CommentsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommentsViewController.xib; sourceTree = "<group>"; };
+		E21570C11BA7F94B00FA5541 /* SimpleInputView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SimpleInputView.m; sourceTree = "<group>"; };
 		E21C5B3A199DA7FA0008811B /* button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "button@2x.png"; sourceTree = "<group>"; };
 		E21C5B3C199DB2C10008811B /* detail_avatar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = detail_avatar.png; sourceTree = "<group>"; };
 		E21C5B3E199DB6780008811B /* scenery1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = scenery1.jpg; sourceTree = "<group>"; };
@@ -628,7 +641,7 @@
 		E2B32E5319CC07FD00D199A9 /* ReportViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReportViewController.h; sourceTree = "<group>"; };
 		E2B32E5419CC07FD00D199A9 /* ReportViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReportViewController.m; sourceTree = "<group>"; };
 		E2B32E5519CC07FD00D199A9 /* ReportViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ReportViewController.xib; sourceTree = "<group>"; };
-		E2BE86D6197E558D00B47378 /* daqin.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = daqin.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		E2BE86D6197E558D00B47378 /* daqin.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = daqin.app; path = iparty.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E2BE86D9197E558D00B47378 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		E2BE86DB197E558D00B47378 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		E2BE86DD197E558D00B47378 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -671,6 +684,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E21570B81BA7F5D900FA5541 /* libSDWebImage.a in Frameworks */,
 				E2A44A6719985D4A004F4476 /* libicucore.dylib in Frameworks */,
 				E2A44A6519985D40004F4476 /* CoreLocation.framework in Frameworks */,
 				E2BE8736197FE43600B47378 /* CoreTelephony.framework in Frameworks */,
@@ -691,7 +705,7 @@
 				E284645519AECD7400F7953E /* libUMFeedback.a in Frameworks */,
 				E2BE86DE197E558D00B47378 /* UIKit.framework in Frameworks */,
 				E2BE86DA197E558D00B47378 /* Foundation.framework in Frameworks */,
-				0ED06332BCF64DAFBAC022B0 /* libPods.a in Frameworks */,
+				33D878B0396BF8CC118E2726 /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -708,6 +722,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6571C4883954B8AB33F38692 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				C85DFE0A72AA82E484EACFE5 /* Pods.debug.xcconfig */,
+				569A86C8BF8715C4C53EFD54 /* Pods.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		E21C5B6E19A2F2210008811B /* MessageInfoCell */ = {
 			isa = PBXGroup;
 			children = (
@@ -983,6 +1006,7 @@
 		E2A449D0198F8F96004F4476 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				E21570C11BA7F94B00FA5541 /* SimpleInputView.m */,
 				E2A22FDC19A5D1BB008C0AB6 /* Coretext */,
 				E2A22F7E19A5CA0E008C0AB6 /* FacialLayout.h */,
 				E2A22F7F19A5CA0E008C0AB6 /* FacialLayout.m */,
@@ -1056,6 +1080,8 @@
 		E2A44A2419985C10004F4476 /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				E21570BB1BA7F8DB00FA5541 /* Comment.m */,
+				E21570B91BA7F8C100FA5541 /* CommentsProvider.m */,
 				E2A22FE419A5D24A008C0AB6 /* Categorys */,
 				E2A22FE319A5D23B008C0AB6 /* ChatPeer.h */,
 				E2A22F8419A5CA9C008C0AB6 /* EmotionData.h */,
@@ -1084,6 +1110,8 @@
 		E2A44A3119985C24004F4476 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				E21570BF1BA7F92800FA5541 /* CommentsViewController.xib */,
+				E21570BD1BA7F90E00FA5541 /* CommentsViewController.m */,
 				E2A44AEC1998A9F4004F4476 /* TextDisplayViewController.h */,
 				E2A44AED1998A9F4004F4476 /* TextDisplayViewController.m */,
 				E2A44A68199867F3004F4476 /* MessageViewController.h */,
@@ -1315,7 +1343,7 @@
 				E2BE8701197E558D00B47378 /* daqinTests */,
 				E2BE86D8197E558D00B47378 /* Frameworks */,
 				E2BE86D7197E558D00B47378 /* Products */,
-				4CD63D1B3F5641F39466F0CB /* Pods.xcconfig */,
+				6571C4883954B8AB33F38692 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -1331,6 +1359,7 @@
 		E2BE86D8197E558D00B47378 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				E21570B71BA7F5D900FA5541 /* libSDWebImage.a */,
 				E2A44A6619985D4A004F4476 /* libicucore.dylib */,
 				E2A44A6419985D40004F4476 /* CoreLocation.framework */,
 				E2A44A6219985D32004F4476 /* MobileCoreServices.framework */,
@@ -1494,6 +1523,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E21570C01BA7F92800FA5541 /* CommentsViewController.xib in Resources */,
 				E2A22FDB19A5D01C008C0AB6 /* btn_send.png in Resources */,
 				E2A22FFB19A5EC3B008C0AB6 /* amp4.png in Resources */,
 				E2A22FD419A5CF0E008C0AB6 /* emoji_5.png in Resources */,
@@ -1659,7 +1689,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Pods-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		F5384CDE9659444D9D89E631 /* Check Pods Manifest.lock */ = {
@@ -1686,6 +1716,7 @@
 			files = (
 				E2B32E5619CC07FD00D199A9 /* ReportViewController.m in Sources */,
 				E2969CC419B04FCD009E24F9 /* WeiboHelper.m in Sources */,
+				E21570BE1BA7F90E00FA5541 /* CommentsViewController.m in Sources */,
 				E2A22FE719A5D24A008C0AB6 /* NSAttributedString+Attributes.m in Sources */,
 				E255F005199B15EF002BD40C /* Error.m in Sources */,
 				E2A44A2E19985C10004F4476 /* Route.m in Sources */,
@@ -1732,6 +1763,7 @@
 				E2A44AB4199875B7004F4476 /* MJPhotoView.m in Sources */,
 				E2A44A3019985C10004F4476 /* UserProvider.m in Sources */,
 				E2A44A8B19986FA8004F4476 /* MessageCell.m in Sources */,
+				E21570C21BA7F94B00FA5541 /* SimpleInputView.m in Sources */,
 				E2A44A5A19985C31004F4476 /* InputCell.m in Sources */,
 				E2969CC019B04C51009E24F9 /* LoginManager.m in Sources */,
 				E2A44A7B19986C0C004F4476 /* TextMessage.m in Sources */,
@@ -1739,11 +1771,13 @@
 				E2A449E31990726F004F4476 /* CQMFloatingFrameView.m in Sources */,
 				E2A44A6D19986873004F4476 /* ChatUser.m in Sources */,
 				E2A22F8C19A5CB27008C0AB6 /* FacialCell.m in Sources */,
+				E21570BC1BA7F8DB00FA5541 /* Comment.m in Sources */,
 				E2A44AD019988B11004F4476 /* MessageInfo.m in Sources */,
 				E2A449E11990726F004F4476 /* CQMFloatingContentOverlayView.m in Sources */,
 				E21C5B7219A2F2210008811B /* MessageInfoCell.m in Sources */,
 				E2A449F71990856C004F4476 /* UIImage+Alpha.m in Sources */,
 				E2A44A4719985C24004F4476 /* DateSelectViewController.m in Sources */,
+				E21570BA1BA7F8C100FA5541 /* CommentsProvider.m in Sources */,
 				E2A44A7E19986E22004F4476 /* VoiceMessage.m in Sources */,
 				E2A44AAE199875B7004F4476 /* MJPhoto.m in Sources */,
 				E2A44AC7199877BC004F4476 /* NSString+JSMessagesView.m in Sources */,
@@ -1910,7 +1944,7 @@
 		};
 		E2BE870C197E558E00B47378 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4CD63D1B3F5641F39466F0CB /* Pods.xcconfig */;
+			baseConfigurationReference = C85DFE0A72AA82E484EACFE5 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "iPhone Developer: Mengyi Xu (C49E4XGTX8)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Mengyi Xu (C49E4XGTX8)";
@@ -1920,6 +1954,24 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "daqin/daqin-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"\"${PODS_ROOT}/Headers\"",
+					"\"${PODS_ROOT}/Headers/AFNetworking\"",
+					"\"${PODS_ROOT}/Headers/Base64\"",
+					"\"${PODS_ROOT}/Headers/BlocksKit\"",
+					"\"${PODS_ROOT}/Headers/DACircularProgress\"",
+					"\"${PODS_ROOT}/Headers/EGOCache\"",
+					"\"${PODS_ROOT}/Headers/FMDB\"",
+					"\"${PODS_ROOT}/Headers/MBProgressHUD\"",
+					"\"${PODS_ROOT}/Headers/MWPhotoBrowser\"",
+					"\"${PODS_ROOT}/Headers/NSData+MD5Digest\"",
+					"\"${PODS_ROOT}/Headers/PSTCollectionView\"",
+					"\"${PODS_ROOT}/Headers/SDWebImage\"",
+					"\"${PODS_ROOT}/Headers/SVProgressHUD\"",
+					"\"${PODS_ROOT}/Headers/SVPullToRefresh\"",
+					"\"${PODS_ROOT}/Headers/WSAssetPickerController\"",
+					"$(PROJECT_DIR)/daqin/**",
+				);
 				INFOPLIST_FILE = "daqin/daqin-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LIBRARY_SEARCH_PATHS = (
@@ -1928,18 +1980,19 @@
 					"$(PROJECT_DIR)/Thirdparty/UMAnalytics_Sdk_3.1.2",
 					"$(PROJECT_DIR)/UMFeedback_iOS_1.41",
 					"$(PROJECT_DIR)/weibo_ios_sdk-master/libWeiboSDK",
+					"$(PROJECT_DIR)/build/Release-iphoneos",
 				);
 				ONLY_ACTIVE_ARCH = NO;
-				PRODUCT_NAME = daqin;
+				PRODUCT_NAME = iparty;
 				PROVISIONING_PROFILE = "7e9e45ce-3104-48e4-8661-474cf83ca139";
-				VALID_ARCHS = "i386 armv7 armv7s";
+				VALID_ARCHS = "armv7 armv7s";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
 		};
 		E2BE870D197E558E00B47378 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4CD63D1B3F5641F39466F0CB /* Pods.xcconfig */;
+			baseConfigurationReference = 569A86C8BF8715C4C53EFD54 /* Pods.release.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Mengyi Xu (3TLC5268L3)";
@@ -1949,6 +2002,24 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "daqin/daqin-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"\"${PODS_ROOT}/Headers\"",
+					"\"${PODS_ROOT}/Headers/AFNetworking\"",
+					"\"${PODS_ROOT}/Headers/Base64\"",
+					"\"${PODS_ROOT}/Headers/BlocksKit\"",
+					"\"${PODS_ROOT}/Headers/DACircularProgress\"",
+					"\"${PODS_ROOT}/Headers/EGOCache\"",
+					"\"${PODS_ROOT}/Headers/FMDB\"",
+					"\"${PODS_ROOT}/Headers/MBProgressHUD\"",
+					"\"${PODS_ROOT}/Headers/MWPhotoBrowser\"",
+					"\"${PODS_ROOT}/Headers/NSData+MD5Digest\"",
+					"\"${PODS_ROOT}/Headers/PSTCollectionView\"",
+					"\"${PODS_ROOT}/Headers/SDWebImage\"",
+					"\"${PODS_ROOT}/Headers/SVProgressHUD\"",
+					"\"${PODS_ROOT}/Headers/SVPullToRefresh\"",
+					"\"${PODS_ROOT}/Headers/WSAssetPickerController\"",
+					"$(PROJECT_DIR)/daqin/**",
+				);
 				INFOPLIST_FILE = "daqin/daqin-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LIBRARY_SEARCH_PATHS = (
@@ -1957,11 +2028,12 @@
 					"$(PROJECT_DIR)/Thirdparty/UMAnalytics_Sdk_3.1.2",
 					"$(PROJECT_DIR)/UMFeedback_iOS_1.41",
 					"$(PROJECT_DIR)/weibo_ios_sdk-master/libWeiboSDK",
+					"$(PROJECT_DIR)/build/Release-iphoneos",
 				);
 				ONLY_ACTIVE_ARCH = NO;
-				PRODUCT_NAME = daqin;
+				PRODUCT_NAME = iparty;
 				PROVISIONING_PROFILE = "fb796f4c-f26a-4d60-aba7-5fad84d9c932";
-				VALID_ARCHS = "i386 armv7 armv7s";
+				VALID_ARCHS = "armv7 armv7s";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

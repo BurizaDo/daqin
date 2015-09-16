@@ -10,13 +10,12 @@
 #import "SDWebImageDecoder.h"
 #import "UIImage+MultiFormat.h"
 #import <ImageIO/ImageIO.h>
-#import "SDWebImageManager.h"
 
-@interface SDWebImageDownloaderOperation () <NSURLConnectionDataDelegate>
+@interface SDWebImageDownloaderOperation ()
 
 @property (copy, nonatomic) SDWebImageDownloaderProgressBlock progressBlock;
 @property (copy, nonatomic) SDWebImageDownloaderCompletedBlock completedBlock;
-@property (copy, nonatomic) SDWebImageNoParamsBlock cancelBlock;
+@property (copy, nonatomic) void (^cancelBlock)();
 
 @property (assign, nonatomic, getter = isExecuting) BOOL executing;
 @property (assign, nonatomic, getter = isFinished) BOOL finished;
@@ -37,23 +36,15 @@
     BOOL responseFromCached;
 }
 
-@synthesize executing = _executing;
-@synthesize finished = _finished;
-
-- (id)initWithRequest:(NSURLRequest *)request
-              options:(SDWebImageDownloaderOptions)options
-             progress:(SDWebImageDownloaderProgressBlock)progressBlock
-            completed:(SDWebImageDownloaderCompletedBlock)completedBlock
-            cancelled:(SDWebImageNoParamsBlock)cancelBlock {
+- (id)initWithRequest:(NSURLRequest *)request options:(SDWebImageDownloaderOptions)options progress:(void (^)(NSInteger, NSInteger))progressBlock completed:(void (^)(UIImage *, NSData *, NSError *, BOOL))completedBlock cancelled:(void (^)())cancelBlock {
     if ((self = [super init])) {
         _request = request;
-        _shouldUseCredentialStorage = YES;
         _options = options;
         _progressBlock = [progressBlock copy];
         _completedBlock = [completedBlock copy];
         _cancelBlock = [cancelBlock copy];
-        _executing = NO;
-        _finished = NO;
+        self.executing = NO;
+        self.finished = NO;
         _expectedSize = 0;
         responseFromCached = YES; // Initially wrong until `connection:willCacheResponse:` is called or not called
     }
@@ -117,13 +108,6 @@
             self.completedBlock(nil, nil, [NSError errorWithDomain:NSURLErrorDomain code:0 userInfo:@{NSLocalizedDescriptionKey : @"Connection can't be initialized"}], YES);
         }
     }
-
-#if TARGET_OS_IPHONE && __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_4_0
-    if (self.backgroundTaskId != UIBackgroundTaskInvalid) {
-        [[UIApplication sharedApplication] endBackgroundTask:self.backgroundTaskId];
-        self.backgroundTaskId = UIBackgroundTaskInvalid;
-    }
-#endif
 }
 
 - (void)cancel {
@@ -138,7 +122,6 @@
 }
 
 - (void)cancelInternalAndStop {
-    if (self.isFinished) return;
     [self cancelInternal];
     CFRunLoopStop(CFRunLoopGetCurrent());
 }
@@ -178,13 +161,13 @@
 
 - (void)setFinished:(BOOL)finished {
     [self willChangeValueForKey:@"isFinished"];
-    _finished = finished;
+    self.finished = finished;
     [self didChangeValueForKey:@"isFinished"];
 }
 
 - (void)setExecuting:(BOOL)executing {
     [self willChangeValueForKey:@"isExecuting"];
-    _executing = executing;
+    self.executing = executing;
     [self didChangeValueForKey:@"isExecuting"];
 }
 
@@ -212,7 +195,7 @@
         if (self.completedBlock) {
             self.completedBlock(nil, nil, [NSError errorWithDomain:NSURLErrorDomain code:[((NSHTTPURLResponse *)response) statusCode] userInfo:nil], YES);
         }
-        CFRunLoopStop(CFRunLoopGetCurrent());
+
         [self done];
     }
 }
@@ -278,8 +261,7 @@
 
             if (partialImageRef) {
                 UIImage *image = [UIImage imageWithCGImage:partialImageRef scale:1 orientation:orientation];
-                NSString *key = [[SDWebImageManager sharedManager] cacheKeyForURL:self.request.URL];
-                UIImage *scaledImage = [self scaledImageForKey:key image:image];
+                UIImage *scaledImage = [self scaledImageForKey:self.request.URL.absoluteString image:image];
                 image = [UIImage decodedImageWithImage:scaledImage];
                 CGImageRelease(partialImageRef);
                 dispatch_main_sync_safe(^{
@@ -326,42 +308,43 @@
 }
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)aConnection {
+    CFRunLoopStop(CFRunLoopGetCurrent());
+    self.connection = nil;
+
+    [[NSNotificationCenter defaultCenter] postNotificationName:SDWebImageDownloadStopNotification object:nil];
+
     SDWebImageDownloaderCompletedBlock completionBlock = self.completedBlock;
-    @synchronized(self) {
-        CFRunLoopStop(CFRunLoopGetCurrent());
-        self.thread = nil;
-        self.connection = nil;
-        [[NSNotificationCenter defaultCenter] postNotificationName:SDWebImageDownloadStopNotification object:nil];
-    }
-    
-    if (![[NSURLCache sharedURLCache] cachedResponseForRequest:_request]) {
-        responseFromCached = NO;
-    }
-    
-    if (completionBlock)
-    {
+
+    if (completionBlock) {
         if (self.options & SDWebImageDownloaderIgnoreCachedResponse && responseFromCached) {
             completionBlock(nil, nil, nil, YES);
+            self.completionBlock = nil;
+            [self done];
         }
         else {
+
             UIImage *image = [UIImage sd_imageWithData:self.imageData];
-            NSString *key = [[SDWebImageManager sharedManager] cacheKeyForURL:self.request.URL];
-            image = [self scaledImageForKey:key image:image];
-            
-            // Do not force decoding animated GIFs
-            if (!image.images) {
+
+            image = [self scaledImageForKey:self.request.URL.absoluteString image:image];
+
+            if (!image.images) // Do not force decod animated GIFs
+            {
                 image = [UIImage decodedImageWithImage:image];
             }
+
             if (CGSizeEqualToSize(image.size, CGSizeZero)) {
                 completionBlock(nil, nil, [NSError errorWithDomain:@"SDWebImageErrorDomain" code:0 userInfo:@{NSLocalizedDescriptionKey : @"Downloaded image has 0 pixels"}], YES);
             }
             else {
                 completionBlock(image, self.imageData, nil, YES);
             }
+            self.completionBlock = nil;
+            [self done];
         }
     }
-    self.completionBlock = nil;
-    [self done];
+    else {
+        [self done];
+    }
 }
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
@@ -390,25 +373,18 @@
     return self.options & SDWebImageDownloaderContinueInBackground;
 }
 
-- (BOOL)connectionShouldUseCredentialStorage:(NSURLConnection __unused *)connection {
-    return self.shouldUseCredentialStorage;
+- (BOOL)connection:(NSURLConnection *)connection canAuthenticateAgainstProtectionSpace:(NSURLProtectionSpace *)protectionSpace {
+    return [protectionSpace.authenticationMethod isEqualToString:NSURLAuthenticationMethodServerTrust];
 }
 
-- (void)connection:(NSURLConnection *)connection willSendRequestForAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge{
-    if ([challenge.protectionSpace.authenticationMethod isEqualToString:NSURLAuthenticationMethodServerTrust]) {
-        NSURLCredential *credential = [NSURLCredential credentialForTrust:challenge.protectionSpace.serverTrust];
-        [[challenge sender] useCredential:credential forAuthenticationChallenge:challenge];
-    } else {
-        if ([challenge previousFailureCount] == 0) {
-            if (self.credential) {
-                [[challenge sender] useCredential:self.credential forAuthenticationChallenge:challenge];
-            } else {
-                [[challenge sender] continueWithoutCredentialForAuthenticationChallenge:challenge];
-            }
-        } else {
-            [[challenge sender] continueWithoutCredentialForAuthenticationChallenge:challenge];
-        }
+- (void)connection:(NSURLConnection *)connection didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge {
+    BOOL trustAllCertificates = (self.options & SDWebImageDownloaderAllowInvalidSSLCertificates);
+    if (trustAllCertificates && [challenge.protectionSpace.authenticationMethod isEqualToString:NSURLAuthenticationMethodServerTrust]) {
+        [challenge.sender useCredential:[NSURLCredential credentialForTrust:challenge.protectionSpace.serverTrust]
+             forAuthenticationChallenge:challenge];
     }
+
+    [challenge.sender continueWithoutCredentialForAuthenticationChallenge:challenge];
 }
 
 @end

@@ -75,7 +75,7 @@
         x += size + 5;
         [[btn layer] setCornerRadius:4.0];
         [btn layer].masksToBounds = YES;
-        [btn sd_setImageWithURL:[NSURL URLWithString:url] forState:UIControlStateNormal];
+        [btn setImageWithURL:[NSURL URLWithString:url] forState:UIControlStateNormal];
         [btn.imageView setContentMode:UIViewContentModeScaleAspectFill];        
         [btn addTarget:self action:@selector(imageClicked:) forControlEvents:UIControlEventTouchUpInside];
         btn.tag = i;
@@ -203,7 +203,7 @@
 
 - (void)setup{
     if([_user.avatar length] > 0){
-        [_avatar sd_setImageWithURL:[NSURL URLWithString:_user.avatar]];
+        [_avatar setImageWithURL:[NSURL URLWithString:_user.avatar]];
     }
     [_avatar.layer setCornerRadius:CGRectGetHeight(_avatar.bounds)/2];
     _avatar.layer.masksToBounds = YES;

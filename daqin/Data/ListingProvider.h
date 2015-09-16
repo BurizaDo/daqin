@@ -10,7 +10,8 @@
 #import "EventDefinition.h"
 
 @interface ListingProvider : NSObject
-+ (void)getAllListingFrom:(int)from size:(int)size
++ (void)getAllClubsLongitude:(double)longitude
+                    latitude:(double)latitude
                 onSuccess:(ResponseArray)resultBlock
                 onFailure:(ResponseError)failureBlock;
 

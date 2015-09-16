@@ -100,7 +100,7 @@
     [self.imageButton setImage:self.upImageInfo.thumbImage ?: _upImageInfo.image forState:UIControlStateNormal];
 
     if (!_upImageInfo.image && !_upImageInfo.thumbImage && info.url) {
-        [self.imageButton sd_setImageWithURL:[NSURL URLWithString:info.url] forState:UIControlStateNormal completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+        [self.imageButton setImageWithURL:[NSURL URLWithString:info.url] forState:UIControlStateNormal completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType) {
             if (error) {
                 [SVProgressHUD showErrorWithStatus:@"网络异常，加载图片失败"];
             } else {

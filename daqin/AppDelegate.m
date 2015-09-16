@@ -8,7 +8,7 @@
 
 #import "AppDelegate.h"
 #import "HttpClient.h"
-#define HOST @"http://121.40.155.102/Rome/"
+#define HOST @"http://localhost:8888/iparty_cloud/index.php"
 //#define HOST @"http://192.168.1.149:8888/Rome/"
 //#define HOST @"http://localhost:8888/Rome/"
 #import "ChatSession.h"

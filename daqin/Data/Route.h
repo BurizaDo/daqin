@@ -8,11 +8,12 @@
 
 #import <Foundation/Foundation.h>
 #import "User.h"
-@interface Route : NSObject
-@property (nonatomic, strong) User* user;
-@property (nonatomic, copy) NSString* routeId;
-@property (nonatomic, copy) NSString* startTime;
-@property (nonatomic, copy) NSString* endTime;
-@property (nonatomic, copy) NSString* description;
-@property (nonatomic, copy) NSString* destination;
+@interface Club : NSObject
+@property int id;
+@property (nonatomic, copy) NSString* name;
+@property (nonatomic, copy) NSArray* images;
+@property double longitude;
+@property double latitude;
+@property (nonatomic, copy) NSString* address;
+@property (nonatomic, assign) NSDictionary* meta;
 @end

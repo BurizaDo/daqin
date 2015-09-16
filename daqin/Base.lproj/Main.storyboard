@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="8YX-ce-x5E">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="8YX-ce-x5E">
     <dependencies>
-        <deployment defaultVersion="1552" identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
     </dependencies>
     <scenes>
         <!--Navigation Controller-->
@@ -21,7 +21,7 @@
             </objects>
             <point key="canvasLocation" x="-385" y="864"/>
         </scene>
-        <!--Post View Controller - 发布行程-->
+        <!--发布行程-->
         <scene sceneID="xMJ-J7-VBb">
             <objects>
                 <tableViewController id="lt5-yw-qqw" customClass="PostViewController" sceneMemberID="viewController">
@@ -31,7 +31,7 @@
                         <color key="backgroundColor" red="0.95686274509803915" green="0.95686274509803915" blue="0.95686274509803915" alpha="1" colorSpace="calibratedRGB"/>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="tLZ-Wa-9fv">
-                                <rect key="frame" x="0.0" y="86" width="320" height="44"/>
+                                <rect key="frame" x="0.0" y="22" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="tLZ-Wa-9fv" id="eur-9N-TEN">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
@@ -50,7 +50,7 @@
             </objects>
             <point key="canvasLocation" x="0.0" y="864"/>
         </scene>
-        <!--Listing View Controller - 最新动态-->
+        <!--酒吧-->
         <scene sceneID="9c9-YQ-NhZ">
             <objects>
                 <tableViewController storyboardIdentifier="ListingVC" id="nzq-v1-4LQ" customClass="ListingViewController" sceneMemberID="viewController">
@@ -73,7 +73,7 @@
                             <outlet property="delegate" destination="nzq-v1-4LQ" id="tB3-ZR-Ebl"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="最新动态" id="hxq-kx-zCi"/>
+                    <navigationItem key="navigationItem" title="酒吧" id="hxq-kx-zCi"/>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                 </tableViewController>
@@ -115,17 +115,17 @@
             </objects>
             <point key="canvasLocation" x="653" y="532"/>
         </scene>
-        <!--Profile View Controller - 设置-->
+        <!--设置-->
         <scene sceneID="LvF-87-4Xb">
             <objects>
                 <tableViewController storyboardIdentifier="ProfileVC" id="bRb-6h-J7V" customClass="ProfileViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="umI-zf-DLZ">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803926" alpha="1" colorSpace="calibratedRGB"/>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="LLX-B1-T1r">
-                                <rect key="frame" x="0.0" y="119" width="320" height="44"/>
+                                <rect key="frame" x="0.0" y="114" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="LLX-B1-T1r" id="8tT-Tk-rKI">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
@@ -144,7 +144,7 @@
             </objects>
             <point key="canvasLocation" x="1049" y="532"/>
         </scene>
-        <!--Chat List View Controller - 私聊-->
+        <!--私聊-->
         <scene sceneID="zII-bd-qAJ">
             <objects>
                 <tableViewController id="Q0V-op-Jb3" customClass="BXChatListViewController" sceneMemberID="viewController">
@@ -154,7 +154,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="DSM-F6-fLS">
-                                <rect key="frame" x="0.0" y="86" width="320" height="44"/>
+                                <rect key="frame" x="0.0" y="22" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="DSM-F6-fLS" id="PUg-Gq-HdV">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>

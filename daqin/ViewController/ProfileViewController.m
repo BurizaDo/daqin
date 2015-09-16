@@ -66,7 +66,7 @@
     _headerView.avatar.hidden = NO;
 
     if([_user.avatar length] > 0){
-        [_headerView.avatar sd_setImageWithURL:[NSURL URLWithString:_user.avatar]];
+        [_headerView.avatar setImageWithURL:[NSURL URLWithString:_user.avatar]];
     }
     [_headerView.avatar.layer setCornerRadius:CGRectGetHeight(_headerView.avatar.bounds)/2];
     _headerView.avatar.layer.masksToBounds = YES;

@@ -61,7 +61,7 @@
         NSString* url = imageUrls[i];
         UIButton* btn = [UIButton buttonWithType:UIButtonTypeCustom];
         btn.frame = CGRectMake(x, y, size, size);
-        [btn sd_setImageWithURL:[NSURL URLWithString:url] forState:UIControlStateNormal];
+        [btn setImageWithURL:[NSURL URLWithString:url] forState:UIControlStateNormal];
         [btn.imageView setContentMode:UIViewContentModeScaleAspectFill];
         btn.tag = i;
         [[btn layer] setCornerRadius:4.0];
@@ -111,14 +111,14 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     if(_route.user.avatar.length > 0){
-        [_avatar sd_setImageWithURL:[NSURL URLWithString:_route.user.avatar]];
+        [_avatar setImageWithURL:[NSURL URLWithString:_route.user.avatar]];
     }
     [_avatar.layer setCornerRadius:CGRectGetHeight(_avatar.bounds)/2];
     _avatar.layer.masksToBounds = YES;
     _name.text = _route.user.name;
     _signature.text = _route.user.signature;
     _destination.text = _route.destination;
-    _description.text = _route.description;
+    _describe.text = _route.description;
     _age.text = _route.user.age;
     _age.text = [_age.text stringByAppendingString:@"岁"];
     _age.layer.cornerRadius = _age.bounds.size.height / 2;
@@ -319,12 +319,12 @@
     ageFrame.origin.x = nameRect.origin.x + nameRect.size.width + 3;
     _age.frame = ageFrame;
     
-    maximumLabelSize = CGSizeMake(_description.frame.size.width, 999);
-    _description.numberOfLines = 100;
-    CGSize expectDescSize = [_description.text sizeWithFont:_description.font constrainedToSize:maximumLabelSize lineBreakMode:_description.lineBreakMode];
-    _description.frame = CGRectMake(_description.frame.origin.x, _description.frame.origin.y, _description.frame.size.width, expectDescSize.height);
+    maximumLabelSize = CGSizeMake(_describe.frame.size.width, 999);
+    _describe.numberOfLines = 100;
+    CGSize expectDescSize = [_describe.text sizeWithFont:_describe.font constrainedToSize:maximumLabelSize lineBreakMode:_describe.lineBreakMode];
+    _describe.frame = CGRectMake(_describe.frame.origin.x, _describe.frame.origin.y, _describe.frame.size.width, expectDescSize.height);
 
-    CGRect descRect = _description.frame;
+    CGRect descRect = _describe.frame;
     _seperator2.frame = CGRectMake(15, descRect.origin.y + descRect.size.height + 15, _seperator2.frame.size.width, _seperator2.frame.size.height);
     
     BOOL isImage = _route.user.images.length > 0;

@@ -9,5 +9,4 @@
 #import <UIKit/UIKit.h>
 
 @interface ListingViewController : UITableViewController
-@property (nonatomic, assign) BOOL isMyListing;
 @end

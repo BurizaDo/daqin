@@ -18,7 +18,7 @@
 #import "ViewUtil.h"
 
 @interface ListingViewController ()
-@property (nonatomic, strong) NSMutableArray* routes;
+@property (nonatomic, strong) NSMutableArray* clubs;
 @end
 
 @implementation ListingViewController
@@ -33,54 +33,26 @@
 }
 
 - (void)loadData:(BOOL)stopAnimation from:(int)from{
-    if(_isMyListing){
-        if([GlobalDataManager sharedInstance].user){
-            [ListingProvider getUserListing:[GlobalDataManager sharedInstance].user.userId from:from size:30 onSuccess:^(NSArray *areas) {
-                if(from == 0){
-                    _routes = [NSMutableArray arrayWithArray:areas];
-                }else{
-                    [_routes addObjectsFromArray:areas];
-                }
-                [self.tableView reloadData];
-                if(stopAnimation){
-                    [self.tableView.pullToRefreshView stopAnimating];
-                    [self.tableView.infiniteScrollingView stopAnimating];
-                }
-                
-            } onFailure:^(Error *error) {
-                if(stopAnimation){
-                    [self.tableView.pullToRefreshView stopAnimating];
-                    [self.tableView.infiniteScrollingView stopAnimating];
-                }
-            }];
+    [ListingProvider getAllListingFrom:from size:30 onSuccess:^(NSArray *areas) {
+        if(from == 0){
+            _routes = [NSMutableArray arrayWithArray:areas];
         }else{
-            if(stopAnimation){
-                [self.tableView.pullToRefreshView stopAnimating];
-                [self.tableView.infiniteScrollingView stopAnimating];
-            }
+            [_routes addObjectsFromArray:areas];
         }
-    }else{
-        [ListingProvider getAllListingFrom:from size:30 onSuccess:^(NSArray *areas) {
-            if(from == 0){
-                _routes = [NSMutableArray arrayWithArray:areas];
-            }else{
-                [_routes addObjectsFromArray:areas];
-            }
 
-            [self.tableView reloadData];
-            if(stopAnimation){
-                [self.tableView.pullToRefreshView stopAnimating];
-                [self.tableView.infiniteScrollingView stopAnimating];
-            }
+        [self.tableView reloadData];
+        if(stopAnimation){
+            [self.tableView.pullToRefreshView stopAnimating];
+            [self.tableView.infiniteScrollingView stopAnimating];
+        }
 
-        } onFailure:^(Error *error) {
-            if(stopAnimation){
-                [self.tableView.pullToRefreshView stopAnimating];
-                [self.tableView.infiniteScrollingView stopAnimating];
-            }
-            
-        }];
-    }
+    } onFailure:^(Error *error) {
+        if(stopAnimation){
+            [self.tableView.pullToRefreshView stopAnimating];
+            [self.tableView.infiniteScrollingView stopAnimating];
+        }
+        
+    }];
 }
 
 - (void)viewDidLoad
@@ -187,7 +159,7 @@
     if(route.user.avatar.length > 0){
         [cell.avatar.layer setCornerRadius:(CGRectGetHeight(cell.avatar.bounds))/2];
         cell.avatar.clipsToBounds = YES;
-        [cell.avatar sd_setImageWithURL:[NSURL URLWithString:route.user.avatar]];
+        [cell.avatar setImageWithURL:[NSURL URLWithString:route.user.avatar]];
     }
     if(indexPath.row % 2 != 0){
         cell.backgroundColor = [UIColor colorWithRed:0xf8/255.0 green:0xf8/255.0 blue:0xf8/255.0 alpha:1];

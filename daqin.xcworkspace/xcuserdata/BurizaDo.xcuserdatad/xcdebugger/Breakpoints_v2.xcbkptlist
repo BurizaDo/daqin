@@ -125,42 +125,45 @@
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "__49-[MessageViewController didSendImage:fromSender:]_block_invoke"
-                  moduleName = "daqin"
-                  urlString = "file:///Users/BurizaDo/Code/daqin/daqin/ViewController/MessageViewController.m"
-                  timestampString = "432803146.417493"
+                  moduleName = "iparty"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/BurizaDo/Code/night/daqin/ViewController/MessageViewController.m"
+                  timestampString = "463993230.041038"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "420"
                   endingLineNumber = "420"
-                  offsetFromSymbolStart = "681">
+                  offsetFromSymbolStart = "522">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "__49-[MessageViewController didSendImage:fromSender:]_block_invoke"
-                  moduleName = "daqin"
-                  urlString = "file:///Users/BurizaDo/Code/daqin/daqin/ViewController/MessageViewController.m"
-                  timestampString = "432803146.417696"
+                  moduleName = "iparty"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/BurizaDo/Code/night/daqin/ViewController/MessageViewController.m"
+                  timestampString = "463993230.041595"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "420"
                   endingLineNumber = "420"
-                  offsetFromSymbolStart = "735">
+                  offsetFromSymbolStart = "530">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "__49-[MessageViewController didSendImage:fromSender:]_block_invoke306"
-                  moduleName = "daqin"
-                  urlString = "file:///Users/BurizaDo/Code/daqin/daqin/ViewController/MessageViewController.m"
-                  timestampString = "432803146.417878"
+                  moduleName = "iparty"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/BurizaDo/Code/night/daqin/ViewController/MessageViewController.m"
+                  timestampString = "463993230.041913"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "420"
-                  endingLineNumber = "420"
-                  offsetFromSymbolStart = "48">
+                  startingLineNumber = "422"
+                  endingLineNumber = "422"
+                  offsetFromSymbolStart = "3">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -227,6 +230,53 @@
             endingLineNumber = "62"
             landmarkName = "+getUserListing:from:size:onSuccess:onFailure:"
             landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__64+[ListingProvider getUserListing:from:size:onSuccess:onFailure:]_block_invoke"
+                  moduleName = "iparty"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/BurizaDo/Code/night/daqin/Data/ListingProvider.m"
+                  timestampString = "463993230.045072"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "62"
+                  endingLineNumber = "62"
+                  offsetFromSymbolStart = "1109">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__64+[ListingProvider getUserListing:from:size:onSuccess:onFailure:]_block_invoke"
+                  moduleName = "iparty"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/BurizaDo/Code/night/daqin/Data/ListingProvider.m"
+                  timestampString = "463993230.04549"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "62"
+                  endingLineNumber = "62"
+                  offsetFromSymbolStart = "1125">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__64+[ListingProvider getUserListing:from:size:onSuccess:onFailure:]_block_invoke67"
+                  moduleName = "iparty"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/BurizaDo/Code/night/daqin/Data/ListingProvider.m"
+                  timestampString = "463993230.045866"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "63"
+                  endingLineNumber = "63"
+                  offsetFromSymbolStart = "9">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy

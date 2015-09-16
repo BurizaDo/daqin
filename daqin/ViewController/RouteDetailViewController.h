@@ -15,7 +15,7 @@
 @property (nonatomic, weak) IBOutlet UILabel* signature;
 @property (nonatomic, weak) IBOutlet UILabel* destination;
 @property (nonatomic, weak) IBOutlet UILabel* schedule;
-@property (nonatomic, weak) IBOutlet UILabel* description;
+@property (nonatomic, weak) IBOutlet UILabel* describe;
 @property (nonatomic, weak) IBOutlet UIImageView* avatar;
 @property (nonatomic, weak) IBOutlet UIScrollView* imagesView;
 @property (nonatomic, weak) IBOutlet UIButton* chatButton;
