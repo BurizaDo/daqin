@@ -8,7 +8,7 @@
 
 #import "ListingProvider.h"
 #import "HttpClient.h"
-#import "Route.h"
+#import "Club.h"
 #import "EventDefinition.h"
 
 @implementation ListingProvider
@@ -20,19 +20,18 @@
     NSDictionary* param = @{@"longitude":[NSNumber numberWithDouble:longitude], @"latitude":[NSNumber numberWithDouble:latitude]};
     [[HttpClient sharedClient] postAPI:@"getClubs" params:param success:^(id obj) {
         NSArray* ary = obj;
-        NSMutableArray* routes = [[NSMutableArray alloc] init];
+        NSMutableArray* clubs = [[NSMutableArray alloc] init];
         for(NSDictionary* dic in ary){
             Club* club = [[Club alloc] init];
-            club.name = 
-            route.routeId = [dic objectForKey:@"id"];
-            route.destination = [dic objectForKey:@"destination"];
-            route.description = [dic objectForKey:@"message"];
-            route.user = [User parseFromDictionary:[dic objectForKey:@"user"]];
-            route.startTime = [dic objectForKey:@"start_time"];
-            route.endTime = [dic objectForKey:@"end_time"];
-            [routes addObject:route];
+            club.name = [dic objectForKey:@"name"];
+            club.clubId = [[dic objectForKey:@"id"] integerValue];
+            club.longitude = [[dic objectForKey:@"longitude"] doubleValue];
+            club.latitude = [[dic objectForKey:@"latitude"] doubleValue];
+            club.address = [dic objectForKey:@"address"];
+            club.images = [dic objectForKey:@"images"];
+            [clubs addObject:club];
         }
-        resultBlock(routes);
+        resultBlock(clubs);
     } failure:^(Error* error) {
         if(failureBlock){
             failureBlock(error);
@@ -51,14 +50,14 @@
         NSArray* ary = obj;
         NSMutableArray* routes = [[NSMutableArray alloc] init];
         for(NSDictionary* dic in ary){
-            Route* route = [[Route alloc] init];
-            route.routeId = [dic objectForKey:@"id"];
-            route.destination = [dic objectForKey:@"destination"];
-            route.description = [dic objectForKey:@"message"];
-            route.user = [User parseFromDictionary:[dic objectForKey:@"user"]];
-            route.startTime = [dic objectForKey:@"start_time"];
-            route.endTime = [dic objectForKey:@"end_time"];
-            [routes addObject:route];
+//            Route* route = [[Route alloc] init];
+//            route.routeId = [dic objectForKey:@"id"];
+//            route.destination = [dic objectForKey:@"destination"];
+//            route.description = [dic objectForKey:@"message"];
+//            route.user = [User parseFromDictionary:[dic objectForKey:@"user"]];
+//            route.startTime = [dic objectForKey:@"start_time"];
+//            route.endTime = [dic objectForKey:@"end_time"];
+//            [routes addObject:route];
         }
         resultBlock(routes);
     } failure:^(Error* error) {

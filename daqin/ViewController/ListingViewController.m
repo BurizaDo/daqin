@@ -10,8 +10,8 @@
 #import <UIImageView+WebCache.h>
 #import "ListingProvider.h"
 #import "SVPullToRefresh.h"
-#import "RouteCell.h"
-#import "Route.h"
+#import "ClubCell.h"
+#import "Club.h"
 #import "RouteDetailViewController.h"
 #import "Uploader.h"
 #import "GlobalDataManager.h"
@@ -33,13 +33,8 @@
 }
 
 - (void)loadData:(BOOL)stopAnimation from:(int)from{
-    [ListingProvider getAllListingFrom:from size:30 onSuccess:^(NSArray *areas) {
-        if(from == 0){
-            _routes = [NSMutableArray arrayWithArray:areas];
-        }else{
-            [_routes addObjectsFromArray:areas];
-        }
-
+    [ListingProvider getAllClubsLongitude:31.186053 latitude:121.447579 onSuccess:^(NSArray *responseArray) {
+        _clubs = [NSMutableArray arrayWithArray:responseArray];
         [self.tableView reloadData];
         if(stopAnimation){
             [self.tableView.pullToRefreshView stopAnimating];
@@ -51,7 +46,6 @@
             [self.tableView.pullToRefreshView stopAnimating];
             [self.tableView.infiniteScrollingView stopAnimating];
         }
-        
     }];
 }
 
@@ -60,10 +54,6 @@
     [super viewDidLoad];
     [self loadData:NO from:0];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    if(_isMyListing){
-        self.navigationItem.leftBarButtonItem = [ViewUtil createBackItem:self action:@selector(backAction)];
-        self.navigationItem.title = @"我的行程";
-    }
 }
 
 - (void)backAction{
@@ -79,8 +69,8 @@
     }];
 
     [self.tableView addInfiniteScrollingWithActionHandler:^{
-        if(wlv.routes.count % 30 == 0){
-            [wlv loadData:YES from:wlv.routes.count];
+        if(wlv.clubs.count % 30 == 0){
+            [wlv loadData:YES from:wlv.clubs.count];
         }else{
             [wlv.tableView.infiniteScrollingView stopAnimating];
         }
@@ -99,7 +89,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    return _routes == nil ? 0 : [_routes count];
+    return _clubs == nil ? 0 : [_clubs count];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -108,58 +98,26 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    RouteCell *cell = [tableView dequeueReusableCellWithIdentifier:@"kRouteCell"];
+    ClubCell *cell = [tableView dequeueReusableCellWithIdentifier:@"kClubCell"];
     
     if(!cell){
-        NSArray* nib = [[NSBundle mainBundle] loadNibNamed:@"RouteCell" owner:nil options:nil];
+        NSArray* nib = [[NSBundle mainBundle] loadNibNamed:@"ClubCell" owner:nil options:nil];
         cell = nib[0];
     }
-    Route* route = _routes[indexPath.row];
-    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    [formatter setDateFormat:@"MM/dd"];
-    NSString* start = [formatter stringFromDate:[NSDate dateWithTimeIntervalSince1970:[route.startTime intValue]]];
-    NSString* end = [formatter stringFromDate:[NSDate dateWithTimeIntervalSince1970:[route.endTime intValue]]];
-    NSString* schedule = [start stringByAppendingString:@" 至 "];
-    schedule = [schedule stringByAppendingString:end];
-    cell.schedule.text = schedule;
-    cell.age.text = [route.user.age stringByAppendingString:@"岁"];
-    cell.age.layer.cornerRadius = cell.age.bounds.size.height/2;
-    cell.destination.text = route.destination;
-    cell.name.text = route.user.name;
-//    cell.signature.text = route.user.signature;
-    cell.signature.text = route.description;
+    Club* club = _clubs[indexPath.row];
+//    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+//    [formatter setDateFormat:@"MM/dd"];
+//    NSString* start = [formatter stringFromDate:[NSDate dateWithTimeIntervalSince1970:[route.startTime intValue]]];
+//    NSString* end = [formatter stringFromDate:[NSDate dateWithTimeIntervalSince1970:[route.endTime intValue]]];
+//    NSString* schedule = [start stringByAppendingString:@" 至 "];
+//    schedule = [schedule stringByAppendingString:end];
+    cell.name.text = club.name;
+    cell.address.text = club.address;
     
-    UIColor* colorF = [UIColor colorWithRed:255/255.0 green:172/255.0 blue:184/255.0 alpha:1];
-    UIColor* colorM = [UIColor colorWithRed:172/255.0 green:215/255.0 blue:255/255.0 alpha:1];
-    if([route.user.gender isEqualToString:@"男"]){
-        cell.age.backgroundColor = colorM;
-    }else{
-        cell.age.backgroundColor = colorF;
-    }
-    
-    CGSize maximumLabelSize = CGSizeMake(100,9999);
-    CGRect expectedLabelRect = [cell.destination.text boundingRectWithSize:maximumLabelSize options:NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading attributes:[NSDictionary dictionaryWithObject:cell.destination.font forKey:NSFontAttributeName] context:nil];
-    cell.destination.frame = CGRectMake(cell.frame.size.width - expectedLabelRect.size.width - 10,
-                                        cell.destination.frame.origin.y,
-                                        expectedLabelRect.size.width,
-                                        cell.destination.frame.size.height);
-    cell.plane.frame = CGRectMake(cell.destination.frame.origin.x - cell.plane.frame.size.width - 3,
-                                  cell.plane.frame.origin.y,
-                                  cell.plane.frame.size.width,
-                                  cell.plane.frame.size.height);
-
-
-    CGSize expectedLabelSize = [cell.name.text sizeWithFont:cell.name.font
-                                      constrainedToSize:maximumLabelSize
-                                          lineBreakMode:cell.name.lineBreakMode];
-    cell.name.frame = CGRectMake(cell.name.frame.origin.x, cell.name.frame.origin.y, expectedLabelSize.width, cell.name.frame.size.height);
-    
-    cell.age.frame = CGRectMake(cell.name.frame.origin.x + cell.name.frame.size.width + 5, cell.age.frame.origin.y, cell.age.frame.size.width, cell.age.frame.size.height);
-    
-    if(route.user.avatar.length > 0){
-        [cell.avatar.layer setCornerRadius:(CGRectGetHeight(cell.avatar.bounds))/2];
-        cell.avatar.clipsToBounds = YES;
-        [cell.avatar setImageWithURL:[NSURL URLWithString:route.user.avatar]];
+    if(club.images != nil && club.images.count > 0){
+//        [cell.avatar.layer setCornerRadius:(CGRectGetHeight(cell.avatar.bounds))/2];
+//        cell.avatar.clipsToBounds = YES;
+        [cell.avatar setImageWithURL:[NSURL URLWithString:club.images[0]]];
     }
     if(indexPath.row % 2 != 0){
         cell.backgroundColor = [UIColor colorWithRed:0xf8/255.0 green:0xf8/255.0 blue:0xf8/255.0 alpha:1];
@@ -168,12 +126,11 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    Route* route = _routes[indexPath.row];
-    RouteDetailViewController* detail = [[RouteDetailViewController alloc] initWithNibName:@"RouteDetailViewController" bundle:nil];
-    detail.hidesBottomBarWhenPushed = YES;
-    detail.route = route;
-//    self.navigationController.navigationBar.translucent = NO;
-    [self.navigationController pushViewController:detail animated:YES];
+//    Route* route = _routes[indexPath.row];
+//    RouteDetailViewController* detail = [[RouteDetailViewController alloc] initWithNibName:@"RouteDetailViewController" bundle:nil];
+//    detail.hidesBottomBarWhenPushed = YES;
+//    detail.route = route;
+//    [self.navigationController pushViewController:detail animated:YES];
 }
 
 
@@ -181,7 +138,7 @@
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
 {
     // Return NO if you do not want the specified item to be editable.
-    return _isMyListing;
+    return NO;
 }
 
 
@@ -191,18 +148,17 @@
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         // Delete the row from the data source
-        [ListingProvider deleteUserMessage:[GlobalDataManager sharedInstance].user.userId msgId:((Route*)_routes[indexPath.row]).routeId onSuccess:^{
-            
-        } onFailure:^(Error *error) {
-            
-        }];
-        [_routes removeObjectAtIndex:indexPath.row];
-        [tableView beginUpdates];
-        [tableView deleteRowsAtIndexPaths:@[indexPath]
-                         withRowAnimation:UITableViewRowAnimationAutomatic];
-        [tableView endUpdates];
+//        [ListingProvider deleteUserMessage:[GlobalDataManager sharedInstance].user.userId msgId:((Route*)_routes[indexPath.row]).routeId onSuccess:^{
+//            
+//        } onFailure:^(Error *error) {
+//            
+//        }];
+//        [_routes removeObjectAtIndex:indexPath.row];
+//        [tableView beginUpdates];
+//        [tableView deleteRowsAtIndexPaths:@[indexPath]
+//                         withRowAnimation:UITableViewRowAnimationAutomatic];
+//        [tableView endUpdates];
 
-//        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
     } else if (editingStyle == UITableViewCellEditingStyleInsert) {
         // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
     }   

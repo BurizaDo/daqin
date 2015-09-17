@@ -215,7 +215,7 @@
     if(indexPath.section == 0){
         UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
         ListingViewController *listingVC = (ListingViewController *) [storyboard instantiateViewControllerWithIdentifier:@"ListingVC"];
-        listingVC.isMyListing = YES;
+//        listingVC.isMyListing = YES;
         [self.navigationController pushViewController:listingVC animated:YES];
 
     }else if(indexPath.section == 2){

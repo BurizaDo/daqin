@@ -128,12 +128,12 @@
                   moduleName = "iparty"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/BurizaDo/Code/night/daqin/ViewController/MessageViewController.m"
-                  timestampString = "463993230.041038"
+                  timestampString = "464169723.304441"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "420"
                   endingLineNumber = "420"
-                  offsetFromSymbolStart = "522">
+                  offsetFromSymbolStart = "601">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -143,27 +143,27 @@
                   moduleName = "iparty"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/BurizaDo/Code/night/daqin/ViewController/MessageViewController.m"
-                  timestampString = "463993230.041595"
+                  timestampString = "464169723.304769"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "420"
                   endingLineNumber = "420"
-                  offsetFromSymbolStart = "530">
+                  offsetFromSymbolStart = "637">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "__49-[MessageViewController didSendImage:fromSender:]_block_invoke306"
+                  symbolName = "__49-[MessageViewController didSendImage:fromSender:]_block_invoke293"
                   moduleName = "iparty"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/BurizaDo/Code/night/daqin/ViewController/MessageViewController.m"
-                  timestampString = "463993230.041913"
+                  timestampString = "464169723.305022"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "422"
-                  endingLineNumber = "422"
-                  offsetFromSymbolStart = "3">
+                  startingLineNumber = "420"
+                  endingLineNumber = "420"
+                  offsetFromSymbolStart = "44">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -223,11 +223,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "daqin/Data/ListingProvider.m"
-            timestampString = "431340278.783968"
+            timestampString = "464150873.143161"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "62"
-            endingLineNumber = "62"
+            startingLineNumber = "63"
+            endingLineNumber = "63"
             landmarkName = "+getUserListing:from:size:onSuccess:onFailure:"
             landmarkType = "5">
             <Locations>
@@ -239,12 +239,12 @@
                   moduleName = "iparty"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/BurizaDo/Code/night/daqin/Data/ListingProvider.m"
-                  timestampString = "463993230.045072"
+                  timestampString = "464169723.328721"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "62"
-                  endingLineNumber = "62"
-                  offsetFromSymbolStart = "1109">
+                  startingLineNumber = "63"
+                  endingLineNumber = "63"
+                  offsetFromSymbolStart = "580">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -254,27 +254,27 @@
                   moduleName = "iparty"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/BurizaDo/Code/night/daqin/Data/ListingProvider.m"
-                  timestampString = "463993230.04549"
+                  timestampString = "464169723.331717"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "62"
-                  endingLineNumber = "62"
-                  offsetFromSymbolStart = "1125">
+                  startingLineNumber = "63"
+                  endingLineNumber = "63"
+                  offsetFromSymbolStart = "622">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "__64+[ListingProvider getUserListing:from:size:onSuccess:onFailure:]_block_invoke67"
+                  symbolName = "__64+[ListingProvider getUserListing:from:size:onSuccess:onFailure:]_block_invoke68"
                   moduleName = "iparty"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/BurizaDo/Code/night/daqin/Data/ListingProvider.m"
-                  timestampString = "463993230.045866"
+                  timestampString = "464169723.33202"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "63"
                   endingLineNumber = "63"
-                  offsetFromSymbolStart = "9">
+                  offsetFromSymbolStart = "36">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -531,6 +531,70 @@
             endingLineNumber = "42"
             landmarkName = "@implementation WeiboHelper"
             landmarkType = "3">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "daqin/ViewController/ListingViewController.m"
+            timestampString = "464150883.779387"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "45"
+            endingLineNumber = "45"
+            landmarkName = "-loadData:from:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "daqin/Data/ListingProvider.m"
+            timestampString = "464150953.287418"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "36"
+            endingLineNumber = "36"
+            landmarkName = "+getAllClubsLongitude:latitude:onSuccess:onFailure:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Libraries/Network/HttpClient.m"
+            timestampString = "464164564.583835"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "174"
+            endingLineNumber = "174"
+            landmarkName = "-postAPI:params:success:failure:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "daqin/ViewController/ListingViewController.m"
+            timestampString = "464166453.518639"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "103"
+            endingLineNumber = "103"
+            landmarkName = "-tableView:cellForRowAtIndexPath:"
+            landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
