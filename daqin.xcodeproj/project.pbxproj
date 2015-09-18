@@ -179,8 +179,8 @@
 		E2A44A4D19985C24004F4476 /* MyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E2A44A3D19985C24004F4476 /* MyViewController.m */; };
 		E2A44A4E19985C24004F4476 /* PostViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E2A44A3F19985C24004F4476 /* PostViewController.m */; };
 		E2A44A5019985C24004F4476 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E2A44A4319985C24004F4476 /* RootViewController.m */; };
-		E2A44A5119985C24004F4476 /* RouteDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E2A44A4519985C24004F4476 /* RouteDetailViewController.m */; };
-		E2A44A5219985C24004F4476 /* RouteDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E2A44A4619985C24004F4476 /* RouteDetailViewController.xib */; };
+		E2A44A5119985C24004F4476 /* ClubDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E2A44A4519985C24004F4476 /* ClubDetailViewController.m */; };
+		E2A44A5219985C24004F4476 /* ClubDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E2A44A4619985C24004F4476 /* ClubDetailViewController.xib */; };
 		E2A44A5A19985C31004F4476 /* InputCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E2A44A5519985C31004F4476 /* InputCell.m */; };
 		E2A44A5B19985C31004F4476 /* InputCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E2A44A5619985C31004F4476 /* InputCell.xib */; };
 		E2A44A6119985C52004F4476 /* ChatSession.m in Sources */ = {isa = PBXBuildFile; fileRef = E2A44A6019985C52004F4476 /* ChatSession.m */; };
@@ -529,9 +529,9 @@
 		E2A44A3F19985C24004F4476 /* PostViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostViewController.m; sourceTree = "<group>"; };
 		E2A44A4219985C24004F4476 /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
 		E2A44A4319985C24004F4476 /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
-		E2A44A4419985C24004F4476 /* RouteDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RouteDetailViewController.h; sourceTree = "<group>"; };
-		E2A44A4519985C24004F4476 /* RouteDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RouteDetailViewController.m; sourceTree = "<group>"; };
-		E2A44A4619985C24004F4476 /* RouteDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RouteDetailViewController.xib; sourceTree = "<group>"; };
+		E2A44A4419985C24004F4476 /* ClubDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClubDetailViewController.h; sourceTree = "<group>"; };
+		E2A44A4519985C24004F4476 /* ClubDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClubDetailViewController.m; sourceTree = "<group>"; };
+		E2A44A4619985C24004F4476 /* ClubDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ClubDetailViewController.xib; sourceTree = "<group>"; };
 		E2A44A5419985C31004F4476 /* InputCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InputCell.h; sourceTree = "<group>"; };
 		E2A44A5519985C31004F4476 /* InputCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InputCell.m; sourceTree = "<group>"; };
 		E2A44A5619985C31004F4476 /* InputCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InputCell.xib; sourceTree = "<group>"; };
@@ -1133,9 +1133,9 @@
 				E2A44A3F19985C24004F4476 /* PostViewController.m */,
 				E2A44A4219985C24004F4476 /* RootViewController.h */,
 				E2A44A4319985C24004F4476 /* RootViewController.m */,
-				E2A44A4419985C24004F4476 /* RouteDetailViewController.h */,
-				E2A44A4519985C24004F4476 /* RouteDetailViewController.m */,
-				E2A44A4619985C24004F4476 /* RouteDetailViewController.xib */,
+				E2A44A4419985C24004F4476 /* ClubDetailViewController.h */,
+				E2A44A4519985C24004F4476 /* ClubDetailViewController.m */,
+				E2A44A4619985C24004F4476 /* ClubDetailViewController.xib */,
 				E21C5B5319A1E07D0008811B /* ProfileViewController.h */,
 				E21C5B5419A1E07D0008811B /* ProfileViewController.m */,
 				E21C5B5819A1F3600008811B /* ProfileEditViewController.h */,
@@ -1618,7 +1618,7 @@
 				E2A44A0E1990A522004F4476 /* btn_small_gray_on@2x.png in Resources */,
 				E2A22FD019A5CF0E008C0AB6 /* emoji_34.png in Resources */,
 				E284645F19AF0B9300F7953E /* WeiboSDK.bundle in Resources */,
-				E2A44A5219985C24004F4476 /* RouteDetailViewController.xib in Resources */,
+				E2A44A5219985C24004F4476 /* ClubDetailViewController.xib in Resources */,
 				E2A22FD719A5CF0E008C0AB6 /* emoji_8.png in Resources */,
 				E2A22FEF19A5EC12008C0AB6 /* voice_others_0032.png in Resources */,
 				E2A44A4C19985C24004F4476 /* LoginViewController.xib in Resources */,
@@ -1803,7 +1803,7 @@
 				E2A44B011998C6E7004F4476 /* GlobalDataManager.m in Sources */,
 				E2A449C0198F5021004F4476 /* Uploader.m in Sources */,
 				E2A44A6A199867F3004F4476 /* MessageViewController.m in Sources */,
-				E2A44A5119985C24004F4476 /* RouteDetailViewController.m in Sources */,
+				E2A44A5119985C24004F4476 /* ClubDetailViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
