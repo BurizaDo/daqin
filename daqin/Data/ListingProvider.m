@@ -8,30 +8,29 @@
 
 #import "ListingProvider.h"
 #import "HttpClient.h"
-#import "Club.h"
+#import "Route.h"
 #import "EventDefinition.h"
 
 @implementation ListingProvider
 
-+ (void)getAllClubsLongitude:(double)longitude
-                    latitude:(double)latitude
-                   onSuccess:(ResponseArray)resultBlock
++ (void)getAllListingFrom:(int)from size:(int)size
+                onSuccess:(ResponseArray)resultBlock
                 onFailure:(ResponseError)failureBlock{
-    NSDictionary* param = @{@"longitude":[NSNumber numberWithDouble:longitude], @"latitude":[NSNumber numberWithDouble:latitude]};
-    [[HttpClient sharedClient] postAPI:@"getClubs" params:param success:^(id obj) {
+    NSDictionary* param = @{@"start":[NSNumber numberWithInt:from], @"size":[NSNumber numberWithInt:size]};
+    [[HttpClient sharedClient] postAPI:@"getMessage" params:param success:^(id obj) {
         NSArray* ary = obj;
-        NSMutableArray* clubs = [[NSMutableArray alloc] init];
+        NSMutableArray* routes = [[NSMutableArray alloc] init];
         for(NSDictionary* dic in ary){
-            Club* club = [[Club alloc] init];
-            club.name = [dic objectForKey:@"name"];
-            club.clubId = [[dic objectForKey:@"id"] integerValue];
-            club.longitude = [[dic objectForKey:@"longitude"] doubleValue];
-            club.latitude = [[dic objectForKey:@"latitude"] doubleValue];
-            club.address = [dic objectForKey:@"address"];
-            club.images = [dic objectForKey:@"images"];
-            [clubs addObject:club];
+            Route* route = [[Route alloc] init];
+            route.routeId = [dic objectForKey:@"id"];
+            route.destination = [dic objectForKey:@"destination"];
+            route.descript = [dic objectForKey:@"message"];
+            route.user = [User parseFromDictionary:[dic objectForKey:@"user"]];
+            route.startTime = [dic objectForKey:@"start_time"];
+            route.endTime = [dic objectForKey:@"end_time"];
+            [routes addObject:route];
         }
-        resultBlock(clubs);
+        resultBlock(routes);
     } failure:^(Error* error) {
         if(failureBlock){
             failureBlock(error);
@@ -50,14 +49,14 @@
         NSArray* ary = obj;
         NSMutableArray* routes = [[NSMutableArray alloc] init];
         for(NSDictionary* dic in ary){
-//            Route* route = [[Route alloc] init];
-//            route.routeId = [dic objectForKey:@"id"];
-//            route.destination = [dic objectForKey:@"destination"];
-//            route.description = [dic objectForKey:@"message"];
-//            route.user = [User parseFromDictionary:[dic objectForKey:@"user"]];
-//            route.startTime = [dic objectForKey:@"start_time"];
-//            route.endTime = [dic objectForKey:@"end_time"];
-//            [routes addObject:route];
+            Route* route = [[Route alloc] init];
+            route.routeId = [dic objectForKey:@"id"];
+            route.destination = [dic objectForKey:@"destination"];
+            route.descript = [dic objectForKey:@"message"];
+            route.user = [User parseFromDictionary:[dic objectForKey:@"user"]];
+            route.startTime = [dic objectForKey:@"start_time"];
+            route.endTime = [dic objectForKey:@"end_time"];
+            [routes addObject:route];
         }
         resultBlock(routes);
     } failure:^(Error* error) {

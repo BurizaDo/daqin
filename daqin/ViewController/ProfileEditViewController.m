@@ -159,7 +159,7 @@
         [self setup];
     } onFailure:^(Error *error) {
         if(error.errorCode){
-//            [[QQHelper sharedInstance] getUserInfo];
+            [[QQHelper sharedInstance] getUserInfo];
         }
     }];
 }

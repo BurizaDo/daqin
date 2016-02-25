@@ -1,0 +1,37 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "189ADC7D9061632148CF59A8B29FF8A421094E6E",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "53752F76DDAA8BC90DD53E88F5ECDB6918C0280D" : 0,
+    "723EB41A-4A38-4BCE-999B-EDE950A5B773" : 0,
+    "189ADC7D9061632148CF59A8B29FF8A421094E6E" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "584808E5-0E47-4B83-B6F8-DC9E97E2B5AE",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "53752F76DDAA8BC90DD53E88F5ECDB6918C0280D" : "",
+    "723EB41A-4A38-4BCE-999B-EDE950A5B773" : "daqin",
+    "189ADC7D9061632148CF59A8B29FF8A421094E6E" : "night"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "daqin",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "daqin.xcworkspace",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "github.com:BurizaDo\/daqin.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "189ADC7D9061632148CF59A8B29FF8A421094E6E"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/git.sinacloud.com\/xingse2",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "53752F76DDAA8BC90DD53E88F5ECDB6918C0280D"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "ssh:\/\/github.com\/BurizaDo\/daqin.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "723EB41A-4A38-4BCE-999B-EDE950A5B773"
+    }
+  ]
+}

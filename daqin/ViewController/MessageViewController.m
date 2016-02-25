@@ -314,22 +314,22 @@
     }
     self.volumeView.hidden = NO;
     _timer = [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(volumeTimer) userInfo:nil repeats:YES];
-//    [[AudioRecorder sharedInstance] startRecording:self];
+    [[AudioRecorder sharedInstance] startRecording:self];
 }
 
 - (void)volumeTimer{
-//    float power = [[AudioRecorder sharedInstance] getPower];
-//    NSLog(@"power:%f", power);
-//    [self.volumeView updatePower:power];
+    float power = [[AudioRecorder sharedInstance] getPower];
+    NSLog(@"power:%f", power);
+    [self.volumeView updatePower:power];
 }
 
 - (void)speakButtonUp:(UIButton*)sender{
-//    [[AudioRecorder sharedInstance] finishRecording];
-//    self.volumeView.hidden = YES;
-//    if(_timer){
-//        [_timer invalidate];
-//        _timer = nil;
-//    }
+    [[AudioRecorder sharedInstance] finishRecording];
+    self.volumeView.hidden = YES;
+    if(_timer){
+        [_timer invalidate];
+        _timer = nil;
+    }
 }
 
 - (void)endEditing {
@@ -837,7 +837,7 @@
         NSString* wavPath = [[path substringToIndex:[path rangeOfString:@"." options:NSBackwardsSearch].location] stringByAppendingString:@".wav"];
         BOOL fileExists = [[NSFileManager defaultManager] fileExistsAtPath:wavPath];
         if(!fileExists){
-//            DecodeAMRFileToWAVEFile(path.UTF8String, wavPath.UTF8String);
+            DecodeAMRFileToWAVEFile(path.UTF8String, wavPath.UTF8String);
         }
         ret = wavPath;
     }
@@ -850,39 +850,39 @@
     int index = view.tag;
     
     Message* message = [self.messages objectAtIndex:index];
-//    if([message isMemberOfClass:[VoiceMessage class]]){
-//        if(((VoiceMessage*)message).localPath){
-//            [[AudioPlayer sharedInstance] play:[self convertToPlayFile:((VoiceMessage*)message).localPath] listener:self];
-//        }else if(((VoiceMessage*)message).voiceUrl){
-//            NSString* voiceUrl = ((VoiceMessage*)message).voiceUrl;
-//            NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:voiceUrl]];
-//            AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
-//            
-//            NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-//            NSString *path = [[paths objectAtIndex:0] stringByAppendingString:@"/Sounds/"];
-//            
-//            [[NSFileManager defaultManager] createDirectoryAtPath:path withIntermediateDirectories:YES attributes:nil error:NULL];
-//
-//            int index = ([voiceUrl rangeOfString:@"/" options:NSBackwardsSearch].location);
-//            NSString* fileName = [voiceUrl substringFromIndex:(index + 1)];
-//            path = [path stringByAppendingString:fileName];
-//            
-//            operation.outputStream = [NSOutputStream outputStreamToFileAtPath:path append:NO];
-//            
-//            [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
-//                NSString* wavPath = [NSString stringWithString:path];
-////                wavPath = [[wavPath substringToIndex:[wavPath rangeOfString:@"." options:NSBackwardsSearch].location] stringByAppendingString:@".wav"];
-//                wavPath = [wavPath stringByAppendingString:@".wav"];
-////                DecodeAMRFileToWAVEFile([path UTF8String], [wavPath UTF8String]);
-//                ((VoiceMessage*)message).localPath = wavPath;
-//                [MessageProvider updateMessageObject:message];
-//                [[AudioPlayer sharedInstance] play:wavPath listener:self];
-//            } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-//            }];
-//            
-//            [operation start];
-//        }
-//    }
+    if([message isMemberOfClass:[VoiceMessage class]]){
+        if(((VoiceMessage*)message).localPath){
+            [[AudioPlayer sharedInstance] play:[self convertToPlayFile:((VoiceMessage*)message).localPath] listener:self];
+        }else if(((VoiceMessage*)message).voiceUrl){
+            NSString* voiceUrl = ((VoiceMessage*)message).voiceUrl;
+            NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:voiceUrl]];
+            AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
+            
+            NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+            NSString *path = [[paths objectAtIndex:0] stringByAppendingString:@"/Sounds/"];
+            
+            [[NSFileManager defaultManager] createDirectoryAtPath:path withIntermediateDirectories:YES attributes:nil error:NULL];
+
+            int index = ([voiceUrl rangeOfString:@"/" options:NSBackwardsSearch].location);
+            NSString* fileName = [voiceUrl substringFromIndex:(index + 1)];
+            path = [path stringByAppendingString:fileName];
+            
+            operation.outputStream = [NSOutputStream outputStreamToFileAtPath:path append:NO];
+            
+            [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+                NSString* wavPath = [NSString stringWithString:path];
+//                wavPath = [[wavPath substringToIndex:[wavPath rangeOfString:@"." options:NSBackwardsSearch].location] stringByAppendingString:@".wav"];
+                wavPath = [wavPath stringByAppendingString:@".wav"];
+                DecodeAMRFileToWAVEFile([path UTF8String], [wavPath UTF8String]);
+                ((VoiceMessage*)message).localPath = wavPath;
+                [MessageProvider updateMessageObject:message];
+                [[AudioPlayer sharedInstance] play:wavPath listener:self];
+            } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+            }];
+            
+            [operation start];
+        }
+    }
 }
 
 - (void)handleLongPressGesture:(UITapGestureRecognizer *)gestureRecognizer

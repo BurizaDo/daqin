@@ -34,8 +34,8 @@ static LoginManager *_sharedInstance = nil;
 }
 
 - (void)loginQQ{
-//    [QQHelper sharedInstance].delegate = self;
-//    [[QQHelper sharedInstance] doLogin];
+    [QQHelper sharedInstance].delegate = self;
+    [[QQHelper sharedInstance] doLogin];
 }
 
 - (void)loginWeibo{
@@ -48,8 +48,7 @@ static LoginManager *_sharedInstance = nil;
 - (BOOL)handleOpenURL:(NSURL*)url{
     NSString* str = [url absoluteString];
     if([str rangeOfString:@"tencent"].location != NSNotFound){
-//        return [TencentOAuth HandleOpenURL:url];
-        return NO;
+        return [TencentOAuth HandleOpenURL:url];
     }else{
         return [WeiboSDK handleOpenURL:url delegate:[WeiboHelper sharedInstance]];
     }
@@ -68,7 +67,7 @@ static LoginManager *_sharedInstance = nil;
     } onFailure:^(Error *error) {
         if(error.errorCode){
             if([userId rangeOfString:@"uidqq"].location != NSNotFound){
-//                [[QQHelper sharedInstance] getUserInfo];
+                [[QQHelper sharedInstance] getUserInfo];
             }else{
                 [[WeiboHelper sharedInstance] getUserInfo];
             }

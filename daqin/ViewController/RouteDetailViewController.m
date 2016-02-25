@@ -6,7 +6,7 @@
 //  Copyright (c) 2014 BurizaDo. All rights reserved.
 //
 
-#import "ClubDetailViewController.h"
+#import "RouteDetailViewController.h"
 #import <UIImageView+WebCache.h>
 #import "UIButton+WebCache.h"
 #import "MWPhotoBrowser.h"
@@ -25,7 +25,7 @@
 #import "CommentsTableViewCell.h"
 #import "CommentsViewController.h"
 
-@interface ClubDetailViewController () <MWPhotoBrowserDelegate, InputDelegate>
+@interface RouteDetailViewController () <MWPhotoBrowserDelegate, InputDelegate>
 @property (nonatomic, weak) IBOutlet UILabel* seperator2;
 @property (strong, nonatomic) IBOutlet UIView *commandView;
 @property (weak, nonatomic) IBOutlet UIButton *beentoBtn;
@@ -35,7 +35,7 @@
 @property (nonatomic, strong) UIView* commentsContainer;
 @end
 
-@implementation ClubDetailViewController
+@implementation RouteDetailViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -75,11 +75,11 @@
 }
 
 - (NSUInteger)numberOfPhotosInPhotoBrowser:(MWPhotoBrowser *)photoBrowser{
-    return [_club.images count];
+    return [_route.user.images componentsSeparatedByString:@","].count;
 }
 
 - (id <MWPhoto>)photoBrowser:(MWPhotoBrowser *)photoBrowser photoAtIndex:(NSUInteger)index{
-    NSString* url = _club.images[index];
+    NSString* url = [_route.user.images componentsSeparatedByString:@","][index];
     return [MWPhoto photoWithURL:[NSURL URLWithString:url]];
 }
 
@@ -110,41 +110,61 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    _name.text = _club.name;
-    _address.text = _club.address;
+    if(_route.user.avatar.length > 0){
+        [_avatar setImageWithURL:[NSURL URLWithString:_route.user.avatar]];
+    }
+    [_avatar.layer setCornerRadius:CGRectGetHeight(_avatar.bounds)/2];
+    _avatar.layer.masksToBounds = YES;
+    _name.text = _route.user.name;
+    _signature.text = _route.user.signature;
+    _destination.text = _route.destination;
+    _describe.text = _route.descript;
+    _age.text = _route.user.age;
+    _age.text = [_age.text stringByAppendingString:@"岁"];
+    _age.layer.cornerRadius = _age.bounds.size.height / 2;
+    _iv_dest.image = [UIImage imageNamed:@"detail_01"];
+    _iv_time.image = [UIImage imageNamed:@"detail_02"];
+    _iv_desc.image = [UIImage imageNamed:@"detail_03"];
     UIColor* colorF = [UIColor colorWithRed:255/255.0 green:172/255.0 blue:184/255.0 alpha:1];
     UIColor* colorM = [UIColor colorWithRed:172/255.0 green:215/255.0 blue:255/255.0 alpha:1];
-
+    if([_route.user.gender isEqualToString:@"男"]){
+        _age.backgroundColor = colorM;
+    }else{
+        _age.backgroundColor = colorF;
+    }
+    
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setDateFormat:@"yyyy-MM-dd"];
 
-//    NSString* startTime = [formatter stringFromDate:[NSDate dateWithTimeIntervalSince1970:_route.startTime.intValue]];
-//    
-//    NSString* endTime = [formatter stringFromDate:[NSDate dateWithTimeIntervalSince1970:_route.endTime.intValue]];
+    NSString* startTime = [formatter stringFromDate:[NSDate dateWithTimeIntervalSince1970:_route.startTime.intValue]];
     
-//    NSString* schedule = [startTime stringByAppendingString:@" 至 "];
-//    schedule = [schedule stringByAppendingString:endTime];
+    NSString* endTime = [formatter stringFromDate:[NSDate dateWithTimeIntervalSince1970:_route.endTime.intValue]];
     
-    if([_club.images count] > 0){
-        [self setupImageScrollView:_route.images];
+    NSString* schedule = [startTime stringByAppendingString:@" 至 "];
+    schedule = [schedule stringByAppendingString:endTime];
+    
+    _schedule.text = schedule;
+    
+    if(_route.user.images.length > 0){
+        [self setupImageScrollView:[_route.user.images componentsSeparatedByString:@","]];
     }
     
-//    [_chatButton addTarget:self action:@selector(chatClicked) forControlEvents:UIControlEventTouchUpInside];
+    [_chatButton addTarget:self action:@selector(chatClicked) forControlEvents:UIControlEventTouchUpInside];
  
-//    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"举报" style:(UIBarButtonItemStyleBordered) target:self action:@selector(report)];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"举报" style:(UIBarButtonItemStyleBordered) target:self action:@selector(report)];
     
-//    [self handleMarkSucceed];
+    [self handleMarkSucceed];
     
-//    User* user = [GlobalDataManager sharedInstance].user;
-//    if(user){
-//        [ListingProvider hasBeenTo:user.userId messageId:_route.routeId onSuccess:^(id object) {
-//            _hasBeenTo = [((NSNumber*)object) boolValue];
-//        } onFailure:^(Error *error) {
-//            
-//        }];
-//    }
-//    
-//    [_beentoBtn addTarget:self action:@selector(doMark) forControlEvents:UIControlEventTouchUpInside];
+    User* user = [GlobalDataManager sharedInstance].user;
+    if(user){
+        [ListingProvider hasBeenTo:user.userId messageId:_route.routeId onSuccess:^(id object) {
+            _hasBeenTo = [((NSNumber*)object) boolValue];
+        } onFailure:^(Error *error) {
+            
+        }];
+    }
+    
+    [_beentoBtn addTarget:self action:@selector(doMark) forControlEvents:UIControlEventTouchUpInside];
     
 
     
@@ -160,48 +180,48 @@
 }
 
 - (void)showComments{
-//    [CommentsProvider getCommentsMessageId:_route.routeId from:0 size:3 onSuccess:^(NSArray *responseArray){
-//        if(_commentsContainer == nil){
-//            _commentsContainer = [[UIView alloc] init];
-//        }
-//        [[_commentsContainer subviews] makeObjectsPerformSelector:@selector(removeFromSuperview)];
-//        CGFloat y = 0;
-//        for(Comment* cmt in responseArray){
-//            CommentsTableViewCell* cell = [[NSBundle mainBundle] loadNibNamed:@"CommentsTableViewCell" owner:nil options:nil][0];
-//            [cell adaptWithComment:cmt];
-//            [_commentsContainer addSubview:cell];
-//            cell.frame = CGRectMake(0, y, cell.bounds.size.width, cell.bounds.size.height);
-//            y += cell.frame.size.height + 1;
-//        }
-//        if(y > 0){
-//            UIButton* cmtBtn = [[UIButton alloc] initWithFrame:CGRectMake(10, y + 5, 300, 30)];
-//            [cmtBtn setTitle:@"查看更多" forState:UIControlStateNormal];
-//            [cmtBtn setBackgroundColor:[UIColor colorWithRed:32/255.0 green:152/255.0 blue:214/255.0 alpha:1]];
-//            [cmtBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-//            [_commentsContainer addSubview:cmtBtn];
-//            y += cmtBtn.frame.size.height;
-//            [cmtBtn addTarget:self action:@selector(moreComments) forControlEvents:UIControlEventTouchUpInside];
-//        }
-//        if(y > 0){
-//            CGFloat orignY = _route.user.images.length > 0 ?
-//            _imagesView.frame.origin.y + _imagesView.frame.size.height + 10:
-//            _seperator2.frame.origin.y + _seperator2.frame.size.height + 10;
-//            _commentsContainer.frame = CGRectMake(0, orignY, 320, y);
-//            _scrollView.contentSize = CGSizeMake(_scrollView.frame.size.width, _commentsContainer.frame.origin.y + _commentsContainer.frame.size.height + _commandView.frame.size.height + 20);
-//            [_scrollView addSubview:_commentsContainer];
-//        }else{
-//            [_commentsContainer removeFromSuperview];
-//        }
-//
-//    } onFailure:^(Error *error) {
-//        
-//    }];
+    [CommentsProvider getCommentsMessageId:_route.routeId from:0 size:3 onSuccess:^(NSArray *responseArray){
+        if(_commentsContainer == nil){
+            _commentsContainer = [[UIView alloc] init];
+        }
+        [[_commentsContainer subviews] makeObjectsPerformSelector:@selector(removeFromSuperview)];
+        CGFloat y = 0;
+        for(Comment* cmt in responseArray){
+            CommentsTableViewCell* cell = [[NSBundle mainBundle] loadNibNamed:@"CommentsTableViewCell" owner:nil options:nil][0];
+            [cell adaptWithComment:cmt];
+            [_commentsContainer addSubview:cell];
+            cell.frame = CGRectMake(0, y, cell.bounds.size.width, cell.bounds.size.height);
+            y += cell.frame.size.height + 1;
+        }
+        if(y > 0){
+            UIButton* cmtBtn = [[UIButton alloc] initWithFrame:CGRectMake(10, y + 5, 300, 30)];
+            [cmtBtn setTitle:@"查看更多" forState:UIControlStateNormal];
+            [cmtBtn setBackgroundColor:[UIColor colorWithRed:32/255.0 green:152/255.0 blue:214/255.0 alpha:1]];
+            [cmtBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+            [_commentsContainer addSubview:cmtBtn];
+            y += cmtBtn.frame.size.height;
+            [cmtBtn addTarget:self action:@selector(moreComments) forControlEvents:UIControlEventTouchUpInside];
+        }
+        if(y > 0){
+            CGFloat orignY = _route.user.images.length > 0 ?
+            _imagesView.frame.origin.y + _imagesView.frame.size.height + 10:
+            _seperator2.frame.origin.y + _seperator2.frame.size.height + 10;
+            _commentsContainer.frame = CGRectMake(0, orignY, 320, y);
+            _scrollView.contentSize = CGSizeMake(_scrollView.frame.size.width, _commentsContainer.frame.origin.y + _commentsContainer.frame.size.height + _commandView.frame.size.height + 20);
+            [_scrollView addSubview:_commentsContainer];
+        }else{
+            [_commentsContainer removeFromSuperview];
+        }
+
+    } onFailure:^(Error *error) {
+        
+    }];
 }
 
 - (void)moreComments{
-//    CommentsViewController* vc = [[CommentsViewController alloc] initWithNibName:@"CommentsViewController" bundle:nil];
-//    vc.routeId = _route.routeId;
-//    [self.navigationController pushViewController:vc animated:YES];
+    CommentsViewController* vc = [[CommentsViewController alloc] initWithNibName:@"CommentsViewController" bundle:nil];
+    vc.routeId = _route.routeId;
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (void)hideKeyboard{
@@ -240,28 +260,28 @@
 }
 
 - (void)handleMarkSucceed{
-//    [ListingProvider getMarkedCount:_route.routeId onSuccess:^(id object) {
-//        NSString* count = [NSString stringWithFormat:@"(%@)", object];
-//        [_beentoBtn setTitle:[@"去过" stringByAppendingString:count] forState:UIControlStateNormal];
-//    } onFailure:^(Error *error) {
-//        
-//    }];
+    [ListingProvider getMarkedCount:_route.routeId onSuccess:^(id object) {
+        NSString* count = [NSString stringWithFormat:@"(%@)", object];
+        [_beentoBtn setTitle:[@"去过" stringByAppendingString:count] forState:UIControlStateNormal];
+    } onFailure:^(Error *error) {
+        
+    }];
 
 }
 
 - (void)doMark{
-//    User* user = [GlobalDataManager sharedInstance].user;
-//    if(!user){
-//        LoginViewController* vc = [[LoginViewController alloc] init];
-//        [self.navigationController pushViewController:vc animated:YES];
-//    }else{
-//        [ListingProvider markAsBeento:user.userId messageId:_route.routeId hasBeento:!_hasBeenTo onSuccess:^{
-//            _hasBeenTo = !_hasBeenTo;
-//            [self handleMarkSucceed];
-//        } onFailure:^(Error *error) {
-//            
-//        }];
-//    }
+    User* user = [GlobalDataManager sharedInstance].user;
+    if(!user){
+        LoginViewController* vc = [[LoginViewController alloc] init];
+        [self.navigationController pushViewController:vc animated:YES];
+    }else{
+        [ListingProvider markAsBeento:user.userId messageId:_route.routeId hasBeento:!_hasBeenTo onSuccess:^{
+            _hasBeenTo = !_hasBeenTo;
+            [self handleMarkSucceed];
+        } onFailure:^(Error *error) {
+            
+        }];
+    }
 }
 
 - (void)report{
@@ -277,12 +297,12 @@
         [self.navigationController pushViewController:lvc animated:YES];
         return;
     }
-//    MessageViewController* messageVC = [MessageViewController new];
-//    messageVC.receiverChatUser = [[ChatUser alloc] initWithPeerId:_route.user.userId displayName:_route.user.name iconUrl:_route.user.avatar];
-//    [ChatSession sharedInstance].receiverUser = messageVC.receiverChatUser;
-//    [messageVC initData];
-//
-//    [self.navigationController pushViewController:messageVC animated:YES];
+    MessageViewController* messageVC = [MessageViewController new];
+    messageVC.receiverChatUser = [[ChatUser alloc] initWithPeerId:_route.user.userId displayName:_route.user.name iconUrl:_route.user.avatar];
+    [ChatSession sharedInstance].receiverUser = messageVC.receiverChatUser;
+    [messageVC initData];
+
+    [self.navigationController pushViewController:messageVC animated:YES];
 }
 
 - (void)viewWillAppear:(BOOL)animated{

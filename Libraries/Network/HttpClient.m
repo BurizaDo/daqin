@@ -142,15 +142,13 @@ static NSString* s_apiSecret;
         success:(ResponseObject)sucBlock
         failure:(ResponseError)errBlock
 {
-    AFHTTPResponseSerializer* a;
     NSString *uri = [self generatePathWithApi:api];
 
     NSMutableURLRequest *request = [[AFHTTPRequestSerializer serializer] requestWithMethod:@"POST" URLString:uri parameters:@{} error:nil];
 //    NSMutableURLRequest *request = [self requestWithMethod:@"POST" path:uri parameters:@{}];
 
     if(params){
-        NSError* err = nil;
-        NSData *data = [NSJSONSerialization dataWithJSONObject:params options:kNilOptions error:&err];
+        NSData *data = [NSJSONSerialization dataWithJSONObject:params options:kNilOptions error:NULL];
         NSString *requestBody = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
 
         [request setHTTPBody:[requestBody dataUsingEncoding:NSUTF8StringEncoding]];
@@ -161,7 +159,6 @@ static NSString* s_apiSecret;
     AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
     [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSError *err = nil;
-        NSString* str = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
         id obj = [NSJSONSerialization JSONObjectWithData:responseObject options:0 error:&err];
         if(err) {
         } else {
